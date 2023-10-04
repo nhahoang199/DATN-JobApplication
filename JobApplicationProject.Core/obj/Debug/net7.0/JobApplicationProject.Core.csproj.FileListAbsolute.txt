@@ -1,0 +1,16 @@
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.csproj.AssemblyReference.cache
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.AssemblyInfoInputs.cache
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.AssemblyInfo.cs
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.csproj.CoreCompileInputs.cache
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\spa.proxy.json
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\bin\Debug\net7.0\spa.proxy.json
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\bin\Debug\net7.0\JobApplicationProject.Core.deps.json
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\bin\Debug\net7.0\JobApplicationProject.Core.runtimeconfig.json
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\bin\Debug\net7.0\JobApplicationProject.Core.dll
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\bin\Debug\net7.0\JobApplicationProject.Core.pdb
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.dll
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\refint\JobApplicationProject.Core.dll
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.pdb
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\JobApplicationProject.Core.genruntimeconfig.cache
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Core\obj\Debug\net7.0\ref\JobApplicationProject.Core.dll

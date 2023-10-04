@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "node-sass": "^9.0.0",
+    "sass": "^1.68.0",
+    "vite-test-utils": "^0.6.0",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.1.0",
+    "axios": "^1.5.1",
+    "vite": "^4.4.9",
+    "vite-plugin-svgr": "^4.1.0"
+  }
+}

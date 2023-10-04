@@ -1,0 +1,22 @@
+.login-container{
+    width: 40%;
+    height: max-content;
+    background: #fff;
+    border-radius: 30px;
+    height: 70vh;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+.login-modal{
+    border-radius: 20px;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("./../../assets/images/background.webp");
+    // background-image: url("https://images.unsplash.com/photo-1550895030-823330fc2551?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2487&q=80");
+}
