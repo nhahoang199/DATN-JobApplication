@@ -1,4 +1,4 @@
-﻿using JobApplicationProject.Models;
+﻿using JobApplicationProject.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,7 +13,7 @@ namespace JobApplicationProject.Data.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Annoucements");
+            builder.ToTable("Users");
             builder.HasKey(x => x.Id);
             builder.HasIndex(x => x.Email).IsUnique();
             builder.Property(x => x.Password).IsRequired();

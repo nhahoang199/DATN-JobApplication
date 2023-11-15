@@ -1,36 +1,48 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { AdminLayout, UserLayout } from './../layouts'
-import { Login, Register } from './../pages'
+import { AdminLayout, UserLayout, RootLayout } from './../layouts'
+import { Login, Register, NotFound, Home, JobDetails, JobSeeking } from './../pages'
 
 const router = createBrowserRouter([
     {
-        path: '/admin',
-        element: <AdminLayout />,
-        
-    },
-    {
-        path: '/',
-        element: <UserLayout />,
+        element: <RootLayout />,
         children: [
             {
-                path: 'auth/login',
-                element: <Login />
+                path: '',
+                element: <UserLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <Home />
+                    },
+                    {
+                        path: '/jobs',
+                        element: <JobSeeking />
+                    },
+                    {
+                        path: '/jobs/:id',
+                        element: <JobDetails />
+                    }
+                ]
+            },
+            {
+                path: '*',
+                element: <NotFound />
+            },
+            {
+                path: 'admin',
+                element: <AdminLayout />
             },
             {
                 path: 'register',
-                element: <Register /> 
+                element: <Register />
+            },
+            {
+                path: 'login',
+                element: <Login />
+                // errorElement: <ErrorPage />,
             }
         ]
-    },
-    // {
-    //     path: '/register',
-    //     element: <Register />
-    // },
-    // {
-    //     path: '/admin',
-    //     element: <AdminLayout />
-    //     // errorElement: <ErrorPage />,
-    // },
+    }
 ])
 
 export default router

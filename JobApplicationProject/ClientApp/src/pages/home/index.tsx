@@ -1,7 +1,13 @@
-const Home = (props: { name: string }) => {
+import { HeroSection, SearchSection, JobReferences, TopCompanySection, CareerSection } from './../../components'
+
+const Home = (props: any) => {
     return (
         <div>
-            <h1>{props.name ? 'Hi ' + props.name : 'You are not logged in'}</h1>
+            <HeroSection />
+            <SearchSection />
+            <JobReferences />
+            <TopCompanySection />
+            <CareerSection />
         </div>
     )
 }

@@ -1,5 +1,4 @@
-import './index.scss'
-import { Navbar } from './../../components'
+import { Navbar, Footer } from './../../components'
 import { useOutlet } from 'react-router-dom'
 
 const UserLayout = () => {
@@ -7,7 +6,8 @@ const UserLayout = () => {
     return (
         <div className='userLayout'>
             <Navbar />
-            <div className='content'>{children}</div>
+            <div className='bg-gray-100 content '>{children}</div>
+            <Footer />
         </div>
     )
 }

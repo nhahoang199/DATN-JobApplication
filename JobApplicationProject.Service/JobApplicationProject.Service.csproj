@@ -16,4 +16,8 @@
     <ProjectReference Include="..\JobApplicationProject.Data\JobApplicationProject.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\UserJobService\" />
+  </ItemGroup>
+
 </Project>

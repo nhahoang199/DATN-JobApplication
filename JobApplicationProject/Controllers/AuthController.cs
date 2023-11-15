@@ -1,12 +1,17 @@
-﻿using JobApplicationProject.Models;
+﻿using JobApplicationProject.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BCrypt.Net;
-using JobApplicationProject.API.Dtos;
-using JobApplicationProject.Services.UserService;
-using JobApplicationProject.API.Services.Interface;
+using JobApplicationProject.Core.Dtos;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using JobApplicationProject.Service.Helpers.JwtService;
+using JobApplicationProject.Service.Services.UserService;
+using System.Security.Cryptography;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
+using JobApplicationProject.Service.Validation;
 
-namespace JobApplicationProject.API.Controllers
+namespace JobApplicationProject.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -14,13 +19,17 @@ namespace JobApplicationProject.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IJwtService _jwtService;
-        public AuthController(IUserService userService, IJwtService jwtService)
+        private readonly UserValidator _validations;
+
+        public AuthController(IUserService userService, IJwtService jwtService, UserValidator validations)
         {
             _userService = userService;
             _jwtService = jwtService;
+            _validations = validations;
         }
+
         [HttpPost("register")]
-        public IActionResult Register(RegisterDto registerDto)
+        public async Task<IActionResult> Register(RegisterDto registerDto)
         {
             var user = new User()
             {
@@ -28,14 +37,15 @@ namespace JobApplicationProject.API.Controllers
                 Email = registerDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password)
             };
+            if (!_validations.Validate(user).IsValid) return BadRequest(_validations.Validate(user).Errors);
 
-            return Created("Register successfully", _userService.Create(user));
+            return Created("Register successfully", await _userService.Create(user));
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginDto dto)
+        public async Task<IActionResult> Login(LoginDto dto)
         {
-            var user = _userService.GetByEmail(dto.Email);
+            var user = await _userService.GetByEmail(dto.Email);
 
             if (user == null)
                 return BadRequest("Invalid Credentials");
@@ -43,39 +53,71 @@ namespace JobApplicationProject.API.Controllers
             if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
                 return BadRequest("Invalid Credentials");
 
-            var jwt = _jwtService.Generate(user.Id);
+            var jwt = _jwtService.CreateToken(user);
 
-            Response.Cookies.Append("jwt", jwt, new CookieOptions
-            {
-                HttpOnly = false
-            });
-
-            return Ok(new
-            {
-                message = "Login successfully"
-            });
+            var refreshToken = GenerateRefreshToken();
+            SetRefreshToken(refreshToken, user);
+            return Ok(jwt);
         }
-        [HttpGet("user")]
-        public IActionResult GetUser()
+        [HttpPost("refresh-token")]
+        public ActionResult<string> RefreshToken(User user)
         {
-            try
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            if (!user.RefreshToken.Equals(refreshToken))
             {
-                var jwt = Request.Cookies["jwt"];
-                var token = _jwtService.Verify(jwt);
-                Guid userId = Guid.Parse(token.Issuer);
-                var user = _userService.GetById(userId);
-                return Ok(user);
+                return Unauthorized("Invalid Refresh Token.");
             }
-            catch (Exception)
+            else if (user.TokenExpires < DateTime.Now)
             {
-                return Unauthorized();
+                return Unauthorized("Token expired.");
             }
+
+            string token = _jwtService.CreateToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+
+            SetRefreshToken(newRefreshToken, user);
+
+            return Ok(token);
         }
         [HttpPost("logout")]
         public IActionResult Logout()
         {
             Response.Cookies.Delete("jwt");
             return Ok("Logout successfully");
+        }
+
+        [HttpGet("getme"), Authorize]
+        public ActionResult<object> GetMe()
+        {
+            var userName = _userService.GetMyName();
+            return Ok(new { userName });
+        }
+
+        private void SetRefreshToken(RefreshToken newRefreshToken, User user)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires
+            };
+            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+            user.RefreshToken = newRefreshToken.Token;
+            user.TokenCreated = newRefreshToken.Created;
+            user.TokenExpires = newRefreshToken.Expires;
+        }
+
+        private RefreshToken GenerateRefreshToken()
+        {
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7),
+                Created = DateTime.Now
+            };
+
+            return refreshToken;
         }
     }
 }

@@ -1,4 +1,3 @@
-declare var require: any
 const { createProxyMiddleware } = require('http-proxy-middleware')
 const { env } = require('process')
 

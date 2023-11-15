@@ -1,9 +1,3 @@
-C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.csproj.AssemblyReference.cache
-C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.AssemblyInfoInputs.cache
-C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.AssemblyInfo.cs
-C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.csproj.CoreCompileInputs.cache
-C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\spa.proxy.json
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\bin\Debug\net7.0\spa.proxy.json
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\bin\Debug\net7.0\JobApplicationProject.Data.deps.json
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\bin\Debug\net7.0\JobApplicationProject.Data.runtimeconfig.json
@@ -11,6 +5,12 @@ C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplica
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\bin\Debug\net7.0\JobApplicationProject.Data.pdb
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\bin\Debug\net7.0\JobApplicationProject.Core.dll
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\bin\Debug\net7.0\JobApplicationProject.Core.pdb
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.csproj.AssemblyReference.cache
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\spa.proxy.json
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.AssemblyInfoInputs.cache
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.AssemblyInfo.cs
+C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.csproj.CoreCompileInputs.cache
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.csproj.CopyComplete
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\JobApplicationProject.Data.dll
 C:\Users\matthew.tran\Documents\NhaHoang\MyCode\JobApplicationProject\JobApplicationProject.Data\obj\Debug\net7.0\refint\JobApplicationProject.Data.dll

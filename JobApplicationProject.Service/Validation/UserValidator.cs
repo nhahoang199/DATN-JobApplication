@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using JobApplicationProject.Models;
+using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace JobApplicationProject.Service.Validation
         public UserValidator()
         {
             RuleFor(user => user.Name).NotEmpty().WithMessage("Name is required.");
-            RuleFor(user => user.Email).NotEmpty().WithMessage("Age must be between 18 and 99.");
+            RuleFor(user => user.Email).NotEmpty().WithMessage("Email is required");
         }
     }
 }
