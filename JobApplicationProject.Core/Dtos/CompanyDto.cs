@@ -18,5 +18,8 @@ namespace JobApplicationProject.Core.Dtos
         public string? Picture { get; set; } = string.Empty;
         public DateTime? DateOfIncorporation { get; set; }
         public Guid? AddressId { get; set; }
+        public AddressDto? Address { get; set; }
+        public string? WorkingDay { get; set; } = string.Empty;
+        public string? CompanySize { get; set; } = string.Empty;
     }
 }

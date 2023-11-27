@@ -67,6 +67,27 @@ namespace JobApplicationProject.Data.Data.Migrations
                     b.ToTable("Address", (string)null);
                 });
 
+            modelBuilder.Entity("JobApplicationProject.Core.Models.Career", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Career");
+                });
+
             modelBuilder.Entity("JobApplicationProject.Core.Models.Commune", b =>
                 {
                     b.Property<Guid>("Id")
@@ -102,6 +123,9 @@ namespace JobApplicationProject.Data.Data.Migrations
                     b.Property<Guid?>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CompanySize")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -136,6 +160,9 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkingDay")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -206,6 +233,9 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CareerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -226,6 +256,14 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("JobBenefit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobRequired")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Position")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -235,6 +273,9 @@ namespace JobApplicationProject.Data.Data.Migrations
 
                     b.Property<int>("Salary")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("SkillId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -248,7 +289,11 @@ namespace JobApplicationProject.Data.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CareerId");
+
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("SkillId");
 
                     b.ToTable("JobApplication", (string)null);
                 });
@@ -277,6 +322,27 @@ namespace JobApplicationProject.Data.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Province", (string)null);
+                });
+
+            modelBuilder.Entity("JobApplicationProject.Core.Models.Skill", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skill");
                 });
 
             modelBuilder.Entity("JobApplicationProject.Core.Models.User", b =>
@@ -416,12 +482,26 @@ namespace JobApplicationProject.Data.Data.Migrations
 
             modelBuilder.Entity("JobApplicationProject.Core.Models.JobApplication", b =>
                 {
+                    b.HasOne("JobApplicationProject.Core.Models.Career", "Career")
+                        .WithMany()
+                        .HasForeignKey("CareerId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("JobApplicationProject.Core.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("JobApplicationProject.Core.Models.Skill", "Skill")
+                        .WithMany()
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Career");
+
                     b.Navigation("Company");
+
+                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("JobApplicationProject.Core.Models.Province", b =>

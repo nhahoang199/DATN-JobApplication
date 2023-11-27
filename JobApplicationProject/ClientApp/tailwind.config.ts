@@ -12,7 +12,10 @@ module.exports = withMT({
         extend: {
             backgroundImage: {
                 hero: "url('https://images.unsplash.com/photo-1582056615449-5dcb2332b3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80')",
-                search: 'url(https://images.unsplash.com/photo-1629196613836-0a7e2541990a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2634&q=80)'
+                search: 'url(https://images.unsplash.com/photo-1629196613836-0a7e2541990a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2634&q=80)',
+                company:
+                    'url(https://images.unsplash.com/photo-1629196214806-2fe3a64cb875?q=80&w=1773&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+                jobs: 'url(https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
             },
             height: {
                 '70vh': '70vh',
@@ -21,6 +24,9 @@ module.exports = withMT({
                 '800': '800px',
                 '900': '900px',
                 '1000': '1000px'
+            },
+            padding: {
+                '0.5px': '0.5px'
             },
             width: {
                 '112': '28rem',

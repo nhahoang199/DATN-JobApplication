@@ -3,7 +3,16 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true
   },
-  "include": ["vite.config.ts"]
+  "include":["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.js"],
+  "exclude": ["node_modules"]
 }

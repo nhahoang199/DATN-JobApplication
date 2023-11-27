@@ -1,15 +1,23 @@
 import axiosInstance from './axiosConfig'
+import { loginParams, registerParams } from 'types'
 
-const register = (name: string, userName: string, password: string) => {
-    return axiosInstance.post('auth/register', { name, userName, password })
+const registerAPI = (registerParams: registerParams) => {
+    return axiosInstance.post('auth/register', registerParams)
 }
 
-const logIn = (userName: string, password: string) => {
-    return axiosInstance.post('auth/login', { userName, password })
+const logInAPI = (loginParams: loginParams) => {
+    return axiosInstance.post('auth/login', loginParams)
+}
+const getMeAPI = (token: string) => {
+    return axiosInstance.get('auth/getme', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }
 
-const logOut = () => {
+const logOutAPI = () => {
     return axiosInstance.post('auth/logout')
 }
 
-export { register, logIn, logOut }
+export { registerAPI, logInAPI, getMeAPI, logOutAPI }

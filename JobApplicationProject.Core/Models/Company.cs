@@ -19,5 +19,7 @@ namespace JobApplicationProject.Core.Models
         public DateTime? DateOfIncorporation { get; set; }
         public Guid? AddressId { get; set; }
         public virtual Address? Address { get; set; } = null;
+        public string? WorkingDay { get; set; } = string.Empty;
+        public string? CompanySize { get; set; } = string.Empty;
     }
 }

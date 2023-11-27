@@ -4,5 +4,22 @@ import Login from './login'
 import Register from './register'
 import JobDetails from './jobDetails'
 import JobSeeking from './jobsSeeking'
+import LoadingProgress from './loadingPage/loadingProgress'
+import InternalErrorPage from './500 page'
+import CompanyListPage from './companyListingPage'
+import CompanyDetails from './companyDetails'
+import LoadingPage from './loadingPage'
 
-export { Home, Login, Register, NotFound, JobDetails, JobSeeking }
+export {
+    Home,
+    Login,
+    Register,
+    NotFound,
+    JobDetails,
+    JobSeeking,
+    LoadingProgress,
+    InternalErrorPage,
+    CompanyListPage,
+    CompanyDetails,
+    LoadingPage
+}

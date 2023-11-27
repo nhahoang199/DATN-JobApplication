@@ -18,7 +18,8 @@ namespace JobApplicationProject.Data
         public DbSet<Province> Province { set; get; }
         public DbSet<JobApplication> JobApplication { set; get; }
         public DbSet<UserJob> UserJob { set; get; }
-
+        public DbSet<Career> Career { set; get; }
+        public DbSet<Skill> Skill { set; get; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);

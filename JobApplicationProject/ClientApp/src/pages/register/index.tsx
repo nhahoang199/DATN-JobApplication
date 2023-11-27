@@ -1,17 +1,17 @@
 import { SyntheticEvent, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { register } from '../../apis/authApi'
 import './index.scss'
 import { logo_transparent } from 'assets'
+import { registerAPI } from 'apis/authAPI'
 
 const Register = () => {
-    const [name, setName] = useState('')
-    const [userName, setUserName] = useState('')
+    const [email, setEmail] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [password, setPassword] = useState('')
     const [redirect, setRedirect] = useState(false)
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault()
-        await register(name, userName, password)
+        await registerAPI({ email: email, password: password, confirmPassword: confirmPassword })
         setRedirect(true)
     }
     if (redirect) return <Navigate to='/login' />

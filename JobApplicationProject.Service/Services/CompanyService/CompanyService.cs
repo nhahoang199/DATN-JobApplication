@@ -38,8 +38,10 @@ namespace JobApplicationProject.Service.Services.CompanyService
                 Picture = companyDto.Picture,
                 DateOfIncorporation = companyDto.DateOfIncorporation,
                 AddressId = companyDto.AddressId,
+                CompanySize = companyDto.CompanySize,
+                WorkingDay = companyDto.WorkingDay,
                 UpdatedOn = DateTime.UtcNow,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
             };
 
             if (companyDto.AddressId != null)
@@ -75,6 +77,8 @@ namespace JobApplicationProject.Service.Services.CompanyService
             existingCompany.Picture = companyDto.Picture;
             existingCompany.DateOfIncorporation = companyDto.DateOfIncorporation;
             existingCompany.AddressId = companyDto.AddressId;
+            existingCompany.CompanySize = companyDto.CompanySize;
+            existingCompany.WorkingDay = companyDto.WorkingDay;
             existingCompany.UpdatedOn = DateTime.UtcNow;
 
             return await _companyRepo.Update(existingCompany);

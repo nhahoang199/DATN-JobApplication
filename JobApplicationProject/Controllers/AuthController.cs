@@ -20,12 +20,14 @@ namespace JobApplicationProject.Web.Controllers
         private readonly IUserService _userService;
         private readonly IJwtService _jwtService;
         private readonly UserValidator _validations;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthController(IUserService userService, IJwtService jwtService, UserValidator validations)
+        public AuthController(IUserService userService, IJwtService jwtService, UserValidator validations, IHttpContextAccessor httpContextAccessor)
         {
             _userService = userService;
             _jwtService = jwtService;
             _validations = validations;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost("register")]
@@ -48,15 +50,21 @@ namespace JobApplicationProject.Web.Controllers
             var user = await _userService.GetByEmail(dto.Email);
 
             if (user == null)
-                return BadRequest("Invalid Credentials");
+                return NotFound(new { error = "Email Not Found" });
 
             if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
-                return BadRequest("Invalid Credentials");
+                return Unauthorized(new { error = "Wrong Password" });
 
             var jwt = _jwtService.CreateToken(user);
 
             var refreshToken = GenerateRefreshToken();
             SetRefreshToken(refreshToken, user);
+            //var cookies = _httpContextAccessor.HttpContext.Response.Cookies;
+            //cookies.Append("jwt", jwt, new CookieOptions
+            //{
+            //    HttpOnly = true,
+            //    Expires = DateTime.UtcNow.AddMinutes(30)
+            //});
             return Ok(jwt);
         }
         [HttpPost("refresh-token")]
@@ -83,7 +91,21 @@ namespace JobApplicationProject.Web.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("jwt");
+            //var cookieOptions = new CookieOptions
+            //{
+            //    HttpOnly = true,
+            //    SameSite = SameSiteMode.None,
+            //    Secure = true
+            //};
+            //Response.Cookies.Delete("refreshToken", cookieOptions);
+            Response.Cookies.Append("refreshToken", "", new CookieOptions
+            {
+                Expires = DateTime.UtcNow.AddDays(-1),
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
+
             return Ok("Logout successfully");
         }
 
@@ -99,10 +121,11 @@ namespace JobApplicationProject.Web.Controllers
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
-                Expires = newRefreshToken.Expires
+                Expires = newRefreshToken.Expires,
+                SameSite = SameSiteMode.None,
+                Secure = true
             };
             Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
-
             user.RefreshToken = newRefreshToken.Token;
             user.TokenCreated = newRefreshToken.Created;
             user.TokenExpires = newRefreshToken.Expires;

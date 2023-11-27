@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Service.Services.JobApplicationService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProvince(JobAppDto jobApplicationDto)
+        public async Task<IActionResult> CreateJobApplication(JobAppDto jobApplicationDto)
         {
             try
             {
@@ -31,7 +32,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProvince(Guid id, JobAppDto jobApplicationDto)
+        public async Task<IActionResult> UpdateJobApplication(Guid id, JobAppDto jobApplicationDto)
         {
             try
             {
@@ -46,11 +47,15 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProvinces()
+        public async Task<IActionResult> GetAllJobApplications([FromQuery] PaginationParameters paginationParameters)
         {
             try
             {
-                var jobApplications = await _jobApplicationService.GetAllJobApplications();
+                var jobApplications = await _jobApplicationService.GetAllJobApplications(paginationParameters);
+
+                // Trả về các thông số phân trang trong Header của response
+                Response.Headers.Add("X-Pagination", jobApplications.GetHeader());
+
                 return Ok(jobApplications);
             }
             catch (Exception ex)
@@ -58,9 +63,25 @@ namespace JobApplicationProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("JobsRefer")]
+        public async Task<IActionResult> GetJobsRefer([FromQuery] PaginationParameters paginationParameters)
+        {
+            try
+            {
+                var jobApplications = await _jobApplicationService.GetJobsRefer(paginationParameters);
 
+                // Trả về các thông số phân trang trong Header của response
+                Response.Headers.Add("X-Pagination", jobApplications.GetHeader());
+
+                return Ok(jobApplications);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProvinceById(Guid id)
+        public async Task<IActionResult> GetJobApplicationById(Guid id)
         {
             try
             {
@@ -73,9 +94,22 @@ namespace JobApplicationProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [HttpGet("details/{id}")]
+        public async Task<IActionResult> GetJobDetails(Guid id)
+        {
+            try
+            {
+                var jobApplication = await _jobApplicationService.GetJobDetails(id);
+                if (jobApplication == null) return NotFound();
+                return Ok(jobApplication);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProvince(Guid id)
+        public async Task<IActionResult> DeleteJobApplication(Guid id)
         {
             try
             {

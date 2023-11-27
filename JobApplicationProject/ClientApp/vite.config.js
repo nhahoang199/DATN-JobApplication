@@ -7,7 +7,6 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig(() => {
     return {
-       
         plugins: [react(), viteTsconfigPaths(), svgr({ svgrOptions: { icon: true } })],
         server: {
             port: 5000,

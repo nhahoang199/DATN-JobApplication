@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,10 @@ namespace JobApplicationProject.Service.Services.JobApplicationService
     {
         Task<JobApplication> CreateJobApplication(JobAppDto jobApplicationDto);
         Task<JobApplication?> UpdateJobApplication(Guid id, JobAppDto jobApplicationDto);
-        Task<List<JobApplication>> GetAllJobApplications();
+        Task<PagedList<JobApplication>> GetAllJobApplications(PaginationParameters paginationParameters);
+        Task<PagedList<JobReferDto>> GetJobsRefer(PaginationParameters paginationParameters);
         Task<JobApplication?> GetJobApplicationById(Guid id);
+        Task<JobDetailsDto?> GetJobDetails(Guid id);
         Task<JobApplication?> DeleteJobApplication(Guid id);
     }
 }

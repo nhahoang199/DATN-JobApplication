@@ -25,6 +25,10 @@ using JobApplicationProject.Service.Services.CompanyService;
 using JobApplicationProject.Data.Repositories.CompanyRepo;
 using JobApplicationProject.Service.Services.JobApplicationService;
 using JobApplicationProject.Data.Repositories.JobApplicationRepo;
+using JobApplicationProject.Service.Services.CareerService;
+using JobApplicationProject.Data.Repositories.CareerRepo;
+using JobApplicationProject.Service.Services.SkillService;
+using JobApplicationProject.Data.Repositories.SkillRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 var service = builder.Services;
@@ -56,6 +60,10 @@ service.AddScoped<ICompanyService, CompanyService>();
 service.AddScoped<ICompanyRepo, CompanyRepo>();
 service.AddScoped<IJobApplicationService, JobApplicationService>();
 service.AddScoped<IJobApplicationRepo, JobApplicationRepo>();
+service.AddScoped<ICareerService, CareerService>();
+service.AddScoped<ICareerRepo, CareerRepo>();
+service.AddScoped<ISkillService, SkillService>();
+service.AddScoped<ISkillRepo, SkillRepo>();
 service.AddScoped<IJwtService, JwtService>();
 
 service.AddEndpointsApiExplorer();
@@ -103,7 +111,7 @@ app.MapControllerRoute(
 
 app.UseCors(options => options.WithOrigins(new[]
 {
-    "http://127.0.0.1:5174", "http://localhost:8000", "http://localhost:5000"
+    "http://127.0.0.1:5000", "http://localhost:8000", "http://localhost:5000"
 }).AllowCredentials().AllowAnyHeader().AllowAnyMethod()
 );
 app.UseAuthentication();

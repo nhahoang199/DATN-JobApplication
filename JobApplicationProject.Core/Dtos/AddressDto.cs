@@ -10,6 +10,10 @@ namespace JobApplicationProject.Core.Dtos
     {
         public string HouseNumber { get; set; } = string.Empty;
         public string Street { get; set; } = string.Empty;
+        public string? CountryName { get; set; } = string.Empty;
+        public string? ProvinceName { get; set; } = string.Empty;
+        public string? DistrictName { get; set; } = string.Empty;
+        public string? CommuneName { get; set; } = string.Empty;
         public Guid? CountryId { get; set; }
         public Guid? ProvinceId { get; set; }
 

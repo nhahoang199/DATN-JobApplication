@@ -18,7 +18,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProvince(CommuneDto communeDto)
+        public async Task<IActionResult> CreateCommune(CommuneDto communeDto)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProvince(Guid id, CommuneDto communeDto)
+        public async Task<IActionResult> UpdateCommune(Guid id, CommuneDto communeDto)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProvinces()
+        public async Task<IActionResult> GetAllCommunes()
         {
             try
             {
@@ -61,7 +61,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProvinceById(Guid id)
+        public async Task<IActionResult> GetCommuneById(Guid id)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProvince(Guid id)
+        public async Task<IActionResult> DeleteCommune(Guid id)
         {
             try
             {
