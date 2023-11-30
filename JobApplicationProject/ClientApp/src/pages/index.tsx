@@ -9,6 +9,11 @@ import InternalErrorPage from './500 page'
 import CompanyListPage from './companyListingPage'
 import CompanyDetails from './companyDetails'
 import LoadingPage from './loadingPage'
+import JobApplyForm from './jobApplyRequestForm/index'
+import CompanyReviewForm from './companyReviewForm/index'
+import UserProfileManage from './userProfilepage'
+import JobCreatedListingPage from './jobCreatedListingPage/index'
+import CreateJobForm from './createJobForm'
 
 export {
     Home,
@@ -21,5 +26,10 @@ export {
     InternalErrorPage,
     CompanyListPage,
     CompanyDetails,
-    LoadingPage
+    LoadingPage,
+    JobApplyForm,
+    CompanyReviewForm,
+    UserProfileManage,
+    JobCreatedListingPage,
+    CreateJobForm
 }

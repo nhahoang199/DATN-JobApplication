@@ -4,11 +4,11 @@ function SearchButton() {
     }
 
     return (
-        <div className='items-center w-2/12 space-x-4 rounded-lg relative'>
+        <div className='items-center w-2/12 space-x-4 rounded-md relative'>
             <button
                 style={{ height: '46px' }}
                 onClick={handleSearch}
-                className='flex w-full gap-3 py-3 font-semibold text-white duration-200 border border-gray-600 rounded-lg cursor-pointer bg-gradient-to-r from-gray-800 to-gray-600 px-7 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 '
+                className='flex w-full gap-3 py-3 font-semibold text-white duration-200 border border-gray-600 rounded-md cursor-pointer bg-gradient-to-r from-gray-800 to-gray-600 px-7 hover:scale-105 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900 '
             >
                 <svg
                     xmlns='http://www.w3.org/2000/svg'

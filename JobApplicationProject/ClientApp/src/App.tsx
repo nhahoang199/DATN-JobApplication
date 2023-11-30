@@ -12,18 +12,19 @@ import { useSelector } from 'react-redux'
 function App() {
     const dispatch = useAppDispatch()
     const jwt = localStorage.getItem('jwt')
+    const loginStatus = useSelector((state: RootState) => state.auth.loginStatus)
     // useEffect(() => {
     //     dispatch(getMeAsync(jwt || ''))
     // }, [dispatch, jwt])
     useEffect(() => {
-        if (jwt) dispatch(getMeAsync(jwt || ''))
+        if (jwt) dispatch(getMeAsync())
         const handleStorageChange = (event: StorageEvent) => {
             if (event.storageArea === window.localStorage) {
-                dispatch(getMeAsync(jwt || ''))
+                dispatch(getMeAsync())
             }
         }
         window.addEventListener('storage', handleStorageChange)
-        console.log('zxczxx')
+        console.log('app use effect')
         return () => {
             window.removeEventListener('storage', handleStorageChange)
         }

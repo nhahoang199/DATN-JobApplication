@@ -1,10 +1,10 @@
 import React from 'react'
 import { HeartIcon } from '@heroicons/react/24/outline'
 import { IJobDetail } from 'models'
+import { NavLink } from 'react-router-dom'
 
 function JobTitle(props: { item: IJobDetail }) {
     const { item } = props
-
     function formatDate(date: string): string {
         const inputDate = new Date(date)
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -12,7 +12,7 @@ function JobTitle(props: { item: IJobDetail }) {
     }
 
     return (
-        <div className='p-8 bg-white rounded-lg shadow-lg lg:flex lg:items-center lg:justify-between'>
+        <div className='p-8 bg-white rounded-md shadow-lg lg:flex lg:items-center lg:justify-between'>
             <div className='flex-1 min-w-0'>
                 <h2 className='mb-2 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight'>
                     {item.title}
@@ -84,24 +84,26 @@ function JobTitle(props: { item: IJobDetail }) {
             </div>
             <div className='flex flex-col mt-5 lg:ml-4 lg:mt-0'>
                 <span className='mb-2 sm:ml-3 min-w-150'>
-                    <button
-                        type='button'
-                        className='inline-flex items-center h-10 px-3 py-3 text-sm font-semibold text-gray-200 duration-200 rounded bg-blue-gray-900 hover:bg-gray-700 dark:text-gray-900 min-w-150 focus:outline-none hover:scale-105 hover:text-gray-500'
-                    >
-                        <svg
-                            className='-ml-0.5 mr-1.5 h-5 w-5'
-                            viewBox='0 0 20 20'
-                            fill='currentColor'
-                            aria-hidden='true'
+                    <NavLink to={`/jobs/apply/${item.id}`}>
+                        <button
+                            type='button'
+                            className='inline-flex items-center h-10 px-3 py-3 text-sm font-semibold text-gray-200 duration-200 rounded bg-blue-gray-900 hover:bg-gray-700 dark:text-gray-900 min-w-150 focus:outline-none hover:scale-105 hover:text-gray-500'
                         >
-                            <path
-                                fill-rule='evenodd'
-                                d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-                                clip-rule='evenodd'
-                            />
-                        </svg>
-                        Ứng tuyển ngay
-                    </button>
+                            <svg
+                                className='-ml-0.5 mr-1.5 h-5 w-5'
+                                viewBox='0 0 20 20'
+                                fill='currentColor'
+                                aria-hidden='true'
+                            >
+                                <path
+                                    fill-rule='evenodd'
+                                    d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
+                                    clip-rule='evenodd'
+                                />
+                            </svg>
+                            Ứng tuyển ngay
+                        </button>
+                    </NavLink>
                 </span>
                 <span className='sm:ml-3 min-w-150'>
                     <button

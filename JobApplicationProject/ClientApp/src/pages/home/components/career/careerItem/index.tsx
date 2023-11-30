@@ -2,14 +2,14 @@ import { Card, CardHeader, CardBody, Typography } from '@material-tailwind/react
 
 export function CareerItem() {
     return (
-        <div className='flex flex-col items-center justify-center text-center rounded-lg  w-fit 3xl:w-full dark:text-gray-800 !bg-transparent'>
+        <div className='flex flex-col items-center justify-center text-center rounded-md  w-fit 3xl:w-full dark:text-gray-800 !bg-transparent'>
             <Card className=' !bg-gray-50 shadow-lg'>
                 <CardHeader
                     shadow={false}
                     floated={false}
                     className='flex items-center justify-center px-12 3xl:px-20 !bg-transparent'
                 >
-                    <div className='w-32 h-32 rounded-lg overflow-hidden'>
+                    <div className='w-32 h-32 rounded-md overflow-hidden'>
                         <img
                             src='https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80'
                             alt='career'

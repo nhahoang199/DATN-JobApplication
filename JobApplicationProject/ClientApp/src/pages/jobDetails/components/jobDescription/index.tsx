@@ -21,7 +21,7 @@ function JobDescription() {
         }
     ]
     return (
-        <div className='flex flex-col p-8 bg-white rounded-lg shadow-lg gap-y-5'>
+        <div className='flex flex-col p-8 bg-white rounded-md shadow-lg gap-y-5'>
             <h2 className='text-lg font-bold border-left'>
                 <Typography
                     variant='h4'

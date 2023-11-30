@@ -7,7 +7,7 @@ function LoadingProgress() {
     const { message } = useSelector((state: RootState) => state.loading)
     return isLoad ? (
         <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-black-1000/60 backdrop-blur-sm    '>
-            <div className='flex flex-col items-center justify-center bg-white relative shadow-2xl z-10 px-16 py-6 rounded-lg'>
+            <div className='flex flex-col items-center justify-center bg-white relative shadow-2xl z-10 px-16 py-6 rounded-md'>
                 <svg className='w-12 h-12 animate-spin fill-gray-900 ' viewBox='3 3 18 18'>
                     <path
                         className='opacity-20'

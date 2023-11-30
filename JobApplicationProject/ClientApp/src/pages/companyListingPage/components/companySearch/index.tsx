@@ -10,8 +10,8 @@ function CompanySearch() {
                 Các công ty đang hoạt động tại
                 <span className='text-deep-purple-400'> Việt Nam</span>
             </h1>
-            <div className='items-center justify-center px-2 py-1 mb-20 rounded-lg sm:flex'>
-                <div className='w-8/12 mx-8 bg-white rounded-lg h-11'>
+            <div className='items-center justify-center px-2 py-1 mb-20 rounded-md sm:flex'>
+                <div className='w-8/12 mx-8 bg-white rounded-md h-11'>
                     <Input
                         label='Nhập tên công ty'
                         crossOrigin=''

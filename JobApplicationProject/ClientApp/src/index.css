@@ -10,3 +10,30 @@ body {
 #root {
     height: 100%;
 }
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+}
+@layer utilities {
+    .scrollbar::-webkit-scrollbar {
+      width: 15px;
+      height: 15px;
+    }
+  
+    .scrollbar::-webkit-scrollbar-track {
+      border-radius: 100vh;
+      background: #ffffff83;
+    }
+  
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: #a8a7a7;
+      border-radius: 100vh;
+      border: 3px solid #f6f7ed;
+    }
+  
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #727272;
+    }
+  }
+  

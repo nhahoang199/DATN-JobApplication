@@ -1,0 +1,89 @@
+// .slide-in {
+//     animation: slide-in 0.2s ease;
+// }
+// .slide-out {
+//     animation: slide-out 0.2s ease;
+// }
+
+// @keyframes slide-in {
+//     0% {
+//         transform: translateX(50)
+//     }
+
+//     100% {
+//         transform: translateX(100)
+//     }
+// }
+// @keyframes slide-out {
+//     0% {
+//         transform: translateX(100)
+//     }
+
+//     100% {
+//         transform: translateX(50)
+//     }
+// }
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+        top: 0px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 200px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        top: 0px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 200px;
+    }
+}
+
+.fadeIn {
+    -webkit-animation: fadeIn 0.5s ease-in;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/*
+ * FadeOut animation
+*/
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+        top: 100%;
+    }
+
+    100% {
+        opacity: 0;
+        top: 0px;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        top: 100%;
+    }
+
+    100% {
+        opacity: 0;
+        top: 0px;
+    }
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut 0.5s ease-out;
+    animation-name: fadeOut 0.5s ease-out;
+}
+
+.transtion-height-ease {
+    transition: height 0.5s ease-in-out;
+}

@@ -44,7 +44,7 @@ function CompanyDescription() {
         }
     ]
     return (
-        <>
+        <div className='flex flex-col gap-y-10'>
             {data.map((item: any, index: number) => {
                 return (
                     <div className='flex flex-col w-full min-w-0 break-words rounded-xl bg-white shadow-lg '>
@@ -69,7 +69,7 @@ function CompanyDescription() {
                     </div>
                 )
             })}
-        </>
+        </div>
         // <div className='container mx-auto'>
 
         // </div>

@@ -41,7 +41,7 @@ function TopCompanySection() {
                 </h1>
                 <div className='flex flex-row flex-wrap justify-center w-full mt-8'>
                     {data.map((item, index) => (
-                        <div className='flex flex-col justify-center w-full px-8 mx-6 my-12 text-center bg-white rounded-lg shadow-lg lg:w-72 3xl:w-96 3xl:h-52 dark:text-gray-800 3xl:mx-12'>
+                        <div className='flex flex-col justify-center w-full px-8 mx-6 my-12 text-center bg-white rounded-md shadow-lg lg:w-72 3xl:w-96 3xl:h-52 dark:text-gray-800 3xl:mx-12'>
                             <img
                                 alt=''
                                 className='self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500 3xl:mb-2'

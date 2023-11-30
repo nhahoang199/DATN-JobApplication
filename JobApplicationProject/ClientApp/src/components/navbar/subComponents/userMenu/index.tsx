@@ -14,11 +14,11 @@ function UserMenu() {
     const data = [
         {
             name: 'Hồ sơ của bạn',
-            href: 'my-profile'
+            href: '/manager/profile'
         },
         {
             name: 'Quản lý việc làm',
-            href: 'manager-jobs'
+            href: '/manager/jobcreated'
         }
     ]
     const dispatch = useAppDispatch()

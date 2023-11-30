@@ -18,13 +18,13 @@ function CompanyDetails() {
             <section className='relative bg-gray-100 py-16 px-4'>
                 <div className='relative container mx-auto flex flex-col gap-y-5'>
                     <CompanyDetailsHeader />
-                    <CompanyTabs />
                     <div className='flex flex-row justify-between w-full pt-4 h-max gap-x-10 3xl:gap-x-24'>
                         <div className='flex flex-col w-8/12 gap-y-10'>
-                            <Outlet />
+                            <CompanyTabs />
+                            {/* <Outlet /> */}
                             <JobOfCompany />
                         </div>
-                        <div className='flex flex-col w-4/12 gap-y-10'>
+                        <div className='flex flex-col w-4/12 gap-y-10 mt-24'>
                             <CompanyCommonInfo />
                             <CompanyContact />
                         </div>
