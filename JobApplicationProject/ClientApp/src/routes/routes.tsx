@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { AdminLayout, UserLayout } from './../layouts'
+import { AdminLayout, UserLayout, UserManagerLayout } from './../layouts'
 import { Suspense, lazy } from 'react'
-import { LoadingPage } from 'pages'
-import { CompanyDescription, CompanyReview } from 'pages/companyDetails/components'
+import { LoadingPage, CreateJobForm } from 'pages'
+// import { CompanyDescription, CompanyReview } from 'pages/companyDetails/components'
 // import {
 //     Login,
 //     Register,
@@ -23,6 +23,14 @@ const JobSeeking = lazy(() => import('./../pages/jobsSeeking'))
 const InternalErrorPage = lazy(() => import('./../pages/500 page'))
 const CompanyListPage = lazy(() => import('./../pages/companyListingPage'))
 const CompanyDetails = lazy(() => import('./../pages/companyDetails'))
+const CompanyReviewForm = lazy(() => import('./../pages/companyReviewForm'))
+const JobApplyForm = lazy(() => import('../pages/jobApplyRequestForm'))
+// const CompanyReview = lazy(() => import('./../pages/companyDetails/components/companyReview'))
+const CompanyDescription = lazy(() => import('./../pages/companyDetails/components/companyDescription'))
+const UserProfileManage = lazy(() => import('./../pages/userProfilepage'))
+const JobCreated = lazy(() => import('../pages/jobCreatedListingPage'))
+// const CreateJobForm = lazy(() => import('../pages/createJobForm'))
+const CreateJobFormStep1 = lazy(() => import('../pages/createJobForm/components/createJobFormStep1'))
 
 const router = createBrowserRouter([
     {
@@ -54,6 +62,7 @@ const router = createBrowserRouter([
                     </Suspense>
                 )
             },
+
             {
                 path: 'company',
                 element: (
@@ -77,25 +86,26 @@ const router = createBrowserRouter([
                                 <CompanyDescription />
                             </Suspense>
                         )
-                    },
-                    {
-                        path: 'review',
-                        element: (
-                            <Suspense fallback={<LoadingPage />}>
-                                <CompanyReview />
-                            </Suspense>
-                        )
                     }
+                    // {
+                    //     path: 'review',
+                    //     element: (
+                    //         <Suspense fallback={<LoadingPage />}>
+                    //             <CompanyReview />
+                    //         </Suspense>
+                    //     )
+                    // }
                 ]
-            },
-            {
-                path: '*',
-                element: (
-                    <Suspense fallback={<LoadingPage />}>
-                        <NotFound />
-                    </Suspense>
-                )
             }
+
+            // {
+            //     path: '*',
+            //     element: (
+            //         <Suspense fallback={<LoadingPage />}>
+            //             <NotFound />
+            //         </Suspense>
+            //     )
+            // }
         ]
     },
     {
@@ -105,6 +115,56 @@ const router = createBrowserRouter([
                 <AdminLayout />
             </Suspense>
         )
+    },
+    {
+        path: 'manager',
+        element: <UserManagerLayout />,
+        children: [
+            {
+                index: true,
+                path: 'profile',
+                element: (
+                    <Suspense fallback={<LoadingPage />}>
+                        <UserProfileManage />
+                    </Suspense>
+                )
+            },
+            {
+                path: 'jobcreated',
+                element: (
+                    <Suspense fallback={<LoadingPage />}>
+                        <JobCreated />
+                    </Suspense>
+                )
+            },
+            {
+                path: 'createdjob',
+                element: (
+                    // <Suspense fallback={<LoadingPage />}>
+                    <CreateJobForm />
+                    // </Suspense>
+                ),
+                children: [
+                    {
+                        index: true,
+                        path: 'step=1',
+                        element: (
+                            <Suspense fallback={<LoadingPage />}>
+                                <CreateJobFormStep1 />
+                            </Suspense>
+                        )
+                    }
+                    // {
+                    //     path: 'review',
+                    //     element: (
+                    //         <Suspense fallback={<LoadingPage />}>
+                    //             <CompanyReview />
+                    //         </Suspense>
+                    //     )
+                    // }
+                ]
+            }
+        ]
     },
     {
         path: 'register',
@@ -122,6 +182,22 @@ const router = createBrowserRouter([
             </Suspense>
         )
         // errorElement: <ErrorPage />,
+    },
+    {
+        path: 'jobs/apply/:id',
+        element: (
+            <Suspense fallback={<LoadingPage />}>
+                <JobApplyForm />
+            </Suspense>
+        )
+    },
+    {
+        path: 'company/review/:id',
+        element: (
+            <Suspense fallback={<LoadingPage />}>
+                <CompanyReviewForm />
+            </Suspense>
+        )
     },
     {
         path: '*',

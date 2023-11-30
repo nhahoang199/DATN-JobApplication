@@ -34,7 +34,7 @@ function JobCommonInfo(props: { item: IJobDetail }) {
         }
     ]
     return (
-        <div className='flex flex-col p-6 bg-white rounded-lg shadow-lg 3xl:p-8 gap-y-5'>
+        <div className='flex flex-col p-6 bg-white rounded-md shadow-lg 3xl:p-8 gap-y-5'>
             <h2 className='text-lg font-bold border-left'>Thông tin chung</h2>
             <div className='flex flex-col gap-y-4'>
                 {data.map((item, index) => (

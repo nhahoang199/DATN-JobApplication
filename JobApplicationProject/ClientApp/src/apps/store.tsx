@@ -4,13 +4,15 @@ import authSlice from './auth.slice'
 import jobApplicationSlice from './jobApplication.slice'
 import loadingSlice from './loading.slice'
 import navBarSlice from './navBar.slice'
+import companyTabsSlice from './Tabs.slice'
 
 export const store = configureStore({
     reducer: {
         jobApplication: jobApplicationSlice,
         navigation: navBarSlice,
         auth: authSlice,
-        loading: loadingSlice
+        loading: loadingSlice,
+        activeTab: companyTabsSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 })

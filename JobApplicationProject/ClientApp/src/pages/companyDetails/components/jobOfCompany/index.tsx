@@ -34,7 +34,7 @@ function JobOfCompany() {
                 </Typography>
             </div>
             <div className='w-full gap-x-5 px-8 pb-6 pt-4 flex justify-between'>
-                <div className='w-9/12  bg-white rounded-lg h-11'>
+                <div className='w-9/12  bg-white rounded-md h-11'>
                     <Input
                         label='Nhập tên công việc, vị trí ứng tuyển,...'
                         crossOrigin=''

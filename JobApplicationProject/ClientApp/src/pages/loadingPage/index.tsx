@@ -2,8 +2,8 @@ import React from 'react'
 import './index.scss'
 function LoadingPage() {
     return (
-        <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-gray-300/70'>
-            <div className='flex flex-col items-center justify-center bg-white relative shadow-2xl z-10 px-16 py-6 rounded-lg'>
+        <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-gray-300/70 backdrop-blur-md'>
+            <div className='flex flex-col items-center justify-center bg-white relative shadow-2xl z-10 px-16 py-6 rounded-md'>
                 <svg className='w-12 h-12 animate-spin fill-gray-600 ' viewBox='3 3 18 18'>
                     <path
                         className='opacity-20'

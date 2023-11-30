@@ -6,7 +6,7 @@ const UserLayout = () => {
     return (
         <div className='userLayout'>
             <Navbar />
-            <div className='bg-gray-100 content '>{children}</div>
+            <div className='bg-gray-100 content mt-14'>{children}</div>
             <Footer />
         </div>
     )

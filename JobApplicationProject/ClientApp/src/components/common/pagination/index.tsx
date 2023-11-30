@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Button, IconButton } from '@material-tailwind/react'
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
-interface JobPaginationProps {
+interface PaginationProps {
     onPageChange: (pageNumber: number) => void
 }
-export function Pagination({ onPageChange }: JobPaginationProps) {
+export function Pagination({ onPageChange }: PaginationProps) {
     const [active, setActive] = useState(1)
     const getItemProps = (index: number) =>
         ({

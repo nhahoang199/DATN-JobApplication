@@ -15,7 +15,10 @@ module.exports = withMT({
                 search: 'url(https://images.unsplash.com/photo-1629196613836-0a7e2541990a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2634&q=80)',
                 company:
                     'url(https://images.unsplash.com/photo-1629196214806-2fe3a64cb875?q=80&w=1773&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-                jobs: 'url(https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
+                jobs: 'url(https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+                cvApply: 
+                'url(https://images.unsplash.com/photo-1530177150700-84cd9a3b059b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+                companyReview: 'url(https://images.unsplash.com/photo-1623212209063-a1295bdb54fc?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
             },
             height: {
                 '70vh': '70vh',
@@ -38,7 +41,9 @@ module.exports = withMT({
                 '250': '250px',
                 '300': '300px',
                 '312': '312px',
-                '350': '350px'
+                '350': '350px',
+                '500': '500px',
+                '700': '700px'
             },
             minWidth: {
                 '8': '2rem',
@@ -46,7 +51,9 @@ module.exports = withMT({
                 '150': '155px',
                 '200': '200px',
                 '250': '250px',
-                '350': '350px'
+                '350': '350px',
+                '500': '500px',
+                '700': '700px'
             },
             colors: {
                 ...colors,

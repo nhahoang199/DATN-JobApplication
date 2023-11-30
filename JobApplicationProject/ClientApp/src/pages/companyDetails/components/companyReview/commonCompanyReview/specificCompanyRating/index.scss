@@ -1,0 +1,22 @@
+// .is-item-active{
+//     border-left: solid 4px #212121;
+//     border-right: none;
+// }
+.is-item-active .is-item-active-p {
+    font-weight: 600;
+}
+.tab-item.is-item-active {
+    border-left: solid 4px #212121;
+    border-right: none;
+    animation: slide-in 0.2s ease;
+}
+
+@keyframes slide-in {
+    0% {
+        border-left: solid 0px #212121;
+    }
+
+    100% {
+        border-left: solid 4px #212121;
+    }
+}

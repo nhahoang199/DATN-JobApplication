@@ -24,7 +24,7 @@ function JobRelated() {
         }
     ]
     return (
-        <div className='flex flex-col p-8 bg-white rounded-lg shadow-lg gap-y-5'>
+        <div className='flex flex-col p-8 bg-white rounded-md shadow-lg gap-y-5'>
             <Typography
                 variant='h4'
                 color='blue-gray'

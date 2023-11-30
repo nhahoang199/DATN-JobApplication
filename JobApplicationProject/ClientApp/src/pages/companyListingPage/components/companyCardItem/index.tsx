@@ -3,7 +3,7 @@ import { backgroundSearchCompany, myavatar } from 'assets'
 
 function CompanyCardItem() {
     return (
-        // <div className='flex flex-col items-center justify-center text-center rounded-lg shadow-lg w-fit 3xl:w-full dark:text-gray-800'>
+        // <div className='flex flex-col items-center justify-center text-center rounded-md shadow-lg w-fit 3xl:w-full dark:text-gray-800'>
         <Card className='w-full bg-transparent p-0 rounded-none'>
             <CardHeader
                 shadow={false}

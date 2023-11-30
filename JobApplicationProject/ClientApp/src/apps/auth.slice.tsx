@@ -43,8 +43,8 @@ const loginAsync = createAsyncThunk('Auth/loginAsync', async (loginParams: login
         }
     }
 })
-const getMeAsync = createAsyncThunk('Auth/getMeAsync', async (token: string) => {
-    const response = await getMeAPI(token)
+const getMeAsync = createAsyncThunk('Auth/getMeAsync', async () => {
+    const response = await getMeAPI()
     return response.data
 })
 const logOutAsync = createAsyncThunk('Auth/logOutAsync', async () => {

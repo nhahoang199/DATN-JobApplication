@@ -8,9 +8,9 @@ export interface NavigationItem {
 }
 
 const initialState: NavigationItem[] = [
-    { name: 'Việc làm', href: 'jobs', current: false },
+    { name: 'Việc làm', href: '/jobs', current: false },
     // { name: 'Hồ sơ & CV', href: '#', current: false },
-    { name: 'Công ty', href: 'company', current: false }
+    { name: 'Công ty', href: '/company', current: false }
 ]
 
 const navigationSlice = createSlice({
