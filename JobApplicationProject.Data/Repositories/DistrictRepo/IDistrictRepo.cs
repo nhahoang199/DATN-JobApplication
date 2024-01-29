@@ -1,4 +1,6 @@
-﻿using JobApplicationProject.Core.Models;
+﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,8 @@ namespace JobApplicationProject.Data.Repositories.DistrictRepo
     {
         Task<District> Create(District district);
         Task<District> Update(District district);
-        Task<List<District>> GetAll();
+        Task<PagedList<DistrictDto>> GetAll(PaginationParameters paginationParameters);
+        Task<List<District>> GetDistrictsByProviceId(Guid provinceId);
         Task<District?> GetById(Guid id);
         Task<District?> Delete(Guid id);
     }

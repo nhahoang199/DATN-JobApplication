@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +27,22 @@ namespace JobApplicationProject.Core.Helpers
             AddRange(items);
         }
 
-        public static async Task<PagedList<T>> CreateAsync(IQueryable<T> source, int pageNumber, int pageSize)
+        public static async Task<PagedList<T>> ToPagedList(IQueryable<T> source, int pageNumber, int pageSize, Expression<Func<T, object>> orderBy = null)
         {
+            //var count = await source.CountAsync();
+            //var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+            //var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            //return new PagedList<T>(items, count, pageNumber, pageSize, totalPages);
+
+            if (orderBy == null)
+            {
+                orderBy = x => x;
+            }
+
+            // Apply OrderBy before Skip and Take
+            source = source.OrderBy(orderBy);
+
             var count = await source.CountAsync();
             var totalPages = (int)Math.Ceiling(count / (double)pageSize);
             var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();

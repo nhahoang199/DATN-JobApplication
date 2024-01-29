@@ -1,6 +1,7 @@
 import { UserPlusIcon } from '@heroicons/react/24/outline'
 import { Typography, Button } from '@material-tailwind/react'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function JobCreatedListingHeader() {
     return (
@@ -18,9 +19,11 @@ function JobCreatedListingHeader() {
                 </Typography>
             </div>
             <div className='flex shrink-0 flex-row gap-2 '>
-                <Button className='flex items-center gap-3 py-3 rounded-md ' size='sm'>
-                    <UserPlusIcon strokeWidth={2} className='h-4 w-4' /> Tạo mới
-                </Button>
+                <NavLink to='/manager/createjob/?step=1'>
+                    <Button className='flex items-center gap-3 py-3 rounded-sm ' variant='gradient' size='sm'>
+                        <UserPlusIcon strokeWidth={2} className='h-4 w-4' /> Tạo mới
+                    </Button>
+                </NavLink>
             </div>
         </div>
     )

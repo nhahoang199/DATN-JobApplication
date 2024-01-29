@@ -7,7 +7,7 @@ import { Pagination } from 'components/common'
 import { useDispatch } from 'react-redux'
 import { setNavigation } from 'apps/navBar.slice'
 
-function CompanyListPage() {
+function SearchCompanyPage() {
     const data = [
         {
             id: '5f02604a-b688-4bab-9f3d-01be94b6173b',
@@ -104,4 +104,4 @@ function CompanyListPage() {
     )
 }
 
-export default CompanyListPage
+export default SearchCompanyPage

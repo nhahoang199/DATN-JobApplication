@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using JobApplicationProject.Service.Validation;
 using Microsoft.AspNetCore.Http.HttpResults;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Dtos;
 
 namespace JobApplicationProject.Service.Services.UserService
 {
@@ -20,23 +22,63 @@ namespace JobApplicationProject.Service.Services.UserService
         {
             return await _userRepository.Create(user);
         }
-        public async Task<User?> GetByEmail(string email)
+        public async Task<User?> GetByEmailAsync(string email)
         {
-            return await _userRepository.GetByEmail(email);
+            return await _userRepository.GetByEmailAsync(email);
+        }
+        public User GetByEmail(string email)
+        {
+            return _userRepository.GetByEmail(email);
         }
         public async Task<User?> GetById(Guid id)
         {
             return await _userRepository.GetById(id);
         }
-        public string GetMyName()
+        public User GetMe()
         {
-            string result = string.Empty;
+            var result = new User();
+
             if (_httpContextAccessor.HttpContext != null)
             {
-                var userClaim = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
-                result = userClaim ?? string.Empty;
+                var userName = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+                var userRole = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
+                var userEmail = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+                result.Name = userName ?? string.Empty;
+                result.Role = userRole ?? string.Empty;
+                result.Email = userEmail ?? string.Empty;
             }
             return result;
+        }
+
+        public async Task<PagedList<UserDto>> GetAllUsers(PaginationParameters paginationParameters)
+        {
+            return await _userRepository.GetAllUsers(paginationParameters);
+        }
+
+        public async Task<List<User>> GetUserByCompanyId(Guid companyId)
+        {
+            return await _userRepository.GetUserByCompanyId(companyId);
+        }
+
+        public async Task<UserDto?> GetUserDetailsById(Guid id)
+        {
+            var user = _userRepository.GetById(id).Result;
+            return new UserDto()
+            {
+                Name = user.Name,
+                Email = user.Email,
+                CompanyId = user.CompanyId,
+                CompanyName = user.Company.Name,
+                CompanyAvatar = user.Company.AvatarPicture,
+                Gender = (int)user.Gender,
+                DateOfBirth = (DateTime)user.DateOfBirth,
+                PhoneNumber = user.PhoneNumber,
+                Password = user.Password,
+                Role = user.Role,
+                ProfilePicture = user.ProfilePicture,
+                Status = user.Status,
+                AddressId = user.AddressId
+            };
         }
     }
 }

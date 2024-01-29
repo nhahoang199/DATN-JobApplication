@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,10 @@ namespace JobApplicationProject.Service.Services.CommuneService
     {
         Task<Commune> CreateCommune(CommuneDto communeDto);
         Task<Commune?> UpdateCommune(Guid id, CommuneDto communeDto);
-        Task<List<Commune>> GetAllCommunes();
+        Task<PagedList<CommuneDto>> GetAllCommunes(PaginationParameters paginationParameters);
+        Task<List<Commune>> GetCommuneByDistrictId(Guid districtId);
         Task<Commune?> GetCommuneById(Guid id);
+        Task<CommuneDetails?> GetCommuneDetailsById(Guid id);
         Task<Commune?> DeleteCommune(Guid id);
     }
 }

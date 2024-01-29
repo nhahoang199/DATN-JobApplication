@@ -10,6 +10,7 @@ namespace JobApplicationProject.Core.Models
     {
         public string Name { get; set; } = string.Empty;
         public Guid? CountryId { get; set; }
+
         public virtual Country? Country { get; set; }
     }
 }

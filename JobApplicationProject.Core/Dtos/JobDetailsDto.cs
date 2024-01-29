@@ -15,10 +15,11 @@ namespace JobApplicationProject.Core.Dtos
         public string JobRequired { get; set; } = string.Empty;
         public string JobBenefit { get; set; } = string.Empty;
         public int Type { get; set; }
-        public int Salary { get; set; }
-        public int? Expirence { get; set; }
+        public int MinSalary { get; set; }
+        public int MaxSalary { get; set; }
+        public string? Experience { get; set; } = string.Empty;
         public string? Position { get; set; } = string.Empty;
-        public string? Gender { get; set; } = string.Empty;
+        public int? Gender { get; set; }
         public int? Quantity { get; set; }
         public CompanyDto? Company { get; set; }
         public Guid? CompanyId { get; set; }

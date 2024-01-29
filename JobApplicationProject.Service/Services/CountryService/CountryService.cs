@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using JobApplicationProject.Data.Repositories.CountryRepo;
 using System;
@@ -46,9 +47,14 @@ namespace JobApplicationProject.Service.Services.CountryService
             return await _countryRepo.Update(existingCountry);
         }
 
-        public async Task<List<Country>> GetAllCountries()
+        public async Task<PagedList<Country>> GetAllCountries(PaginationParameters paginationParameters)
         {
-            return await _countryRepo.GetAll();
+            var countryList = await _countryRepo.GetAll(paginationParameters);
+            return new PagedList<Country>(countryList, countryList.TotalCount, countryList.CurrentPage, countryList.PageSize, countryList.TotalPages);
+        }
+        public async Task<List<Country>> GetAllCountry()
+        {
+            return await _countryRepo.GetAllCountry();
         }
 
         public async Task<Country?> GetCountryById(Guid id)

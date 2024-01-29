@@ -1,8 +1,11 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using JobApplicationProject.Service.Services.CountryService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Org.BouncyCastle.Utilities;
 
 namespace JobApplicationProject.Web.Controllers
 {
@@ -48,11 +51,26 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCountries()
+        public async Task<IActionResult> GetAllCountries([FromQuery] PaginationParameters paginationParameters)
         {
             try
             {
-                var countries = await _countryService.GetAllCountries();
+                var countries = await _countryService.GetAllCountries(paginationParameters);
+                //Response.Headers.Add("X-Pagination", countries.GetHeader());
+                return Ok(new ResponseModel<Country>(countries, countries.GetPagination()));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAllCountry()
+        {
+            try
+            {
+                var countries = await _countryService.GetAllCountry();
+                //Response.Headers.Add("X-Pagination", countries.GetHeader());
                 return Ok(countries);
             }
             catch (Exception ex)
@@ -60,6 +78,7 @@ namespace JobApplicationProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCountryById(Guid id)

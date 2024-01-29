@@ -1,18 +1,31 @@
 import { setUserManagerTab } from 'apps/Tabs.slice'
-import { useAppDispatch } from 'apps/store'
-import { UserProfileTab } from './components'
-import { useEffect } from 'react'
+import { RootState, useAppDispatch } from 'apps/store'
+import { PersonalInformation, UserProfileTab } from './components'
+import { useEffect, useState } from 'react'
+import { ThemeProvider, Drawer, Typography, IconButton, Button } from '@material-tailwind/react'
+import mtTheme from 'const/MTtheme'
+import { useSelector } from 'react-redux'
+import { setOpenEditUser } from 'apps/userProfile.slice'
+import { EditUserForm } from 'components'
 
 export default function UserProfileManage() {
+    const [open, setOpen] = useState(false)
     const dispatch = useAppDispatch()
+    const openEditUser = useSelector((state: RootState) => state.userProfile.openEditUser)
     useEffect(() => {
         dispatch(setUserManagerTab(2))
     }, [dispatch])
+    const openDrawer = () => setOpen(true)
+    const closeDrawer = () => setOpen(false)
     return (
-        <form className='px-6  relative bg-white shadow-xl shadow-gray-400'>
-            {/* <div className='fixed bg-white z-10 w-fit '> */}
-            <UserProfileTab />
-            {/* </div> */}
-        </form>
+        <>
+            <div className='gap-y-5 flex flex-col'>
+                <PersonalInformation />
+                <UserProfileTab />
+            </div>
+            <ThemeProvider value={mtTheme}>
+                <EditUserForm />
+            </ThemeProvider>
+        </>
     )
 }

@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using JobApplicationProject.Data.Repositories.CountryRepo;
 using JobApplicationProject.Data.Repositories.ProvinceRepo;
@@ -63,9 +64,9 @@ namespace JobApplicationProject.Service.Services.ProvinceService
             return await _provinceRepo.Update(existingProvince);
         }
 
-        public async Task<List<Province>> GetAllProvinces()
+        public async Task<PagedList<ProvinceDto>> GetAllProvinces(PaginationParameters paginationParameters)
         {
-            return await _provinceRepo.GetAll();
+            return await _provinceRepo.GetAll(paginationParameters);
         }
 
         public async Task<Province?> GetProvinceById(Guid id)
@@ -76,6 +77,11 @@ namespace JobApplicationProject.Service.Services.ProvinceService
         public async Task<Province?> DeleteProvince(Guid id)
         {
             return await _provinceRepo.Delete(id);
+        }
+
+        public async Task<List<Province>> GetProvincesByCountryId(Guid countryId)
+        {
+            return await _provinceRepo.GetProvincesByCountryId(countryId);
         }
     }
 }

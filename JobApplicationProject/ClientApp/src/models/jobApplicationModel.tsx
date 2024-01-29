@@ -1,24 +1,27 @@
 import { ICompanyModel } from './companyModel'
 
 interface IJobApplicationModel {
-    id: string
-    companyName: string
-    companyId: string
-    districtId: string
-    districtName: string
-    provinceId: string
-    provinceName: string
-    createdOn: string
-    description: string
-    expiredOn: string
-    expirence: number
-    gender: string
-    position: string
-    quantity: number
-    salary: number
-    title: string
-    type: number
-    updatedOn: string
+    id?: string | null
+    companyName?: string | null
+    companyId?: string | null
+    districtId?: string | null
+    districtName?: string | null
+    provinceId?: string | null
+    provinceName?: string | null
+    createdOn?: string | null
+    createdBy?: string | null
+    description?: string | null
+    jobRequired?: string | null
+    jobBenefit?: string | null
+    expiredOn?: string | null
+    expirence?: number | null
+    gender?: string | null
+    position?: string | null
+    quantity?: number | null
+    salary?: number | null
+    title: string | null
+    type?: number | null
+    updatedOn?: string | null
 }
 interface IJobDetail {
     addressId: string

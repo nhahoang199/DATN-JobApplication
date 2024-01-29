@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,10 @@ namespace JobApplicationProject.Service.Services.DistrictService
     {
         Task<District> CreateDistrict(DistrictDto districtDto);
         Task<District?> UpdateDistrict(Guid id, DistrictDto districtDto);
-        Task<List<District>> GetAllDistricts();
+        Task<PagedList<DistrictDto>> GetAllDistricts(PaginationParameters paginationParameters);
+        Task<List<District>> GetDistrictsByProviceId(Guid provinceId);
         Task<District?> GetDistrictById(Guid id);
+        Task<DistrictDetails> GetDetailsById(Guid id);
         Task<District?> DeleteDistrict(Guid id);
     }
 }

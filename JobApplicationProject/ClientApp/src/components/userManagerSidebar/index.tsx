@@ -11,7 +11,7 @@ import {
 } from '@material-tailwind/react'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
-import { BriefcaseIcon, BuildingOfficeIcon } from '@heroicons/react/20/solid'
+import { BriefcaseIcon } from '@heroicons/react/20/solid'
 import { RootState, useAppDispatch } from 'apps/store'
 import { useSelector } from 'react-redux'
 import { setUserManagerTab } from 'apps/Tabs.slice'
@@ -24,7 +24,7 @@ export default function UserManagerSideBar() {
     const handleOpen = (value: any) => {
         // setOpen(userManagerActiveTab === value ? 0 : value)
         if (
-            (value === 6 && (userManagerActiveTab === 7 || userManagerActiveTab === 8 || userManagerActiveTab === 9)) ||
+            (value === 5 && (userManagerActiveTab === 6 || userManagerActiveTab === 7 || userManagerActiveTab === 8)) ||
             (value === 1 && (userManagerActiveTab === 2 || userManagerActiveTab === 3 || userManagerActiveTab === 4))
         ) {
             dispatch(setUserManagerTab(0))
@@ -32,15 +32,14 @@ export default function UserManagerSideBar() {
             dispatch(setUserManagerTab(userManagerActiveTab === value ? 0 : value))
         }
     }
-
     return (
-        <Card className='h-[calc(100vh-3.6rem)] w-full max-w-[16rem] rounded-none p-2 shadow-xl shadow-blue-gray-900/5'>
+        <Card className='h-[calc(100vh-3.6rem)] w-full max-w-[16rem] rounded-none p-1 shadow-xl shadow-blue-gray-900/5'>
             <div className='mb-2 py-4 px-2'>
                 <Typography variant='h5' color='blue-gray'>
                     Quản lý
                 </Typography>
             </div>
-            <List>
+            <List className='p-0'>
                 <Accordion
                     open={
                         userManagerActiveTab === 1 ||
@@ -51,7 +50,7 @@ export default function UserManagerSideBar() {
                     icon={
                         <ChevronDownIcon
                             strokeWidth={2.5}
-                            className={`mx-auto h-4 w-4 transition-transform ${
+                            className={`mx-0 h-4 w-4 transition-transform ${
                                 userManagerActiveTab === 1 ||
                                 userManagerActiveTab === 2 ||
                                 userManagerActiveTab === 3 ||
@@ -62,8 +61,11 @@ export default function UserManagerSideBar() {
                         />
                     }
                 >
-                    <ListItem className='!py-0 px-0' selected={userManagerActiveTab === 1}>
-                        <AccordionHeader onClick={() => handleOpen(1)} className='border-b-0 px-1 py-3 rounded-md'>
+                    <ListItem className='!py-0 px-0 rounded-md' selected={userManagerActiveTab === 1}>
+                        <AccordionHeader
+                            onClick={() => handleOpen(1)}
+                            className='border-b-0 px-2 py-3 rounded-md flex items-center'
+                        >
                             <ListItemPrefix className='mr-2'>
                                 <UserCircleIcon className='h-5 w-5' />
                             </ListItemPrefix>
@@ -77,7 +79,7 @@ export default function UserManagerSideBar() {
                                         ? 'blue-gray'
                                         : 'gray'
                                 }
-                                className={`mr-auto ${
+                                className={`mr-auto text-sm ${
                                     userManagerActiveTab === 1 ||
                                     userManagerActiveTab === 2 ||
                                     userManagerActiveTab === 3 ||
@@ -94,93 +96,89 @@ export default function UserManagerSideBar() {
                         <List className='p-0'>
                             <NavLink to='profile'>
                                 <ListItem
-                                    className='text-sm px-1'
+                                    className='text-sm px-2'
                                     selected={userManagerActiveTab === 2}
                                     onClick={() => handleOpen(2)}
                                 >
-                                    <ListItemPrefix className='mr-2'>
+                                    <ListItemPrefix className={`${userManagerActiveTab !== 2 ? 'invisible' : ''} mr-2`}>
                                         <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
                                     </ListItemPrefix>
                                     Hồ sơ
                                 </ListItem>
                             </NavLink>
-                            <ListItem
-                                className='text-sm px-1'
-                                selected={userManagerActiveTab === 3}
-                                onClick={() => handleOpen(3)}
-                            >
-                                <ListItemPrefix className='mr-2'>
-                                    <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-                                </ListItemPrefix>
-                                Quản lý CV
-                            </ListItem>
-                            <ListItem
-                                className='text-sm px-1'
+                            <NavLink to='cv'>
+                                <ListItem
+                                    className='text-sm px-2'
+                                    selected={userManagerActiveTab === 3}
+                                    onClick={() => handleOpen(3)}
+                                >
+                                    <ListItemPrefix className={`${userManagerActiveTab !== 3 ? 'invisible' : ''} mr-2`}>
+                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                    </ListItemPrefix>
+                                    Quản lý CV
+                                </ListItem>
+                            </NavLink>
+                            {/* <ListItem
+                                className='text-sm px-2'
                                 selected={userManagerActiveTab === 4}
                                 onClick={() => handleOpen(4)}
                             >
-                                <ListItemPrefix className='mr-2'>
+                                <ListItemPrefix className={`${userManagerActiveTab !== 4 ? 'invisible' : ''} mr-2`}>
                                     <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
                                 </ListItemPrefix>
                                 Tiêu chí tìm việc
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </AccordionBody>
                 </Accordion>
-                <ListItem className='py-3 px-1' selected={userManagerActiveTab === 5} onClick={() => handleOpen(5)}>
+                {/* <ListItem className='py-3 px-2' selected={userManagerActiveTab === 5} onClick={() => handleOpen(5)}>
                     <ListItemPrefix className='mr-2'>
                         <BuildingOfficeIcon className='h-5 w-5' />
                     </ListItemPrefix>
                     <Typography
                         variant='h6'
                         color={userManagerActiveTab === 5 ? 'blue-gray' : 'gray'}
-                        className={`mr-auto ${userManagerActiveTab === 5 ? 'font-semibold' : 'font-normal'}`}
+                        className={`mr-auto text-sm ${userManagerActiveTab === 5 ? 'font-semibold' : 'font-normal'}`}
                     >
                         Công ty của bạn
                     </Typography>
-                </ListItem>
+                </ListItem> */}
 
                 <Accordion
-                    open={
-                        userManagerActiveTab === 6 ||
-                        userManagerActiveTab === 7 ||
-                        userManagerActiveTab === 8 ||
-                        userManagerActiveTab === 9
-                    }
+                    open={userManagerActiveTab === 5 || userManagerActiveTab === 6 || userManagerActiveTab === 7}
                     icon={
                         <ChevronDownIcon
                             strokeWidth={2.5}
                             className={`mx-auto h-4 w-4 transition-transform ${
-                                userManagerActiveTab === 6 ||
-                                userManagerActiveTab === 7 ||
-                                userManagerActiveTab === 8 ||
-                                userManagerActiveTab === 9
+                                userManagerActiveTab === 5 || userManagerActiveTab === 6 || userManagerActiveTab === 7
                                     ? 'rotate-180'
                                     : ''
                             }`}
                         />
                     }
                 >
-                    <ListItem className='p-0' selected={userManagerActiveTab === 6} onClick={() => handleOpen(6)}>
-                        <AccordionHeader onClick={() => handleOpen(6)} className='border-b-0 px-1 py-3 rounded-md'>
+                    <ListItem
+                        className='p-0 rounded-md'
+                        selected={userManagerActiveTab === 5}
+                        onClick={() => handleOpen(6)}
+                    >
+                        <AccordionHeader onClick={() => handleOpen(5)} className='border-b-0 px-2 py-3 rounded-md'>
                             <ListItemPrefix className='mr-2'>
                                 <BriefcaseIcon className='h-5 w-5' />
                             </ListItemPrefix>
                             <Typography
                                 variant='h6'
                                 color={
+                                    userManagerActiveTab === 5 ||
                                     userManagerActiveTab === 6 ||
-                                    userManagerActiveTab === 7 ||
-                                    userManagerActiveTab === 8 ||
-                                    userManagerActiveTab === 9
+                                    userManagerActiveTab === 7
                                         ? 'blue-gray'
                                         : 'gray'
                                 }
-                                className={`mr-auto ${
+                                className={`mr-auto text-sm ${
+                                    userManagerActiveTab === 5 ||
                                     userManagerActiveTab === 6 ||
-                                    userManagerActiveTab === 7 ||
-                                    userManagerActiveTab === 8 ||
-                                    userManagerActiveTab === 9
+                                    userManagerActiveTab === 7
                                         ? 'font-semibold'
                                         : 'font-normal'
                                 }`}
@@ -191,38 +189,42 @@ export default function UserManagerSideBar() {
                     </ListItem>
                     <AccordionBody className='py-1'>
                         <List className='p-0'>
-                            <NavLink to='jobcreated'>
+                            {/* <NavLink to='jobcreated'>
                                 <ListItem
-                                    className='text-sm px-1'
+                                    className='text-sm px-2'
                                     selected={userManagerActiveTab === 7}
                                     onClick={() => handleOpen(7)}
                                 >
-                                    <ListItemPrefix className='mr-2'>
+                                    <ListItemPrefix className={`${userManagerActiveTab !== 7 ? 'invisible' : ''} mr-2`}>
                                         <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
                                     </ListItemPrefix>
                                     Việc làm của công ty bạn
                                 </ListItem>
+                            </NavLink> */}
+                            <NavLink to='appliedjobs'>
+                                <ListItem
+                                    className='text-sm px-2'
+                                    selected={userManagerActiveTab === 6}
+                                    onClick={() => handleOpen(6)}
+                                >
+                                    <ListItemPrefix className={`${userManagerActiveTab !== 6 ? 'invisible' : ''} mr-2`}>
+                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                    </ListItemPrefix>
+                                    Việc làm bạn đã ứng tuyển
+                                </ListItem>
                             </NavLink>
-                            <ListItem
-                                className='text-sm px-1'
-                                selected={userManagerActiveTab === 8}
-                                onClick={() => handleOpen(8)}
-                            >
-                                <ListItemPrefix className='mr-2'>
-                                    <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-                                </ListItemPrefix>
-                                Việc làm bạn đã ứng tuyển
-                            </ListItem>
-                            <ListItem
-                                className='text-sm px-1'
-                                selected={userManagerActiveTab === 9}
-                                onClick={() => handleOpen(9)}
-                            >
-                                <ListItemPrefix className='mr-2'>
-                                    <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-                                </ListItemPrefix>
-                                Việc làm bạn đã lưu
-                            </ListItem>
+                            <NavLink to='savedjobs'>
+                                <ListItem
+                                    className='text-sm px-2'
+                                    selected={userManagerActiveTab === 7}
+                                    onClick={() => handleOpen(7)}
+                                >
+                                    <ListItemPrefix className={`${userManagerActiveTab !== 7 ? 'invisible' : ''} mr-2`}>
+                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                    </ListItemPrefix>
+                                    Việc làm bạn đã lưu
+                                </ListItem>
+                            </NavLink>
                         </List>
                     </AccordionBody>
                 </Accordion>

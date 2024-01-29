@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getMeAPI, logInAPI, logOutAPI } from 'apis/authAPI'
+import { IUserModel } from 'models'
 import { loginParams } from 'types'
 import { toastError, toastSuccess } from 'utils/function'
 
 export interface authState {
-    user: any[]
+    user: IUserModel
     isGuest: boolean
     loginStatus: string
     logOutStatus: string
@@ -16,7 +17,12 @@ export interface authState {
     wrongPassword: boolean
 }
 const initialState: authState = {
-    user: [],
+    user: {
+        name: '',
+        email: '',
+        companyId: '',
+        role: 'guest'
+    },
     isGuest: true,
     loginStatus: 'idle',
     logOutStatus: 'idle',
@@ -92,7 +98,7 @@ const authSlice = createSlice({
             .addCase(logOutAsync.pending, (state: any) => {
                 state.logOutStatus = 'loading'
             })
-            .addCase(logOutAsync.fulfilled, (state: any, action) => {
+            .addCase(logOutAsync.fulfilled, (state: any) => {
                 state.logOutStatus = 'succeeded'
                 state.isGuest = true
                 localStorage.removeItem('jwt')

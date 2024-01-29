@@ -1,4 +1,6 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using JobApplicationProject.Service.Services.CommuneService;
 using JobApplicationProject.Service.Services.DistrictService;
 using Microsoft.AspNetCore.Http;
@@ -47,12 +49,12 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCommunes()
+        public async Task<IActionResult> GetAllCommunes([FromQuery] PaginationParameters paginationParameters)
         {
             try
             {
-                var communes = await _communeService.GetAllCommunes();
-                return Ok(communes);
+                var communes = await _communeService.GetAllCommunes(paginationParameters);
+                return Ok(new ResponseModel<CommuneDto>(communes, communes.GetPagination()));
             }
             catch (Exception ex)
             {
@@ -66,6 +68,34 @@ namespace JobApplicationProject.Web.Controllers
             try
             {
                 var commune = await _communeService.GetCommuneById(id);
+                if (commune == null) return NotFound();
+                return Ok(commune);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getDetails")]
+        public async Task<IActionResult> GetCommuneDetailsById(Guid id)
+        {
+            try
+            {
+                var commune = await _communeService.GetCommuneDetailsById(id);
+                if (commune == null) return NotFound();
+                return Ok(commune);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getCommuneByDistrictId")]
+        public async Task<IActionResult> GetCommuneByDistrictId(Guid districtId)
+        {
+            try
+            {
+                var commune = await _communeService.GetCommuneByDistrictId(districtId);
                 if (commune == null) return NotFound();
                 return Ok(commune);
             }

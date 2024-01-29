@@ -34,7 +34,4 @@
 	<ItemGroup>
 		<ProjectReference Include="..\JobApplicationProject.Core\JobApplicationProject.Core.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Repositories\UserJobRepo\" />
-	</ItemGroup>
 </Project>

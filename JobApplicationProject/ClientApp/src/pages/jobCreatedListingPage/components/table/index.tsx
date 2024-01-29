@@ -36,6 +36,7 @@ function JobCreatedListingTable(props: { TABLE_HEAD: any; TABLE_ROWS: any }) {
                     const classes = isLast ? 'p-4 ' : 'p-4 border-b border-blue-gray-50 '
 
                     return (
+                        // <NavLink to={`details/${index}`}>
                         <tr key={name}>
                             <td className={`${classes} lg:max-w-[16rem] 3xl:max-w-[20rem] sticky left-0 bg-white z-10`}>
                                 <div className='flex flex-row justify-between items-center'>
@@ -66,13 +67,13 @@ function JobCreatedListingTable(props: { TABLE_HEAD: any; TABLE_ROWS: any }) {
                                 </Typography>
                             </td>
                             <td className={classes}>
-                                <div className='flex items-center gap-3 cursor-pointer hover:scale-105 group group-hover:text-indigo-200'>
+                                <div className='flex items-center gap-3 cursor-pointer hover:scale-105 group group-hover:text-indigo-700'>
                                     <Avatar src={img} alt={name} size='sm' />
                                     <div className='flex flex-col'>
                                         <Typography
                                             variant='small'
                                             color='blue-gray'
-                                            className='font-normal group-hover:text-indigo-200'
+                                            className='font-normal group-hover:text-indigo-700'
                                         >
                                             {name}
                                         </Typography>
@@ -107,6 +108,7 @@ function JobCreatedListingTable(props: { TABLE_HEAD: any; TABLE_ROWS: any }) {
                                 </div>
                             </td>
                         </tr>
+                        // </NavLink>
                     )
                 })}
             </tbody>
