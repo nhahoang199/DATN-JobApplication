@@ -23,11 +23,11 @@ function CompanyDetailsHeader() {
                         </div>
                         <div className='ml-4 mt-4 flex flex-col items-start'>
                             <Typography variant='h3' color='blue-gray' className='mb-2'>
-                                Matthew Stones
+                                Google 
                             </Typography>
                             <div className='mb-16 flex items-center justify-center gap-2'>
                                 <MapPinIcon className='-mt-px h-4 w-4 text-blue-gray-700' />
-                                <Typography className='font-medium text-blue-gray-700'>Đông Lào, California</Typography>
+                                <Typography className='font-medium text-blue-gray-700'>California</Typography>
                             </div>
                         </div>
                     </div>

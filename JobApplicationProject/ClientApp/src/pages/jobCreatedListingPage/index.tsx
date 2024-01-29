@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Card, CardHeader, Typography, CardBody, CardFooter } from '@material-tailwind/react'
 import { useAppDispatch } from 'apps/store'
-import { setUserManagerTab } from 'apps/Tabs.slice'
+import { setHRManagerTab } from 'apps/Tabs.slice'
 import { SimplePagination } from 'components/common'
 import { JobCreatedListingHeader, JobCreatedListingTable } from './components'
 
@@ -145,7 +145,7 @@ const TABLE_ROWS = [
 export default function JobCreatedListingPage() {
     const dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(setUserManagerTab(7))
+        dispatch(setHRManagerTab(5))
     }, [dispatch])
     return (
         <Card className='h-full w-full rounded-md px-2 shadow-lg shadow-gray-400'>

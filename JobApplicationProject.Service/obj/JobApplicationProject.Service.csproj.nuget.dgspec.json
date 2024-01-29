@@ -325,6 +325,10 @@
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
               "version": "[11.7.1, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

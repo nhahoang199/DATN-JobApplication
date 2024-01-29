@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { CompanyQuickView, JobCategory, JobCommonInfo, JobDescription, JobRelated, JobTitle } from './components'
 import { useParams } from 'react-router-dom'
 import { IJobDetail } from 'models'
-import { getJobDetail } from 'apis/jobApplicationAPI'
+import { getJobDetailAPI } from 'apis/jobApplicationAPI'
 import { InternalErrorPage, LoadingPage } from 'pages'
 import { useDispatch } from 'react-redux'
 import { setNavigation } from 'apps/navBar.slice'
@@ -20,7 +20,7 @@ function JobDetails() {
         const fetchData = async () => {
             try {
                 setLoading(true)
-                const response = await getJobDetail(id?.toString())
+                const response = await getJobDetailAPI(id?.toString())
                 setJobDetails(response.data)
                 // debugger
             } catch (error: any) {

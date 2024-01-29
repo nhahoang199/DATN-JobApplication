@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using JobApplicationProject.Data.Repositories.DistrictRepo;
 using JobApplicationProject.Data.Repositories.ProvinceRepo;
@@ -62,16 +63,32 @@ namespace JobApplicationProject.Service.Services.DistrictService
             return await _districtRepo.Update(existingDistrict);
         }
 
-        public async Task<List<District>> GetAllDistricts()
+        public async Task<PagedList<DistrictDto>> GetAllDistricts(PaginationParameters paginationParameters)
         {
-            return await _districtRepo.GetAll();
+            return await _districtRepo.GetAll(paginationParameters);
         }
-
+        public async Task<List<District>> GetDistrictsByProviceId(Guid provinceId)
+        {
+            return await _districtRepo.GetDistrictsByProviceId(provinceId);
+        }
         public async Task<District?> GetDistrictById(Guid id)
         {
             return await _districtRepo.GetById(id);
         }
-
+        public async Task<DistrictDetails?> GetDetailsById(Guid id)
+        {
+            var district = await _districtRepo.GetById(id);
+            var province = await _provinceRepo.GetById(district.ProvinceId.GetValueOrDefault());
+            return new DistrictDetails()
+            {
+                Id = district.Id,
+                Name = district.Name,
+                ProvinceId = district.ProvinceId ?? null,
+                CountryId = province?.CountryId ?? null,
+                CreatedOn = district.CreatedOn,
+                UpdatedOn = district.UpdatedOn,
+            };
+        }
         public async Task<District?> DeleteDistrict(Guid id)
         {
             return await _districtRepo.Delete(id);

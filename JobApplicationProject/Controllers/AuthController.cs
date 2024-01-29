@@ -37,7 +37,8 @@ namespace JobApplicationProject.Web.Controllers
             {
                 Name = registerDto.Name,
                 Email = registerDto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password)
+                Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
+                Role = registerDto.RoleLogicName,
             };
             if (!_validations.Validate(user).IsValid) return BadRequest(_validations.Validate(user).Errors);
 
@@ -47,7 +48,7 @@ namespace JobApplicationProject.Web.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            var user = await _userService.GetByEmail(dto.Email);
+            var user = await _userService.GetByEmailAsync(dto.Email);
 
             if (user == null)
                 return NotFound(new { error = "Email Not Found" });
@@ -112,8 +113,11 @@ namespace JobApplicationProject.Web.Controllers
         [HttpGet("getme"), Authorize]
         public ActionResult<object> GetMe()
         {
-            var userName = _userService.GetMyName();
-            return Ok(new { userName });
+            var userClaim = _userService.GetMe();
+            var user = _userService.GetByEmail(userClaim.Email);
+            userClaim.Id = user.Id;
+            userClaim.ProfilePicture = user.ProfilePicture;
+            return Ok(userClaim);
         }
 
         private void SetRefreshToken(RefreshToken newRefreshToken, User user)

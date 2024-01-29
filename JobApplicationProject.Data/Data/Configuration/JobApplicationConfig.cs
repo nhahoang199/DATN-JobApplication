@@ -15,10 +15,8 @@ namespace JobApplicationProject.Data.Data.Configuration
         {
             builder.ToTable("JobApplication");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Title).HasColumnType("nvarchar(500)").IsRequired();
-            builder.HasOne<Company>(c => c.Company).WithMany().HasForeignKey(x => x.CompanyId).OnDelete(DeleteBehavior.SetNull).IsRequired(false);
-            builder.HasOne<Career>(c => c.Career).WithMany().HasForeignKey(x => x.CareerId).OnDelete(DeleteBehavior.SetNull).IsRequired(false);
-            builder.HasOne<Skill>(c => c.Skill).WithMany().HasForeignKey(x => x.SkillId).OnDelete(DeleteBehavior.SetNull).IsRequired(false);
+            builder.HasOne<User>(c => c.User).WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.SetNull).IsRequired(false);
+            builder.HasOne<JobDescription>(c => c.JobDescription).WithMany().HasForeignKey(x => x.JobDescriptionId).OnDelete(DeleteBehavior.SetNull).IsRequired(false);
         }
     }
 }

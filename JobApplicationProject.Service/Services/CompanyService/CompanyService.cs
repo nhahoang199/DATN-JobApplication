@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using JobApplicationProject.Data.Repositories.AddressRepo;
 using JobApplicationProject.Data.Repositories.CompanyRepo;
@@ -29,27 +30,36 @@ namespace JobApplicationProject.Service.Services.CompanyService
             {
                 Id = Guid.NewGuid(),
                 Name = companyDto.Name,
-                UEN = companyDto.UEN,
+                CRN = companyDto.CRN,
                 Description = companyDto.Description,
                 FBLink = companyDto.FBLink,
                 TwitterLink = companyDto.TwitterLink,
                 Website = companyDto.Website,
-                Gmail = companyDto.Gmail,
-                Picture = companyDto.Picture,
+                Email = companyDto.Email,
+                AvatarPicture = companyDto.AvatarPicture,
+                BackgroundPicture = companyDto.BackgroundPicture,
                 DateOfIncorporation = companyDto.DateOfIncorporation,
-                AddressId = companyDto.AddressId,
-                CompanySize = companyDto.CompanySize,
-                WorkingDay = companyDto.WorkingDay,
+                //TotalRatingQuantity = companyDto.TotalRatingQuantity,
+                //TotalOverallRatingScore = companyDto.TotalOverallRatingScore,
+                //TotalBenefitRatingScore = companyDto.TotalBenefitRatingScore,
+                //TotalCareRatingScore = companyDto.TotalCareRatingScore,
+                Status = 1,
+                //AddressId = companyDto.AddressId,
+                CompanySizeType = companyDto.CompanySizeType,
+                CompanySizeMinValue = companyDto.CompanySizeMinValue,
+                CompanySizeMaxValue = companyDto.CompanySizeMaxValue,
+                StartWorkingDay = companyDto.StartWorkingDay,
+                EndWorkingDay = companyDto.EndWorkingDay,
                 UpdatedOn = DateTime.UtcNow,
                 CreatedOn = DateTime.UtcNow,
             };
 
-            if (companyDto.AddressId != null)
-            {
-                var address = await _addressRepo.GetById(companyDto.AddressId.GetValueOrDefault());
-                if (address == null) throw new InvalidOperationException("Address not found");
-                company.Address = address;
-            }
+            //if (companyDto.AddressId != null)
+            //{
+            //    var address = await _addressRepo.GetById(companyDto.AddressId.GetValueOrDefault());
+            //    if (address == null) throw new InvalidOperationException("Address not found");
+            //    company.Address = address;
+            //}
 
             return await _companyRepo.Create(company);
         }
@@ -60,33 +70,40 @@ namespace JobApplicationProject.Service.Services.CompanyService
 
             if (existingCompany == null) throw new InvalidOperationException("Company not found");
 
-            if (companyDto.AddressId != null)
-            {
-                var address = await _addressRepo.GetById(companyDto.AddressId.GetValueOrDefault());
-                if (address == null) throw new InvalidOperationException("Address not found");
-                existingCompany.Address = address;
-            }
+            //if (companyDto.AddressId != null)
+            //{
+            //    var address = await _addressRepo.GetById(companyDto.AddressId.GetValueOrDefault());
+            //    if (address == null) throw new InvalidOperationException("Address not found");
+            //    existingCompany.Address = address;
+            //}
 
-            existingCompany.Name = companyDto.Name;
-            existingCompany.UEN = companyDto.UEN;
-            existingCompany.Description = companyDto.Description;
-            existingCompany.FBLink = companyDto.FBLink;
-            existingCompany.TwitterLink = companyDto.TwitterLink;
-            existingCompany.Website = companyDto.Website;
-            existingCompany.Gmail = companyDto.Gmail;
-            existingCompany.Picture = companyDto.Picture;
-            existingCompany.DateOfIncorporation = companyDto.DateOfIncorporation;
-            existingCompany.AddressId = companyDto.AddressId;
-            existingCompany.CompanySize = companyDto.CompanySize;
-            existingCompany.WorkingDay = companyDto.WorkingDay;
+            if (companyDto.Name != null) existingCompany.Name = companyDto.Name;
+            if (companyDto.CRN != null) existingCompany.CRN = companyDto.CRN;
+            if (companyDto.Description != null) existingCompany.Description = companyDto.Description;
+            if (companyDto.FBLink != null) existingCompany.FBLink = companyDto.FBLink;
+            if (companyDto.TwitterLink != null) existingCompany.TwitterLink = companyDto.TwitterLink;
+            if (companyDto.Website != null) existingCompany.Website = companyDto.Website;
+            if (companyDto.Email != null) existingCompany.Email = companyDto.Email;
+            if (companyDto.Status != null) existingCompany.Status = (int)companyDto.Status;
+            if (companyDto.AvatarPicture != null) existingCompany.AvatarPicture = companyDto.AvatarPicture;
+            if (companyDto.BackgroundPicture != null) existingCompany.BackgroundPicture = companyDto.BackgroundPicture;
+            //if(companyDto.TotalRatingQuantity != null) existingCompany.TotalRatingQuantity = companyDto.TotalRatingQuantity;
+            //if(companyDto.TotalRatingScore != null) existingCompany.TotalRatingScore = companyDto.TotalRatingScore;
+            if (companyDto.DateOfIncorporation != null) existingCompany.DateOfIncorporation = companyDto.DateOfIncorporation;
+            //if(companyDto.Name != null) existingCompany.AddressId = companyDto.AddressId;
+            if (companyDto.CompanySizeType != null) existingCompany.CompanySizeType = companyDto.CompanySizeType;
+            if (companyDto.CompanySizeMinValue != null) existingCompany.CompanySizeMinValue = companyDto.CompanySizeMinValue;
+            if (companyDto.CompanySizeMaxValue != null) existingCompany.CompanySizeMaxValue = companyDto.CompanySizeMaxValue;
+            if (companyDto.StartWorkingDay != null) existingCompany.StartWorkingDay = companyDto.StartWorkingDay;
+            if (companyDto.EndWorkingDay != null) existingCompany.EndWorkingDay = companyDto.EndWorkingDay;
             existingCompany.UpdatedOn = DateTime.UtcNow;
 
             return await _companyRepo.Update(existingCompany);
         }
 
-        public async Task<List<Company>> GetAllCompanies()
+        public async Task<PagedList<Company>> GetAllCompanies(PaginationParameters paginationParameters)
         {
-            return await _companyRepo.GetAll();
+            return await _companyRepo.GetAll(paginationParameters);
         }
 
         public async Task<Company?> GetCompanyById(Guid id)
@@ -97,6 +114,11 @@ namespace JobApplicationProject.Service.Services.CompanyService
         public async Task<Company?> DeleteCompany(Guid id)
         {
             return await _companyRepo.Delete(id);
+        }
+
+        public async Task<List<Company>> SearchCompanyByName(string name)
+        {
+            return await _companyRepo.SearchByName(name);
         }
     }
 }

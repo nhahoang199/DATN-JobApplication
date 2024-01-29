@@ -1,4 +1,6 @@
-﻿using JobApplicationProject.Core.Models;
+﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,8 @@ namespace JobApplicationProject.Data.Repositories.CommuneRepo
     {
         Task<Commune> Create(Commune commune);
         Task<Commune> Update(Commune commune);
-        Task<List<Commune>> GetAll();
+        Task<PagedList<CommuneDto>> GetAll(PaginationParameters paginationParameters);
+        Task<List<Commune>> GetCommuneByDistrictId(Guid districtId);
         Task<Commune?> GetById(Guid id);
         Task<Commune?> Delete(Guid id);
     }

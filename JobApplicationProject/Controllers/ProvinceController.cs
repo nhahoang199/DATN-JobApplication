@@ -1,4 +1,5 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
 using JobApplicationProject.Core.Models;
 using JobApplicationProject.Service.Services.CountryService;
 using JobApplicationProject.Service.Services.ProvinceService;
@@ -47,12 +48,12 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProvinces()
+        public async Task<IActionResult> GetAllProvinces([FromQuery] PaginationParameters paginationParameters)
         {
             try
             {
-                var provinces = await _provinceService.GetAllProvinces();
-                return Ok(provinces);
+                var provinces = await _provinceService.GetAllProvinces(paginationParameters);
+                return Ok(new ResponseModel<ProvinceDto>(provinces, provinces.GetPagination()));
             }
             catch (Exception ex)
             {
@@ -68,6 +69,22 @@ namespace JobApplicationProject.Web.Controllers
                 var province = await _provinceService.GetProvinceById(id);
                 if (province == null)
                     return NotFound();
+                return Ok(province);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("getProvinceByCountryId")]
+        public async Task<IActionResult> GetProvinceByCountryId(Guid countryId)
+        {
+            try
+            {
+                var province = await _provinceService.GetProvincesByCountryId(countryId);
+                //if (province == null)
+                //    return NotFound();
                 return Ok(province);
             }
             catch (Exception ex)

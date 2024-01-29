@@ -1,8 +1,11 @@
-﻿using JobApplicationProject.Core.Models;
+﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,8 +32,19 @@ namespace JobApplicationProject.Data.Repositories.CountryRepo
             return country;
         }
 
-        public async Task<List<Country>> GetAll()
+        public async Task<PagedList<Country>> GetAll(PaginationParameters paginationParameters)
         {
+            var countryList = _dbContext.Country.AsQueryable();
+
+            // Perform additional filtering, ordering, etc., if needed
+            var orderBy = (Expression<Func<Country, object>>)(x => x.Name);
+
+            return await PagedList<Country>.ToPagedList(countryList, paginationParameters.PageNumber, paginationParameters.PageSize, orderBy);
+            //return await _dbContext.Country.ToListAsync();
+        }
+        public async Task<List<Country>> GetAllCountry()
+        {
+
             return await _dbContext.Country.ToListAsync();
         }
 

@@ -24,7 +24,7 @@ function GuestMenu() {
                 {navigation.map((item: NavigationItem, index: number) => (
                     <NavLink
                         key={item.name}
-                        to={item.href}
+                        to={`/${item.href}`}
                         className={classNames(
                             item.current
                                 ? 'bg-gray-100 font-bold text-gray-900 border border-gray-900 hover:bg-gray-700 hover:text-white'

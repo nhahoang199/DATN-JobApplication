@@ -30,7 +30,8 @@ namespace JobApplicationProject.Service.Helpers.JwtService
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.Email, user.Email),
             };
             var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha512Signature);
             var securityToken = new JwtSecurityToken(claims: claims,
@@ -52,7 +53,7 @@ namespace JobApplicationProject.Service.Helpers.JwtService
 
             return (JwtSecurityToken)validatedToken;
         }
-        
+
     }
 
 }

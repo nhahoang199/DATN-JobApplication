@@ -1,0 +1,24 @@
+.custom-form{
+    .MuiFormControl-root{
+        .MuiInputBase-root{
+            // background-color: red;
+            border-radius: 0.125rem;
+            // border: 1px solid #000 ;
+            // outline: none;
+            border-color: #000;
+            outline-color: #000 !important;
+            outline-offset: 1px;
+        }
+        .MuiOutlinedInput-root {
+            & fieldset {
+              border-color: #000
+            }
+            &:hover fieldset {
+              border-color: #000
+            }
+            &.Mui-focused fieldset {
+              border-color: #000
+            }
+        }
+    }
+}

@@ -1,7 +1,10 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using JobApplicationProject.Service.Services.CompanyService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobApplicationProject.Web.Controllers
 {
@@ -17,7 +20,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProvince(CompanyDto companyDto)
+        public async Task<IActionResult> CreateCompany(CompanyDto companyDto)
         {
             try
             {
@@ -31,7 +34,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProvince(Guid id, CompanyDto companyDto)
+        public async Task<IActionResult> UpdateCompany(Guid id, CompanyDto companyDto)
         {
             try
             {
@@ -39,19 +42,22 @@ namespace JobApplicationProject.Web.Controllers
                 if (updatedCompany == null) return NotFound();
                 return Ok(updatedCompany);
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
-                return BadRequest(ex.Message);
+                // Xem inner exception để lấy thông tin chi tiết
+                var innerException = ex.InnerException;
+                // Xử lý hoặc đưa ra thông báo tùy thuộc vào yêu cầu của bạn
+                return BadRequest(innerException);
             }
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProvinces()
+        public async Task<IActionResult> GetAllCompanys([FromQuery] PaginationParameters paginationParameters)
         {
             try
             {
-                var companies = await _companyService.GetAllCompanies();
-                return Ok(companies);
+                var companies = await _companyService.GetAllCompanies(paginationParameters);
+                return Ok(new ResponseModel<Company>(companies, companies.GetPagination()));
             }
             catch (Exception ex)
             {
@@ -60,7 +66,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProvinceById(Guid id)
+        public async Task<IActionResult> GetCompanyById(Guid id)
         {
             try
             {
@@ -73,9 +79,22 @@ namespace JobApplicationProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("searchByName")]
+        public async Task<IActionResult> SearchCompanyByName(string name)
+        {
+            try
+            {
+                var companyList = await _companyService.SearchCompanyByName(name.ToLower().Trim());
+                return Ok(companyList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProvince(Guid id)
+        public async Task<IActionResult> DeleteCompany(Guid id)
         {
             try
             {

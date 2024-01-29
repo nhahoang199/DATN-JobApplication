@@ -11,7 +11,9 @@ namespace JobApplicationProject.Core.Dtos
         public Guid? Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public int Type { get; set; }
-        public int Salary { get; set; }
+        //public string Salary { get; set; } = string.Empty;
+        public int MinSalary { get; set; }
+        public int MaxSalary { get; set; }
         public string? CompanyName { get; set; } = string.Empty;
         public string? ProvinceName { get; set; } = string.Empty;
         public string? DistrictName { get; set; } = string.Empty;

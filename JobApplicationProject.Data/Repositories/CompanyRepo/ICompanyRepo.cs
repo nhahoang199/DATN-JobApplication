@@ -1,4 +1,6 @@
-﻿using JobApplicationProject.Core.Models;
+﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,9 @@ namespace JobApplicationProject.Data.Repositories.CompanyRepo
     {
         Task<Company> Create(Company company);
         Task<Company> Update(Company company);
-        Task<List<Company>> GetAll();
+        Task<PagedList<Company>> GetAll(PaginationParameters paginationParameters);
         Task<Company?> GetById(Guid id);
+        Task<List<Company>> SearchByName(string name);
         Task<Company?> Delete(Guid id);
     }
 }

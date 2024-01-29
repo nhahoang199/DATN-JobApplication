@@ -1,4 +1,6 @@
-﻿using JobApplicationProject.Core.Models;
+﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,8 @@ namespace JobApplicationProject.Data.Repositories.CountryRepo
     {
         Task<Country> Create(Country country);
         Task<Country> Update(Country country);
-        Task<List<Country>> GetAll();
+        Task<PagedList<Country>> GetAll(PaginationParameters paginationParameters);
+        Task<List<Country>> GetAllCountry();
         Task<Country?> GetById(Guid id);
         Task<Country?> Delete(Guid id);
     }

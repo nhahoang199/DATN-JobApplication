@@ -10,6 +10,10 @@ namespace JobApplicationProject.Core.Dtos
     public class ProvinceDto
     {
         public string Name { get; set; } = string.Empty;
+        public Guid? Id { get; set; }
         public Guid? CountryId { get; set; }
+        public string? CountryName { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
     }
 }

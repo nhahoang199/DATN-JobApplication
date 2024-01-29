@@ -16,7 +16,7 @@ const Register = () => {
     }
     if (redirect) return <Navigate to='/login' />
     return (
-        <div className='register-modal'>
+        <div className='register-modal bg-register bg-center bg-no-repeat'>
             <div className='flex flex-col justify-center px-6 pt-0 pb-12 lg:px-8 register-container 3xl:h-70vh'>
                 <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                     <img className='w-auto mx-auto h-52' src={logo_transparent} alt='Your Company' />

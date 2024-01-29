@@ -1,34 +1,54 @@
 import React from 'react'
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel, Typography } from '@material-tailwind/react'
-import PersonalInformation from '../personalInformation'
+import {
+    UserEducation,
+    UserIntroduce,
+    UserExperience,
+    UserSkills,
+    UserProject,
+    UserCertificates,
+    UserAwards
+} from './subComponents'
 
 export default function UserProfileTab() {
     const [activeTab, setActiveTab] = React.useState(0)
 
     const data = [
         {
-            label: 'Thông tin cá nhân',
-            component: <PersonalInformation />
+            label: 'Giới thiệu',
+            component: <UserIntroduce />
         },
         {
             label: 'Học vấn',
-            component: null
+            component: <UserEducation />
         },
         {
             label: 'Kinh nghiệm làm việc',
-            component: null
+            component: <UserExperience />
         },
         {
             label: 'Kỹ năng',
-            component: null
+            component: <UserSkills />
+        },
+        {
+            label: 'Dự án cá nhân',
+            component: <UserProject />
+        },
+        {
+            label: 'Chứng chỉ',
+            component: <UserCertificates />
+        },
+        {
+            label: 'Giải thưởng',
+            component: <UserAwards />
         }
     ]
     return (
-        <Tabs value={activeTab}>
+        <Tabs value={activeTab} className=''>
             <TabsHeader
                 className='rounded-none border-b border-blue-gray-50 bg-transparent p-0 flex flex-row'
                 indicatorProps={{
-                    className: 'bg-transparent border-b-8 border-gray-900 shadow-none rounded-none'
+                    className: 'bg-transparent border-b-4 border-gray-900 shadow-none rounded-none'
                 }}
             >
                 {data.map(({ label }, index) => (
@@ -37,7 +57,7 @@ export default function UserProfileTab() {
                         value={index}
                         onClick={() => setActiveTab(index)}
                         // className={activeTab === value ? 'text-gray-900' : ''}
-                        className={`${activeTab === index ? 'text-gray-900' : ''} py-6  mr-6 !w-fit text-gray-600`}
+                        className={`${activeTab === index ? 'text-gray-900' : ''} pb-4  mr-6 !w-fit text-gray-600`}
                     >
                         <Typography
                             variant='h6'
@@ -48,42 +68,13 @@ export default function UserProfileTab() {
                     </Tab>
                 ))}
             </TabsHeader>
-            <TabsBody className=' pb-6'>
+            <TabsBody className='pb-6'>
                 {data.map(({ label, component }, index) => (
-                    <TabPanel
-                        key={label}
-                        value={index}
-                        className='overflow-y-scroll  pl-0 h-[calc(100vh-13.2rem)] scrollbar '
-                    >
+                    <TabPanel key={index} value={index} className='px-0'>
                         {component}
                     </TabPanel>
                 ))}
             </TabsBody>
         </Tabs>
-        //     <Tabs value={activeTab}>
-        //     <TabsHeader
-        //         className='rounded-none border-b border-blue-gray-50 bg-transparent p-0 flex flex-row'
-        //         indicatorProps={{
-        //             className: 'bg-transparent border-b-4 border-gray-900 shadow-none rounded-none'
-        //         }}
-        //     >
-        //         {data.map(({ label, href, index }) => (
-        //             <NavLink to={href}>
-        //                 <Tab
-        //                     value={index}
-        //                     onClick={() => dispatch(setCompanyTab(index))}
-        //                     className={`${activeTab === index ? 'text-gray-900' : ''} py-6  px-6 !w-fit text-gray-600`}
-        //                 >
-        //                     <Typography
-        //                         variant='h5'
-        //                         className={`${activeTab === index ? 'text-gray-900' : 'text-gray-600'} `}
-        //                     >
-        //                         {label}
-        //                     </Typography>
-        //                 </Tab>
-        //             </NavLink>
-        //         ))}
-        //     </TabsHeader>
-        // </Tabs>
     )
 }

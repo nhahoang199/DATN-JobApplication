@@ -1,4 +1,6 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using JobApplicationProject.Service.Services.DistrictService;
 using JobApplicationProject.Service.Services.ProvinceService;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +20,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProvince(DistrictDto districtDto)
+        public async Task<IActionResult> CreateDistrict(DistrictDto districtDto)
         {
             try
             {
@@ -32,7 +34,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProvince(Guid id, DistrictDto districtDto)
+        public async Task<IActionResult> UpdateDistrict(Guid id, DistrictDto districtDto)
         {
             try
             {
@@ -47,12 +49,12 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProvinces()
+        public async Task<IActionResult> GetAllDistricts([FromQuery] PaginationParameters paginationParameters)
         {
             try
             {
-                var districts = await _districtService.GetAllDistricts();
-                return Ok(districts);
+                var districts = await _districtService.GetAllDistricts(paginationParameters);
+                return Ok(new ResponseModel<DistrictDto>(districts, districts.GetPagination()));
             }
             catch (Exception ex)
             {
@@ -61,7 +63,7 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProvinceById(Guid id)
+        public async Task<IActionResult> GetDistrictById(Guid id)
         {
             try
             {
@@ -74,9 +76,37 @@ namespace JobApplicationProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("getDetails")]
+        public async Task<IActionResult> GetDistrictDetailsById(Guid id)
+        {
+            try
+            {
+                var district = await _districtService.GetDetailsById(id);
+                if (district == null) return NotFound();
+                return Ok(district);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getByProvinceId")]
+        public async Task<IActionResult> GetDistrictsByProviceId(Guid provinceId)
+        {
+            try
+            {
+                var district = await _districtService.GetDistrictsByProviceId(provinceId);
+                if (district == null) return NotFound();
+                return Ok(district);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProvince(Guid id)
+        public async Task<IActionResult> DeleteDistrict(Guid id)
         {
             try
             {

@@ -4,7 +4,7 @@ import { useOutlet } from 'react-router-dom'
 const UserLayout = () => {
     const children = useOutlet()
     return (
-        <div className='userLayout'>
+        <div className='userLayout scroll-smooth'>
             <Navbar />
             <div className='bg-gray-100 content mt-14'>{children}</div>
             <Footer />
