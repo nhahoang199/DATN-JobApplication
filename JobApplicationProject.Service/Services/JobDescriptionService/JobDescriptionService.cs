@@ -53,7 +53,7 @@ namespace JobApplicationProject.Service.Services.JobApplicationService
                 Type = jobDescDto.Type,
                 MinSalary = jobDescDto.MinSalary,
                 MaxSalary = jobDescDto.MaxSalary,
-                ExperirenceType = jobDescDto.ExperienceType,
+                ExperirenceType = jobDescDto.ExperirenceType,
                 MinYearExperience = jobDescDto.MinYearExperience,
                 MaxYearExperience = jobDescDto.MaxYearExperience,
                 Position = jobDescDto.Position,
@@ -67,7 +67,8 @@ namespace JobApplicationProject.Service.Services.JobApplicationService
                 CareerId = jobDescDto.CareerId,
                 //SkillId = jobDescDto.SkillId,
                 UpdatedOn = DateTime.UtcNow,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
+                Status = jobDescDto.Status
             };
 
             if (jobDescDto.CompanyId != null)
@@ -116,7 +117,7 @@ namespace JobApplicationProject.Service.Services.JobApplicationService
             existingJobDescription.Type = jobDescDto.Type;
             existingJobDescription.MinSalary = jobDescDto.MinSalary;
             existingJobDescription.MaxSalary = jobDescDto.MaxSalary;
-            existingJobDescription.ExperirenceType = jobDescDto.ExperienceType;
+            existingJobDescription.ExperirenceType = jobDescDto.ExperirenceType;
             existingJobDescription.MinYearExperience = jobDescDto.MinYearExperience;
             existingJobDescription.MaxYearExperience = jobDescDto.MaxYearExperience;
             existingJobDescription.Position = jobDescDto.Position;
@@ -151,7 +152,8 @@ namespace JobApplicationProject.Service.Services.JobApplicationService
         public async Task<JobDetailsDto?> GetJobDetails(Guid id)
         {
             var jobApplication = await _jobDescriptionRepo.GetById(id);
-            var company = await _companyRepo.GetById(jobApplication.CompanyId.Value);
+            var company = await _companyRepo.GetById(new Guid("cb31e91e-eca4-46f0-8c52-007f020cff65"));
+            //var company = await _companyRepo.GetById(jobApplication.CompanyId.Value);
             //var address = await _addressRepo.GetById(company.AddressId.Value);
             //var country = await _countryRepo.GetById(address.CountryId.Value);
             //var province = await _provinceRepo.GetById(address.ProvinceId.Value);

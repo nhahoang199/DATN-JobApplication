@@ -8,22 +8,10 @@ function UserAppliedJobs() {
     const dispatch = useAppDispatch()
     const fakeData = [
         {
-            name: ''
+            name: 'Backend Developer'
         },
         {
-            name: ''
-        },
-        {
-            name: ''
-        },
-        {
-            name: ''
-        },
-        {
-            name: ''
-        },
-        {
-            name: ''
+            name: 'Junior Front-End Developer'
         }
     ]
     useEffect(() => {
@@ -40,7 +28,7 @@ function UserAppliedJobs() {
             </Typography>
             <div className='grid grid-cols-3 gap-5'>
                 {fakeData.map((item, index) => {
-                    return <AppliedJobItem />
+                    return <AppliedJobItem item={item} />
                 })}
             </div>
         </div>

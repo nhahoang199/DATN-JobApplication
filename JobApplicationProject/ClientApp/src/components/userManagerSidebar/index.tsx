@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Card,
     Typography,
@@ -15,12 +15,23 @@ import { BriefcaseIcon } from '@heroicons/react/20/solid'
 import { RootState, useAppDispatch } from 'apps/store'
 import { useSelector } from 'react-redux'
 import { setUserManagerTab } from 'apps/Tabs.slice'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export default function UserManagerSideBar() {
     // const [open, setOpen] = React.useState(0)
     const dispatch = useAppDispatch()
     const userManagerActiveTab = useSelector((state: RootState) => state.activeTab.userManagerActiveTab)
+    const userRole = useSelector((state: RootState) => state.auth.user.role)
+    const navigate = useNavigate()
+    const [redirected, setRedirected] = useState(false)
+
+    useEffect(() => {
+        if (!redirected) {
+            // Thực hiện chuyển hướng ở đây
+            navigate('profile')
+            setRedirected(true) // Đặt biến cờ thành true để chỉ chuyển hướng một lần
+        }
+    }, [navigate, redirected])
     const handleOpen = (value: any) => {
         // setOpen(userManagerActiveTab === value ? 0 : value)
         if (
@@ -34,7 +45,7 @@ export default function UserManagerSideBar() {
     }
     return (
         <Card className='h-[calc(100vh-3.6rem)] w-full max-w-[16rem] rounded-none p-1 shadow-xl shadow-blue-gray-900/5'>
-            <div className='mb-2 py-4 px-2'>
+            <div className='px-2 py-4 mb-2'>
                 <Typography variant='h5' color='blue-gray'>
                     Quản lý
                 </Typography>
@@ -64,10 +75,10 @@ export default function UserManagerSideBar() {
                     <ListItem className='!py-0 px-0 rounded-md' selected={userManagerActiveTab === 1}>
                         <AccordionHeader
                             onClick={() => handleOpen(1)}
-                            className='border-b-0 px-2 py-3 rounded-md flex items-center'
+                            className='flex items-center px-2 py-3 border-b-0 rounded-md'
                         >
                             <ListItemPrefix className='mr-2'>
-                                <UserCircleIcon className='h-5 w-5' />
+                                <UserCircleIcon className='w-5 h-5' />
                             </ListItemPrefix>
                             <Typography
                                 variant='h6'
@@ -96,44 +107,44 @@ export default function UserManagerSideBar() {
                         <List className='p-0'>
                             <NavLink to='profile'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={userManagerActiveTab === 2}
                                     onClick={() => handleOpen(2)}
                                 >
                                     <ListItemPrefix className={`${userManagerActiveTab !== 2 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Hồ sơ
                                 </ListItem>
                             </NavLink>
                             <NavLink to='cv'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={userManagerActiveTab === 3}
                                     onClick={() => handleOpen(3)}
                                 >
                                     <ListItemPrefix className={`${userManagerActiveTab !== 3 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Quản lý CV
                                 </ListItem>
                             </NavLink>
                             {/* <ListItem
-                                className='text-sm px-2'
+                                className='px-2 text-sm'
                                 selected={userManagerActiveTab === 4}
                                 onClick={() => handleOpen(4)}
                             >
                                 <ListItemPrefix className={`${userManagerActiveTab !== 4 ? 'invisible' : ''} mr-2`}>
-                                    <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                    <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                 </ListItemPrefix>
                                 Tiêu chí tìm việc
                             </ListItem> */}
                         </List>
                     </AccordionBody>
                 </Accordion>
-                {/* <ListItem className='py-3 px-2' selected={userManagerActiveTab === 5} onClick={() => handleOpen(5)}>
+                {/* <ListItem className='px-2 py-3' selected={userManagerActiveTab === 5} onClick={() => handleOpen(5)}>
                     <ListItemPrefix className='mr-2'>
-                        <BuildingOfficeIcon className='h-5 w-5' />
+                        <BuildingOfficeIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     <Typography
                         variant='h6'
@@ -162,9 +173,9 @@ export default function UserManagerSideBar() {
                         selected={userManagerActiveTab === 5}
                         onClick={() => handleOpen(6)}
                     >
-                        <AccordionHeader onClick={() => handleOpen(5)} className='border-b-0 px-2 py-3 rounded-md'>
+                        <AccordionHeader onClick={() => handleOpen(5)} className='px-2 py-3 border-b-0 rounded-md'>
                             <ListItemPrefix className='mr-2'>
-                                <BriefcaseIcon className='h-5 w-5' />
+                                <BriefcaseIcon className='w-5 h-5' />
                             </ListItemPrefix>
                             <Typography
                                 variant='h6'
@@ -191,36 +202,36 @@ export default function UserManagerSideBar() {
                         <List className='p-0'>
                             {/* <NavLink to='jobcreated'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={userManagerActiveTab === 7}
                                     onClick={() => handleOpen(7)}
                                 >
                                     <ListItemPrefix className={`${userManagerActiveTab !== 7 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Việc làm của công ty bạn
                                 </ListItem>
                             </NavLink> */}
                             <NavLink to='appliedjobs'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={userManagerActiveTab === 6}
                                     onClick={() => handleOpen(6)}
                                 >
                                     <ListItemPrefix className={`${userManagerActiveTab !== 6 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Việc làm bạn đã ứng tuyển
                                 </ListItem>
                             </NavLink>
                             <NavLink to='savedjobs'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={userManagerActiveTab === 7}
                                     onClick={() => handleOpen(7)}
                                 >
                                     <ListItemPrefix className={`${userManagerActiveTab !== 7 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Việc làm bạn đã lưu
                                 </ListItem>
@@ -230,7 +241,7 @@ export default function UserManagerSideBar() {
                 </Accordion>
                 {/* <ListItem>
                     <ListItemPrefix>
-                        <InboxIcon className='h-5 w-5' />
+                        <InboxIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     Inbox
                     <ListItemSuffix>
@@ -240,13 +251,13 @@ export default function UserManagerSideBar() {
 
                 {/* <ListItem>
                     <ListItemPrefix>
-                        <Cog6ToothIcon className='h-5 w-5' />
+                        <Cog6ToothIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     Settings
                 </ListItem>
                 <ListItem>
                     <ListItemPrefix>
-                        <PowerIcon className='h-5 w-5' />
+                        <PowerIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     Log Out
                 </ListItem> */}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { avepoint } from 'assets'
+import { companyavatar, avepoint } from 'assets'
 import { Rating } from '@material-tailwind/react'
 import { NavLink } from 'react-router-dom'
 function TopCompanySection() {
@@ -7,34 +7,44 @@ function TopCompanySection() {
         {
             id: '123123',
             name: 'AvePoint VietNam',
-            title: 'Software Vendor'
+            title: 'Software Vendor',
+            rating: 4.5,
+            src: avepoint
         },
         {
             id: '123123',
-            name: 'AvePoint VietNam',
-            title: 'Software Vendor'
+            name: 'OneMount VietNam',
+            title: 'Software Vendor',
+            rating: 5,
+            src: companyavatar
         },
         {
             id: '123123',
-            name: 'AvePoint VietNam',
-            title: 'Software Vendor'
+            name: 'Niteco Vietnam Co., Ltd',
+            title: 'Software Vendor',
+            rating: 4,
+            src: 'https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBenZhT2c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--78256eff185961a6e10697371a0cdb77a0c699c9/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/Blue%20Illustrated%20Pool%20Party%20Instagram%20Post.png'
         },
         {
             id: '123123',
-            name: 'AvePoint VietNam',
-            title: 'Software Vendor'
+            name: 'AZuhlke Engineering Vietnam',
+            title: 'Software Vendor',
+            rating: 4,
+            src: 'https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd3VjSFE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--2bdbcc850d1da5bfc0f020011301732f4a85a9bc/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/Zuhlke-LOGO(forpartners).jpg'
         },
         {
             id: '123123',
-            name: 'AvePoint VietNam',
-            title: 'Software Vendor'
+            name: 'Orient Software Development Corp.',
+            title: 'Software Vendor',
+            rating: 5,
+            src: companyavatar
         }
     ]
     return (
-        <section className='py-6 overflow-auto bg-gray-100  dark:bg-gray-800 dark:text-gray-100 relative'>
-            <div className='bg-profile-background absolute top-0 h-full w-full bg-search bg-cover bg-center' />
-            <div className='absolute top-0 h-full w-full bg-black/75 bg-cover bg-center' />
-            <div className='container flex flex-col items-center justify-center p-4 mx-auto 3xl:w-3/4 h-1000 sm:p-10 z-10 relative'>
+        <section className='relative py-6 overflow-auto bg-gray-100 dark:bg-gray-800 dark:text-gray-100'>
+            <div className='absolute top-0 w-full h-full bg-center bg-cover bg-profile-background bg-search' />
+            <div className='absolute top-0 w-full h-full bg-center bg-cover bg-black/75' />
+            <div className='container relative z-10 flex flex-col items-center justify-center p-4 mx-auto 3xl:w-3/4 h-1000 sm:p-10'>
                 <p className='p-2 text-lg font-medium text-center uppercase tracki text-shadow-lg '>Trusted partner</p>
                 <h1 className='mb-16 text-4xl font-bold text-center leadi sm:text-5xl text-shadow-lg'>
                     Top những công ty nổi bật
@@ -45,16 +55,16 @@ function TopCompanySection() {
                             <img
                                 alt=''
                                 className='self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500 3xl:mb-2'
-                                src={avepoint}
+                                src={item.src}
                             />
                             <Rating
-                                value={Math.round(5)}
+                                value={Math.round(item.rating)}
                                 className='h-fit flex justify-center mt-2 scale-y-110 !cursor-default'
                                 readonly
                             />
                             <div className='flex-1 my-4'>
                                 <NavLink to={`company/details/${item.id}`}>
-                                    <p className='text-xl font-semibold leadi 3xl:mb-4 -mt-2 cursor-pointer hover:scale-105 duration-200'>
+                                    <p className='-mt-2 text-xl font-semibold duration-200 cursor-pointer leadi 3xl:mb-4 hover:scale-105'>
                                         {item.name}
                                     </p>
                                 </NavLink>

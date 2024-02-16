@@ -47,7 +47,8 @@ function JobTitle(props: { item: IJobDetail }) {
                                 clip-rule='evenodd'
                             />
                         </svg>
-                        {item.company.address.provinceName}
+                        {/* {item.company.address.provinceName} */}
+                        Hà Nội
                     </div>
                     <div className='flex items-center mt-2 text-sm text-gray-500'>
                         <svg
@@ -63,7 +64,8 @@ function JobTitle(props: { item: IJobDetail }) {
                                 clip-rule='evenodd'
                             />
                         </svg>
-                        {item.salary} chẹo
+                        {/* {item.salary} chẹo */}
+                        10-15 triệu
                     </div>
                     <div className='flex items-center mt-2 text-sm text-gray-500'>
                         <svg

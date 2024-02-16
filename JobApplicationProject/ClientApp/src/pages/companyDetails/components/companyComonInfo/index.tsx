@@ -6,22 +6,22 @@ function CompanyCommonInfo() {
         {
             icon: <UserGroupIcon className='w-5 h-5 mr-2 text-sm' />,
             title: 'Quy mô',
-            value: ` người`
+            value: `200 người`
         },
         {
             icon: <CalendarDaysIcon className='w-5 h-5 mr-2 text-sm' />,
             title: 'Ngày làm việc',
-            value: 'aaa'
+            value: 'Thứ 2 - Thứ 6'
         },
         {
             icon: <MapPinIcon className='w-5 h-5 mr-2 text-sm' />,
             title: 'Địa điểm',
-            value: `aa`
+            value: `Thanh Xuân - Việt Nam`
         }
     ]
     return (
         <Card className='w-full shadow-lg rounded-xl'>
-            <CardBody className='flex lg:p-4 lg:pb-0 3xl:p-6 overflow-x-wrap break-words '>
+            <CardBody className='flex break-words lg:p-4 lg:pb-0 3xl:p-6 overflow-x-wrap '>
                 <Typography
                     variant='h6'
                     color='blue-gray'

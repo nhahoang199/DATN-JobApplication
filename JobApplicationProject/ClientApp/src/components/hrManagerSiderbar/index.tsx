@@ -24,9 +24,9 @@ import {
 } from '@material-tailwind/react'
 import { setHRManagerTab } from 'apps/Tabs.slice'
 import { useAppDispatch, RootState } from 'apps/store'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function HRManageSideBar() {
     const dispatch = useAppDispatch()
@@ -39,9 +39,19 @@ function HRManageSideBar() {
             dispatch(setHRManagerTab(hrManagerActiveTab === value ? 0 : value))
         }
     }
+    const navigate = useNavigate()
+    const [redirected, setRedirected] = useState(false)
+
+    useEffect(() => {
+        if (!redirected) {
+            // Thực hiện chuyển hướng ở đây
+            navigate('hrprofile')
+            setRedirected(true) // Đặt biến cờ thành true để chỉ chuyển hướng một lần
+        }
+    }, [navigate, redirected])
     return (
         <Card className='h-[calc(100vh-3.6rem)] w-full max-w-[16rem] rounded-none p-1 shadow-xl shadow-blue-gray-900/5'>
-            <div className='mb-2 py-4 px-2'>
+            <div className='px-2 py-4 mb-2'>
                 <Typography variant='h5' color='blue-gray'>
                     Quản lý
                 </Typography>
@@ -55,9 +65,9 @@ function HRManageSideBar() {
                     >
                         <ListItemPrefix className='mr-2'>
                             {hrManagerActiveTab === 1 ? (
-                                <UserCircleIconSolid className='h-5 w-5' />
+                                <UserCircleIconSolid className='w-5 h-5' />
                             ) : (
-                                <UserCircleIcon className='h-5 w-5' />
+                                <UserCircleIcon className='w-5 h-5' />
                             )}
                         </ListItemPrefix>
                         <Typography
@@ -71,12 +81,12 @@ function HRManageSideBar() {
                 </NavLink>
 
                 <NavLink to='companyprofile'>
-                    <ListItem className='py-3 px-2' selected={hrManagerActiveTab === 2} onClick={() => handleOpen(2)}>
+                    <ListItem className='px-2 py-3' selected={hrManagerActiveTab === 2} onClick={() => handleOpen(2)}>
                         <ListItemPrefix className='mr-2'>
                             {hrManagerActiveTab === 2 ? (
-                                <BuildingOfficeIconSolid className='h-5 w-5' />
+                                <BuildingOfficeIconSolid className='w-5 h-5' />
                             ) : (
-                                <BuildingOfficeIcon className='h-5 w-5' />
+                                <BuildingOfficeIcon className='w-5 h-5' />
                             )}
                         </ListItemPrefix>
                         <Typography
@@ -90,12 +100,12 @@ function HRManageSideBar() {
                 </NavLink>
 
                 <NavLink to='companymember'>
-                    <ListItem className='py-3 px-2' selected={hrManagerActiveTab === 3} onClick={() => handleOpen(3)}>
+                    <ListItem className='px-2 py-3' selected={hrManagerActiveTab === 3} onClick={() => handleOpen(3)}>
                         <ListItemPrefix className='mr-2'>
                             {hrManagerActiveTab === 3 ? (
-                                <UserGroupIconSolid className='h-5 w-5' />
+                                <UserGroupIconSolid className='w-5 h-5' />
                             ) : (
-                                <UserGroupIcon className='h-5 w-5' />
+                                <UserGroupIcon className='w-5 h-5' />
                             )}
                         </ListItemPrefix>
                         <Typography
@@ -126,12 +136,12 @@ function HRManageSideBar() {
                         selected={hrManagerActiveTab === 4}
                         onClick={() => handleOpen(4)}
                     >
-                        <AccordionHeader onClick={() => handleOpen(4)} className='border-b-0 px-2 py-3 rounded-md'>
+                        <AccordionHeader onClick={() => handleOpen(4)} className='px-2 py-3 border-b-0 rounded-md'>
                             <ListItemPrefix className='mr-2'>
                                 {hrManagerActiveTab === 4 || hrManagerActiveTab === 5 || hrManagerActiveTab === 6 ? (
-                                    <BriefcaseIconSolid className='h-5 w-5' />
+                                    <BriefcaseIconSolid className='w-5 h-5' />
                                 ) : (
-                                    <BriefcaseIcon className='h-5 w-5' />
+                                    <BriefcaseIcon className='w-5 h-5' />
                                 )}
                             </ListItemPrefix>
                             <Typography
@@ -155,24 +165,24 @@ function HRManageSideBar() {
                         <List className='p-0'>
                             <NavLink to='jobcreated'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={hrManagerActiveTab === 5}
                                     onClick={() => handleOpen(5)}
                                 >
                                     <ListItemPrefix className={`${hrManagerActiveTab !== 5 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Việc làm công ty bạn
                                 </ListItem>
                             </NavLink>
                             <NavLink to='jobapplied'>
                                 <ListItem
-                                    className='text-sm px-2'
+                                    className='px-2 text-sm'
                                     selected={hrManagerActiveTab === 6}
                                     onClick={() => handleOpen(6)}
                                 >
                                     <ListItemPrefix className={`${hrManagerActiveTab !== 6 ? 'invisible' : ''} mr-2`}>
-                                        <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
+                                        <ChevronRightIcon strokeWidth={3} className='w-5 h-3' />
                                     </ListItemPrefix>
                                     Đơn ứng tuyển vào công ty
                                 </ListItem>
@@ -182,7 +192,7 @@ function HRManageSideBar() {
                 </Accordion>
                 {/* <ListItem>
                     <ListItemPrefix>
-                        <InboxIcon className='h-5 w-5' />
+                        <InboxIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     Inbox
                     <ListItemSuffix>
@@ -192,13 +202,13 @@ function HRManageSideBar() {
 
                 {/* <ListItem>
                     <ListItemPrefix>
-                        <Cog6ToothIcon className='h-5 w-5' />
+                        <Cog6ToothIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     Settings
                 </ListItem>
                 <ListItem>
                     <ListItemPrefix>
-                        <PowerIcon className='h-5 w-5' />
+                        <PowerIcon className='w-5 h-5' />
                     </ListItemPrefix>
                     Log Out
                 </ListItem> */}

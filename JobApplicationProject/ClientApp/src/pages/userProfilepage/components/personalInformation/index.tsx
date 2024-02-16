@@ -1,5 +1,5 @@
 import { Avatar, Card, CardBody, Typography } from '@material-tailwind/react'
-import { boyavatar } from 'assets'
+import { boyavatar, myavatar } from 'assets'
 import {
     CalendarDaysIcon,
     EnvelopeIcon,
@@ -15,35 +15,35 @@ import { useAppDispatch } from 'apps/store'
 function PersonalInformation() {
     const dispatch = useAppDispatch()
     return (
-        <Card className='h-full w-full rounded-md'>
-            {/* <CardHeader floated={false} shadow={false} className='rounded-none pt-0'>
+        <Card className='w-full h-full rounded-md'>
+            {/* <CardHeader floated={false} shadow={false} className='pt-0 rounded-none'>
                 <Typography variant='h6' color='blue-gray' className='mb-2 mr-4 text-base'>
                     Thông tin cá nhân
                 </Typography>
             </CardHeader> */}
-            <CardBody className='py-6 mx-6 px-0'>
+            <CardBody className='px-0 py-6 mx-6'>
                 <div className='flex flex-row'>
-                    <div className='flex flex-col gap-y-5 items-start px-4'>
-                        <Avatar src={boyavatar} alt='Profile picture' variant='circular' className='h-32 w-32' />
+                    <div className='flex flex-col items-start px-4 gap-y-5'>
+                        <Avatar src={myavatar} alt='Profile picture' variant='circular' className='w-32 h-32' />
                     </div>
-                    <div className='flex flex-col grow ml-4'>
+                    <div className='flex flex-col ml-4 grow'>
                         <div className='flex flex-row justify-between'>
                             <Typography variant='h5' color='blue-gray' className='py-2'>
                                 Trần Nha Hoàng
                             </Typography>{' '}
                             <PencilSquareIcon
-                                className='h-6 w-6 cursor-pointer text-deep-purple-500'
+                                className='w-6 h-6 cursor-pointer text-deep-purple-500'
                                 onClick={() => dispatch(setOpenEditUser(true))}
                             />
                         </div>
-                        <div className='mt-2 w-full flex flex-col gap-y-2'>
+                        <div className='flex flex-col w-full mt-2 gap-y-2'>
                             <div className='flex flex-row gap-x-6 '>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-100 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <UserIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-100'>
+                                        <UserIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Giới tính
                                         </Typography>
                                         <Typography
@@ -54,12 +54,12 @@ function PersonalInformation() {
                                         </Typography>{' '}
                                     </div>
                                 </div>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-100 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <CalendarDaysIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-100'>
+                                        <CalendarDaysIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Ngày sinh
                                         </Typography>
                                         <Typography
@@ -72,12 +72,12 @@ function PersonalInformation() {
                                 </div>
                             </div>
                             <div className='flex flex-row gap-x-6'>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-100 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <EnvelopeIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-100'>
+                                        <EnvelopeIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Email
                                         </Typography>
                                         <Typography
@@ -90,12 +90,12 @@ function PersonalInformation() {
                                     </div>
                                 </div>
 
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-100 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <PhoneIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-100'>
+                                        <PhoneIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Số điện thoại
                                         </Typography>
                                         <Typography
@@ -109,12 +109,12 @@ function PersonalInformation() {
                                 </div>
                             </div>
                             <div className='flex flex-row gap-x-6'>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-100 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <MapPinIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-100'>
+                                        <MapPinIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Địa chỉ
                                         </Typography>
                                         <Typography

@@ -23,18 +23,18 @@ function JobOfCompany() {
         }
     ]
     return (
-        <div className='flex flex-col w-full min-w-0 break-words rounded-xl bg-white shadow-lg '>
+        <div className='flex flex-col w-full min-w-0 break-words bg-white shadow-lg rounded-xl '>
             <div className='w-full px-8 pt-8'>
                 <Typography
                     variant='h4'
                     color='blue-gray'
                     className='w-full !line-clamp-2 cursor-default pb-4 border-b-2 border-dashed'
                 >
-                    <div className='b-title pl-2'> Tuyển dụng</div>
+                    <div className='pl-2 b-title'> Tuyển dụng</div>
                 </Typography>
             </div>
-            <div className='w-full gap-x-5 px-8 pb-6 pt-4 flex justify-between'>
-                <div className='w-9/12  bg-white rounded-md h-11'>
+            <div className='flex justify-between w-full px-8 pt-4 pb-6 gap-x-5'>
+                <div className='w-9/12 bg-white rounded-md h-11'>
                     <Input
                         label='Nhập tên công việc, vị trí ứng tuyển,...'
                         crossOrigin=''
@@ -66,7 +66,7 @@ function JobOfCompany() {
                 </Button>
             </div>
             <div className='w-full px-8 pb-6'>
-                <List className='flex flex-col gap-y-4 p-0'>
+                <List className='flex flex-col p-0 gap-y-4'>
                     {data.map((item, index) => (
                         <NavLink to={`/entity/details/${item.id}`} replace className='text-initial' key={index}>
                             <ListItem className='flex flex-col bg-gray-100 hover:bg-gray-200'>
@@ -76,8 +76,13 @@ function JobOfCompany() {
                     ))}
                 </List>
             </div>
-            <div className='w-full px- pb-8 pt-4 flex justify-center'>
-                <SimplePagination />
+            <div className='flex justify-center w-full pt-4 pb-8 px-'>
+                <SimplePagination
+                    onPageChange={function (pageNumber: number): void {
+                        throw new Error('Function not implemented.')
+                    }}
+                    totalPage={0}
+                />
             </div>
         </div>
     )

@@ -11,12 +11,17 @@ const Register = () => {
     const [redirect, setRedirect] = useState(false)
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault()
-        await registerAPI({ email: email, password: password, confirmPassword: confirmPassword })
+        await registerAPI({
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            roleLogicName: 'BASICUSER'
+        })
         setRedirect(true)
     }
     if (redirect) return <Navigate to='/login' />
     return (
-        <div className='register-modal bg-register bg-center bg-no-repeat'>
+        <div className='bg-center bg-no-repeat register-modal bg-register'>
             <div className='flex flex-col justify-center px-6 pt-0 pb-12 lg:px-8 register-container 3xl:h-70vh'>
                 <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                     <img className='w-auto mx-auto h-52' src={logo_transparent} alt='Your Company' />
@@ -26,7 +31,7 @@ const Register = () => {
                 </div>
 
                 <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-                    <form className='space-y-4 3xl:space-y-6' action='#' method='POST'>
+                    <form className='space-y-4 3xl:space-y-6'action='register' method='POST' onSubmit={submit}>
                         <div>
                             <label htmlFor='email' className='block text-sm font-medium leading-6 text-gray-900'>
                                 Email address
@@ -83,6 +88,7 @@ const Register = () => {
                         <div>
                             <button
                                 type='submit'
+                                onClick={submit}
                                 className='mt-8 flex w-full justify-center rounded-md px-3 py-1.5 text-sm leading-6 shadow-smfocus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 font-semibold text-gray-200 bg-gray-900  hover:bg-gray-600 dark:text-gray-900'
                             >
                                 Sign up

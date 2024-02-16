@@ -19,11 +19,13 @@ namespace JobApplicationProject.Core.Dtos
         public int MinSalary { get; set; }
         public int MaxSalary { get; set; }
         //public string Salary { get; set; } = string.Empty;
-        public int ExperienceType { get; set; }
+        public int ExperirenceType { get; set; }
         public int MinYearExperience { get; set; }
         public int MaxYearExperience { get; set; }
         public string Position { get; set; } = string.Empty;
         public int Gender { get; set; }
+        public int Status { get; set; }
+
         public string? CompanyName { get; set; } = string.Empty;
         public string? CareerName { get; set; } = string.Empty;
         public string? CurrencyName { get; set; } = string.Empty;
@@ -36,5 +38,6 @@ namespace JobApplicationProject.Core.Dtos
         public Guid? CurrencyId { get; set; }
         //public Guid? SkillId { get; set; }
         public Guid? CreatedBy { get; set; }
+        public Guid? AddressId { get; set; }
     }
 }
