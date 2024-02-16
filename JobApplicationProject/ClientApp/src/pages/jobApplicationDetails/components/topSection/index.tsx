@@ -35,26 +35,26 @@ function JobDescDetailsTopSection() {
     }
     return (
         <Card className='rounded-md '>
-            <CardBody className='flex flex-row divide-x-2 w-full p-4 rounded-md'>
+            <CardBody className='flex flex-row w-full p-4 divide-x-2 rounded-md'>
                 {' '}
                 <div className='flex flex-col gap-y-5 grow '>
-                    <Typography variant='paragraph' color='gray' className='text-gray-500 italic -mb-3 hidden'>
+                    <Typography variant='paragraph' color='gray' className='-mb-3 italic text-gray-500 '>
                         Việc làm
                     </Typography>
-                    <Typography variant='paragraph' color='gray' className='text-gray-500 italic -mb-3'>
+                    <Typography variant='paragraph' color='gray' className='hidden -mb-3 italic text-gray-500 '>
                         Công ty
                     </Typography>
                     <Popover placement='bottom-start' open={openPopover} handler={setOpenPopover}>
                         <PopoverHandler {...triggers}>
                             <Typography
                                 placeholder='Quản lý, thực tập,...'
-                                className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5 cursor-pointer hidden'
+                                className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5 cursor-pointer '
                             >
                                 Backend Developer
                             </Typography>
                         </PopoverHandler>
-                        <PopoverContent {...triggers} className='min-w-[700px] hidden'>
-                            <div className='mb-4 flex items-center gap-4 border-b border-blue-gray-50 pb-4'>
+                        <PopoverContent {...triggers} className='min-w-[700px]'>
+                            <div className='flex items-center gap-4 pb-4 mb-4 border-b border-blue-gray-50'>
                                 <div>
                                     <Typography variant='h6' color='blue-gray'>
                                         Backend Developer
@@ -64,17 +64,17 @@ function JobDescDetailsTopSection() {
                                     </Typography>
                                 </div>
                             </div>
-                            <div className='mt-0 w-full flex flex-col gap-y-2 pb-4'>
+                            <div className='flex flex-col w-full pb-4 mt-0 gap-y-2'>
                                 <div className='flex flex-row gap-x-6'>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
                                             <QueueListIcon className='w-5 h-5 text-blue-gray-800' />,
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Cấp bậc
                                             </Typography>
@@ -83,13 +83,13 @@ function JobDescDetailsTopSection() {
                                                 className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                             >
                                                 {' '}
-                                                {'Thứ 2 - Thứ 6'}
+                                                {'Junior'}
                                             </Typography>{' '}
                                         </div>
                                     </div>
 
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
                                             <FontAwesomeIcon
                                                 icon={faBusinessTime}
                                                 className='w-5 h-5 text-blue-gray-800'
@@ -99,7 +99,7 @@ function JobDescDetailsTopSection() {
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Kinh nghiệm
                                             </Typography>
@@ -108,21 +108,21 @@ function JobDescDetailsTopSection() {
                                                 className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                             >
                                                 {' '}
-                                                {'Thứ 2 - Thứ 6'}
+                                                {'1 - 2 năm'}
                                             </Typography>{' '}
                                         </div>
                                     </div>
                                 </div>
                                 <div className='flex flex-row gap-x-6'>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                            <CurrencyDollarIcon className='h-5 w-5 text-blue-gray-800' />
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                            <CurrencyDollarIcon className='w-5 h-5 text-blue-gray-800' />
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Mức lương
                                             </Typography>
@@ -131,19 +131,19 @@ function JobDescDetailsTopSection() {
                                                 className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                             >
                                                 {' '}
-                                                {'Thứ 2 - Thứ 6'}
+                                                {'10 - 15 triệu'}
                                             </Typography>{' '}
                                         </div>
                                     </div>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                            <UsersIcon className='h-5 w-5 text-blue-gray-800' />
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                            <UsersIcon className='w-5 h-5 text-blue-gray-800' />
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Số lượng
                                             </Typography>
@@ -152,21 +152,21 @@ function JobDescDetailsTopSection() {
                                                 className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                             >
                                                 {' '}
-                                                {'Thứ 2 - Thứ 6'}
+                                                {'4 người'}
                                             </Typography>{' '}
                                         </div>
                                     </div>
                                 </div>
                                 <div className='flex flex-row gap-x-6'>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                            <MapPinIcon className='h-5 w-5 text-blue-gray-800' />
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                            <MapPinIcon className='w-5 h-5 text-blue-gray-800' />
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Địa chỉ
                                             </Typography>
@@ -175,19 +175,19 @@ function JobDescDetailsTopSection() {
                                                 className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                             >
                                                 {' '}
-                                                {'Thứ 2 - Thứ 6'}
+                                                {'Thanh Xuân - Hà Nội'}
                                             </Typography>{' '}
                                         </div>
                                     </div>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                            <UserIcon className='h-5 w-5 text-blue-gray-800' />
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                            <UserIcon className='w-5 h-5 text-blue-gray-800' />
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Giới tính
                                             </Typography>
@@ -196,13 +196,13 @@ function JobDescDetailsTopSection() {
                                                 className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                             >
                                                 {' '}
-                                                {'Thứ 2 - Thứ 6'}
+                                                {'Không yêu cầu'}
                                             </Typography>{' '}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex items-center justify-center w-full h-8 border-t border-blue-gray-50 pt-2'>
+                            <div className='flex items-center justify-center w-full h-8 pt-2 border-t border-blue-gray-50'>
                                 <NavLink
                                     to={`/company/details/`}
                                     replace
@@ -216,7 +216,7 @@ function JobDescDetailsTopSection() {
                             </div>
                         </PopoverContent>
                     </Popover>
-                    <Popover placement='bottom-start' open={openPopover} handler={setOpenPopover}>
+                    {/* <Popover placement='bottom-start' open={openPopover} handler={setOpenPopover}>
                         <PopoverHandler {...triggers}>
                             <div className='flex flex-row items-center gap-3'>
                                 <Avatar src={companyavatar} alt={'company-avatar'} size='sm' />
@@ -224,7 +224,7 @@ function JobDescDetailsTopSection() {
                                     <Typography
                                         variant='small'
                                         color='blue-gray'
-                                        className='font-normal  truncate cursor-pointer grow'
+                                        className='font-normal truncate cursor-pointer grow'
                                     >
                                         AvePoint VN
                                     </Typography>
@@ -232,31 +232,27 @@ function JobDescDetailsTopSection() {
                             </div>
                         </PopoverHandler>
                         <PopoverContent {...triggers} className='min-w-[700px]'>
-                            <div className='mb-4 flex items-center gap-4 border-b border-blue-gray-50 pb-4'>
+                            <div className='flex items-center gap-4 pb-4 mb-4 border-b border-blue-gray-50'>
                                 <div>
                                     <Typography variant='h6' color='blue-gray'>
                                         AvePoint VN
                                     </Typography>
-                                    <Typography
-                                        variant='small'
-                                        color='gray'
-                                        className='font-medium text-blue-gray-500 hidden'
-                                    >
+                                    <Typography variant='small' color='gray' className='font-medium text-blue-gray-500'>
                                         Full-time
                                     </Typography>
                                 </div>
                             </div>
-                            <div className='mt-0 w-full flex flex-col gap-y-2 pb-4'>
+                            <div className='flex flex-col w-full pb-4 mt-0 gap-y-2'>
                                 <div className='flex flex-row gap-x-6'>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
                                             <UserGroupIcon className='w-5 h-5 text-blue-gray-800' />,
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Quy mô
                                             </Typography>
@@ -269,15 +265,15 @@ function JobDescDetailsTopSection() {
                                         </div>
                                     </div>
 
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
                                             <CalendarDaysIcon className='w-5 h-5 text-blue-gray-800' />,
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Ngày làm việc
                                             </Typography>
@@ -291,15 +287,15 @@ function JobDescDetailsTopSection() {
                                     </div>
                                 </div>
                                 <div className='flex flex-row gap-x-6'>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                            <GlobeAltIcon className='h-5 w-5 text-blue-gray-800' />
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                            <GlobeAltIcon className='w-5 h-5 text-blue-gray-800' />
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Website
                                             </Typography>
@@ -311,15 +307,15 @@ function JobDescDetailsTopSection() {
                                             </Typography>{' '}
                                         </div>
                                     </div>
-                                    <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                        <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                            <EnvelopeIcon className='h-5 w-5 text-blue-gray-800' />
+                                    <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                        <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                            <EnvelopeIcon className='w-5 h-5 text-blue-gray-800' />
                                         </div>
                                         <div className='flex flex-col gap-4'>
                                             <Typography
                                                 variant='paragraph'
                                                 color='gray'
-                                                className='text-gray-500 italic -mb-3'
+                                                className='-mb-3 italic text-gray-500'
                                             >
                                                 Email
                                             </Typography>
@@ -334,7 +330,7 @@ function JobDescDetailsTopSection() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex items-center justify-center w-full h-8 border-t border-blue-gray-50 pt-2'>
+                            <div className='flex items-center justify-center w-full h-8 pt-2 border-t border-blue-gray-50'>
                                 <NavLink
                                     to={`/company/details/`}
                                     replace
@@ -347,10 +343,10 @@ function JobDescDetailsTopSection() {
                                 </NavLink>
                             </div>
                         </PopoverContent>
-                    </Popover>
+                    </Popover> */}
                 </div>
-                <div className='flex flex-col gap-y-5 min-w-min px-4'>
-                    <Typography variant='paragraph' color='gray' className='text-gray-500 italic -mb-3'>
+                <div className='flex flex-col px-4 gap-y-5 min-w-min'>
+                    <Typography variant='paragraph' color='gray' className='-mb-3 italic text-gray-500'>
                         Trạng thái
                     </Typography>
                     <Chip
@@ -361,8 +357,8 @@ function JobDescDetailsTopSection() {
                         className='font-medium text-gray-900 capitalize w-fit'
                     />
                 </div>
-                <div className='flex flex-col gap-y-5 min-w-min px-4'>
-                    <Typography variant='paragraph' color='gray' className='text-gray-500 italic -mb-3'>
+                <div className='flex flex-col px-4 gap-y-5 min-w-min'>
+                    <Typography variant='paragraph' color='gray' className='-mb-3 italic text-gray-500'>
                         Ngày ứng tuyển
                     </Typography>
                     <Typography

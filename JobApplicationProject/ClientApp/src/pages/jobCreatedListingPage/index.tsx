@@ -27,8 +27,8 @@ const TABLE_ROWS = [
         img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg',
         name: 'John Michael',
         email: 'john@creative-tim.com',
-        job: 'Manager',
-        org: 'Organization',
+        job: 'Programator',
+        org: 'Backend Developer',
         online: true,
         date: '23/04/18'
     },
@@ -37,108 +37,18 @@ const TABLE_ROWS = [
         name: 'Alexa Liras',
         email: 'alexa@creative-tim.com',
         job: 'Programator',
-        org: 'Developer',
-        online: false,
+        org: 'Junior Front-end Developer',
+        online: true,
         date: '23/04/18'
     },
     {
         img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg',
         name: 'Laurent Perrier',
         email: 'laurent@creative-tim.com',
-        job: 'Executive ',
-        org: 'Projects',
-        online: false,
-        date: '19/09/17'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg',
-        name: 'Michael Levi',
-        email: 'michael@creative-tim.com',
-        job: 'Programator',
-        org: 'Developer',
+        job: 'Manager ',
+        org: 'Junior/Intern Project Manager',
         online: true,
-        date: '24/12/08'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Software Engineer (C/C++) - Hybrid Working - HN. Software Engineer (C/C++) - Hybrid Working - HN',
-        online: false,
-        date: '04/10/21'
+        date: '19/09/17'
     }
 ]
 
@@ -148,8 +58,8 @@ export default function JobCreatedListingPage() {
         dispatch(setHRManagerTab(5))
     }, [dispatch])
     return (
-        <Card className='h-full w-full rounded-md px-2 shadow-lg shadow-gray-400'>
-            <CardHeader floated={false} shadow={false} className='rounded-none pt-0'>
+        <Card className='w-full h-full px-2 rounded-md shadow-lg shadow-gray-400'>
+            <CardHeader floated={false} shadow={false} className='pt-0 rounded-none'>
                 <JobCreatedListingHeader />
                 {/* <div className='flex flex-col items-center justify-between gap-4 md:flex-row'>
                     <Tabs value='all' className='w-full md:w-max'>
@@ -164,7 +74,7 @@ export default function JobCreatedListingPage() {
                     <div className='w-full md:w-72'>
                         <Input
                             label='Search'
-                            icon={<MagnifyingGlassIcon className='h-5 w-5' />}
+                            icon={<MagnifyingGlassIcon className='w-5 h-5' />}
                             crossOrigin={undefined}
                         />
                     </div>
@@ -173,19 +83,24 @@ export default function JobCreatedListingPage() {
             <CardBody className='p-0 mx-4 h-[calc(100vh-17.1rem)] overflow-y-scroll scrollbar'>
                 <JobCreatedListingTable TABLE_HEAD={TABLE_HEAD} TABLE_ROWS={TABLE_ROWS} />
             </CardBody>
-            <CardFooter className='flex items-center justify-between border-t border-blue-gray-50 p-4 pl-8'>
+            <CardFooter className='flex items-center justify-between p-4 pl-8 border-t border-blue-gray-50'>
                 <Typography variant='small' color='blue-gray' className='font-normal'>
                     12 items
                 </Typography>
                 <div className='flex gap-2'>
                     {/* <Button className='flex items-center gap-3 py-3' size='sm' variant='outlined'>
-                        <ChevronLeftIcon strokeWidth={2} className='h-4 w-4' />
+                        <ChevronLeftIcon strokeWidth={2} className='w-4 h-4' />
                         Trang trước
                     </Button>
                     <Button className='flex items-center gap-3 py-3' size='sm' variant='outlined'>
-                        Trang sau <ChevronRightIcon strokeWidth={2} className='h-4 w-4' />
+                        Trang sau <ChevronRightIcon strokeWidth={2} className='w-4 h-4' />
                     </Button> */}
-                    <SimplePagination />
+                    <SimplePagination
+                        onPageChange={function (pageNumber: number): void {
+                            throw new Error('Function not implemented.')
+                        }}
+                        totalPage={0}
+                    />
                 </div>
             </CardFooter>
         </Card>

@@ -237,7 +237,7 @@ export default function HRListingPage() {
                                                             }}
                                                         >
                                                             <NoSymbolIcon className='w-4 h-4 text-gold-900' />
-                                                            Ngừng hoạt động
+                                                            Vô hiệu hóa
                                                         </MenuItem>
                                                     </MenuList>
                                                 </Menu>
@@ -320,7 +320,7 @@ export default function HRListingPage() {
                 <AdminEditHRForm />
                 <ConfirmDialog
                     open={openDelete}
-                    message={'Bạn có muốn ngừng hoạt động người này không?'}
+                    message={'Bạn có muốn vô hiệu hóa người này không?'}
                     handleConfim={() => handleDelete(selectItemDelete || '')}
                     setOpen={setOpenDelete}
                 />

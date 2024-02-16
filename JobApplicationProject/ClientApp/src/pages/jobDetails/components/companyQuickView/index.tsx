@@ -12,17 +12,20 @@ function CompanyQuickView(props: { item: ICompanyModel }) {
         {
             icon: <UserGroupIcon className='w-5 h-5 mr-2 text-sm' />,
             title: 'Quy mô',
-            value: `${item.companySize} người`
+            value: `${200} người`
+            // value: `${item.companySize} người`
         },
         {
             icon: <CalendarDaysIcon className='w-5 h-5 mr-2 text-sm' />,
             title: 'Ngày làm việc',
-            value: item.workingDay
+            value: 'Thứ 2 - Thứ 6'
+            // value: item.workingDay
         },
         {
             icon: <MapPinIcon className='w-5 h-5 mr-2 text-sm' />,
             title: 'Địa điểm',
-            value: `${item.address.districtName} - ${item.address.provinceName}`
+            // value: `${item.address.districtName} - ${item.address.provinceName}`
+            value: `Thanh Xuân - Hà Nội`
         }
     ]
     return (
@@ -53,7 +56,7 @@ function CompanyQuickView(props: { item: ICompanyModel }) {
                             {item.icon}
                             {item.title}:
                         </Typography>
-                        <Typography className='text-sm text-black-1000 '>{item.value}</Typography>
+                        <Typography className='text-sm text-black-1000 '>{item.value || ''}</Typography>
                     </div>
                 ))}
                 <div className='flex items-center justify-center w-full h-12'>
@@ -62,7 +65,7 @@ function CompanyQuickView(props: { item: ICompanyModel }) {
                         replace
                         className='duration-200 text-initial hover:scale-105 hover:text-deep-purple-600'
                     >
-                        <Typography className='flex items-center justify-center w-full text-base text-deep-purple-400 underline truncate 3xl:max-w-350 xl:max-w-250'>
+                        <Typography className='flex items-center justify-center w-full text-base underline truncate text-deep-purple-400 3xl:max-w-350 xl:max-w-250'>
                             Xem trang công ty{' '}
                             <ArrowTopRightOnSquareIcon className='inline-block w-4 h-4 ml-2 text-deep-purple-400' />
                         </Typography>

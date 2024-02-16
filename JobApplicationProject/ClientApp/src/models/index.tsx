@@ -1,4 +1,4 @@
-import { IJobApplicationModel, IJobDetail } from './jobApplicationModel'
+import { IJobDescriptionModel, IJobDetail } from './jobApplicationModel'
 import { ICompanyModel } from './companyModel'
 import { IAddressModel } from './addressModel'
 import { ICountryModel } from './countryModel'
@@ -8,7 +8,7 @@ import { ICommuneModel, ICommuneDetailsModel } from './communeModel'
 import { IUserModel } from './userModel'
 
 export type {
-    IJobApplicationModel,
+    IJobDescriptionModel,
     IJobDetail,
     ICompanyModel,
     IAddressModel,

@@ -3,29 +3,30 @@ import { avepoint } from 'assets'
 import { CurrencyDollarIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 
-function AppliedJobItem() {
+function AppliedJobItem(props: { item: any }) {
+    const { item } = props
     return (
-        <Card className='w-full bg-white p-0 rounded-md'>
+        <Card className='w-full p-0 bg-white rounded-md'>
             <CardHeader
                 shadow={false}
                 floated={false}
-                className='flex items-center justify-center mb-0 rounded-md mt-6 mx-6'
+                className='flex items-start justify-start mx-6 mt-6 mb-0 rounded-md'
             >
                 <Typography color='blue-gray' variant='h5' className='cursor-pointer'>
-                    Lorem Ipsum is simply dummy text of the printing
+                    {item.name}
                 </Typography>
             </CardHeader>
             <CardBody className='py-2'>
                 <div className='flex flex-row items-start justify-between mb-4 xl'>
                     <div className='relative'>
                         <div className='w-12'>
-                            <Avatar src={avepoint} alt='Profile picture' variant='circular' className='h-full w-full' />
+                            <Avatar src={avepoint} alt='Profile picture' variant='circular' className='w-full h-full' />
                         </div>
                     </div>
                     <Typography
                         color='blue-gray'
                         variant='h6'
-                        className='w-10/12 mt-2 ml-2 truncate relative cursor-pointer'
+                        className='relative w-10/12 mt-2 ml-2 truncate cursor-pointer'
                     >
                         AvePoint VietNam
                     </Typography>
@@ -51,7 +52,7 @@ function AppliedJobItem() {
                     </div>
                 </div>
             </CardBody>
-            <CardFooter className='pt-2 flex flex-row justify-between items-center'>
+            <CardFooter className='flex flex-row items-center justify-between pt-2'>
                 <Typography
                     variant='paragraph'
                     className='w-12/12 font-medium text-gray-400 !line-clamp-3 flex flex-row text-sm'

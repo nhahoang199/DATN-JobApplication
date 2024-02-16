@@ -1,6 +1,6 @@
 import { CurrencyDollarIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { ListItemPrefix, Avatar, Typography, ListItemSuffix, Chip, Tooltip } from '@material-tailwind/react'
-import { myavatar } from 'assets'
+import { avepoint, myavatar } from 'assets'
 import React from 'react'
 
 function JobListItem(props: { item: any }) {
@@ -9,14 +9,14 @@ function JobListItem(props: { item: any }) {
         <>
             <div className='flex flex-row items-start w-full h-fit xl:p-2 3xl:p-4'>
                 <ListItemPrefix>
-                    <Avatar variant='rounded' alt='candice' src={myavatar} />
+                    <Avatar variant='rounded' alt='candice' src={avepoint} />
                 </ListItemPrefix>
                 <div>
                     <Typography variant='h6' color='blue-gray'>
-                        Backend Dev
+                        Backend Developer
                     </Typography>
                     <Typography variant='small' color='gray' className='font-normal'>
-                        Cong ty Avepoint
+                        Avepoint VietNam
                     </Typography>
                 </div>
                 <ListItemSuffix className='flex flex-col items-start justify-center'>
@@ -30,7 +30,7 @@ function JobListItem(props: { item: any }) {
             <div className='flex flex-row w-full p-2 pt-1 3xl:p-4 3xl:pt-0'>
                 <Chip
                     variant='ghost'
-                    value='15 - 20 chẹo'
+                    value='15 - 20 triệu'
                     icon={<CurrencyDollarIcon className='text-sm' />}
                     className='px-4 mr-2 text-blue-gray-800 bg-gray-300 rounded-2xl w-max !capitalize font-semibold'
                 />

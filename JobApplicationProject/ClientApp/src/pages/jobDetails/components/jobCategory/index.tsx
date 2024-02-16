@@ -15,7 +15,8 @@ function JobCategory(props: { item: IJobDetail }) {
         },
         {
             title: 'Khu vực',
-            items: [item.company.address.provinceName, item.company.address.districtName]
+            items: ['Thanh Xuân', 'Hà Nội']
+            // items: [item.company.address.provinceName, item.company.address.districtName]
         }
     ]
     return (

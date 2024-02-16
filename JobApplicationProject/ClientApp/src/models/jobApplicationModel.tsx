@@ -1,6 +1,6 @@
 import { ICompanyModel } from './companyModel'
 
-interface IJobApplicationModel {
+interface IJobDescriptionModel {
     id?: string | null
     companyName?: string | null
     companyId?: string | null
@@ -18,7 +18,8 @@ interface IJobApplicationModel {
     gender?: string | null
     position?: string | null
     quantity?: number | null
-    salary?: number | null
+    minSalary?: number | null
+    maxSalary?: number | null
     title: string | null
     type?: number | null
     updatedOn?: string | null
@@ -44,4 +45,4 @@ interface IJobDetail {
     type: number
 }
 
-export type { IJobApplicationModel, IJobDetail }
+export type { IJobDescriptionModel, IJobDetail }

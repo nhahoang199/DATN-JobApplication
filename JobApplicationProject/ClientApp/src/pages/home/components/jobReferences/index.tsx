@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { RootState, useAppDispatch } from 'apps/store'
 import { fetchJobRefer } from 'apps/jobApplication.slice'
 import { NavLink } from 'react-router-dom'
-import { IJobApplicationModel } from 'models'
+import { IJobDescriptionModel} from 'models'
 import { Pagination } from 'components/common'
 function JobReferences() {
     const dispatch = useAppDispatch()
@@ -35,7 +35,7 @@ function JobReferences() {
                     </Typography>
                 </div>
                 <List className='grid items-center grid-cols-1 gap-6 px-0 align-middle justify-items-center 3xl:gap-12 2xl:px-2 3xl:px-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4'>
-                    {jobApplication.data.map((item: IJobApplicationModel, index: number) => (
+                    {jobApplication.data.map((item: IJobDescriptionModel, index: number) => (
                         <NavLink to={`jobs/details/${item.id}`} className='w-full' key={index}>
                             <JobItems item={item} />
                         </NavLink>

@@ -17,8 +17,8 @@ function UserMenu() {
             href: '/manager/profile'
         },
         {
-            name: 'Quản lý việc làm',
-            href: '/manager/jobcreated'
+            name: 'Quản lý',
+            href: '/manager'
         }
     ]
     const dispatch = useAppDispatch()
@@ -31,19 +31,19 @@ function UserMenu() {
         <>
             <button
                 type='button'
-                className='relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+                className='relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
             >
                 <span className='absolute -inset-1.5' />
                 <span className='sr-only'>View notifications</span>
-                <BellIcon className='h-6 w-6' aria-hidden='true' />
+                <BellIcon className='w-6 h-6' aria-hidden='true' />
             </button>
 
             <Menu as='div' className='relative ml-3'>
                 <div>
-                    <Menu.Button className='relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                    <Menu.Button className='relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                         <span className='absolute -inset-1.5' />
                         <span className='sr-only'>Open user menu</span>
-                        <img className='h-8 w-8 rounded-full' src={myavatar} alt='' />
+                        <img className='w-8 h-8 rounded-full' src={myavatar} alt='' />
                     </Menu.Button>
                 </div>
                 <Transition
@@ -55,7 +55,7 @@ function UserMenu() {
                     leaveFrom='transform opacity-100 scale-100'
                     leaveTo='transform opacity-0 scale-95'
                 >
-                    <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                    <Menu.Items className='absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                         {data.map((item, key) => {
                             return (
                                 <Menu.Item key={key}>

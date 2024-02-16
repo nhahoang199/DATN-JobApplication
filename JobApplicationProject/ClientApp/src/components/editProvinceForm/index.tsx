@@ -68,12 +68,12 @@ function EditProvinceForm() {
             className='p-4'
             onClose={() => dispatch(setOpenEditProvince(false))}
             placement='right'
-            overlayProps={<div className='fixed top-0 right-0 left-0 bottom-0 bg-black-50/50'></div>}
+            overlayProps={<div className='fixed top-0 bottom-0 left-0 right-0 bg-black-50/50'></div>}
         >
             <div className='mt-12'>
-                <div className='mb-6 flex items-center justify-between'>
+                <div className='flex items-center justify-between mb-6'>
                     <Typography variant='h5' color='blue-gray'>
-                        Thêm mới tỉnh / thành phố
+                        Chỉnh sửa tỉnh / thành phố
                     </Typography>
                     <IconButton variant='text' color='blue-gray' onClick={() => dispatch(setOpenEditProvince(false))}>
                         <svg
@@ -82,14 +82,14 @@ function EditProvinceForm() {
                             viewBox='0 0 24 24'
                             strokeWidth={2}
                             stroke='currentColor'
-                            className='h-5 w-5'
+                            className='w-5 h-5'
                         >
                             <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
                         </svg>
                     </IconButton>
                 </div>
-                <form className='mt-4 w-full flex flex-col gap-y-2' onSubmit={handleEditProvince}>
-                    <div className='mb-1 flex flex-col gap-4 w-full'>
+                <form className='flex flex-col w-full mt-4 gap-y-2' onSubmit={handleEditProvince}>
+                    <div className='flex flex-col w-full gap-4 mb-1'>
                         <Typography variant='h6' color='blue-gray' className='-mb-2'>
                             Tên tỉnh / thành phố
                         </Typography>
@@ -105,7 +105,7 @@ function EditProvinceForm() {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
-                    <div className='mb-1 flex flex-col gap-4 w-full custom-form'>
+                    <div className='flex flex-col w-full gap-4 mb-1 custom-form'>
                         <Typography variant='h6' color='blue-gray' className='-mb-2'>
                             Quốc gia
                         </Typography>
@@ -131,8 +131,8 @@ function EditProvinceForm() {
                     </div>
                 </form>
             </div>
-            <div className='flex gap-2 fixed bottom-6'>
-                <Button size='sm' className='rounded-sm px-6' onClick={handleEditProvince}>
+            <div className='fixed flex gap-2 bottom-6'>
+                <Button size='sm' className='px-6 rounded-sm' onClick={handleEditProvince}>
                     Lưu
                 </Button>
                 <Button

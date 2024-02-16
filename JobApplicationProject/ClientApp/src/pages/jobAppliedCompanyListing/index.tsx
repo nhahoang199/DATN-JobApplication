@@ -3,7 +3,7 @@ import { Card, CardHeader, Typography, CardBody, Chip, CardFooter, Avatar, Toolt
 import { useAppDispatch } from 'apps/store'
 import { setHRManagerTab } from 'apps/Tabs.slice'
 import { SimplePagination } from 'components/common'
-import { threeDot } from 'assets'
+import { myavatar, threeDot } from 'assets'
 import { useNavigate } from 'react-router-dom'
 
 // const TABS = [
@@ -25,121 +25,22 @@ const TABLE_HEAD = ['Việc làm', 'Người ứng tuyển', 'Ngày ứng tuyể
 
 const TABLE_ROWS = [
     {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg',
-        name: 'John Michael',
+        img: myavatar,
+        name: 'Trần Nha Hoàng',
         email: 'john@creative-tim.com',
         job: 'Manager',
-        org: 'Organization',
+        org: 'Backend Developer',
         online: true,
-        date: '23/04/18'
+        date: '23/04/23'
     },
     {
         img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg',
         name: 'Alexa Liras',
         email: 'alexa@creative-tim.com',
         job: 'Programator',
-        org: 'Developer',
-        online: false,
-        date: '23/04/18'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg',
-        name: 'Laurent Perrier',
-        email: 'laurent@creative-tim.com',
-        job: 'Executive ',
-        org: 'Projects',
-        online: false,
-        date: '19/09/17'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg',
-        name: 'Michael Levi',
-        email: 'michael@creative-tim.com',
-        job: 'Programator',
-        org: 'Developer',
+        org: 'Backend Developer',
         online: true,
-        date: '24/12/08'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Executive',
-        online: false,
-        date: '04/10/21'
-    },
-    {
-        img: 'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg',
-        name: 'Richard Gran',
-        email: 'richard@creative-tim.com',
-        job: 'Manager',
-        org: 'Software Engineer (C/C++) - Hybrid Working - HN. Software Engineer (C/C++) - Hybrid Working - HN',
-        online: false,
-        date: '04/10/21'
+        date: '23/04/23'
     }
 ]
 
@@ -153,9 +54,9 @@ export default function JobAppliedCompanyListing() {
         navigate(`/manager/jobapplied/details/${id}`, { replace: true })
     }
     return (
-        <Card className='h-full w-full rounded-md px-2 shadow-lg shadow-gray-400'>
-            <CardHeader floated={false} shadow={false} className='rounded-none pt-0'>
-                <div className='mb-4 mt-2 flex items-start justify-between gap-8'>
+        <Card className='w-full h-full px-2 rounded-md shadow-lg shadow-gray-400'>
+            <CardHeader floated={false} shadow={false} className='pt-0 rounded-none'>
+                <div className='flex items-start justify-between gap-8 mt-2 mb-4'>
                     <div className='pl-0 '>
                         <Typography
                             variant='h4'
@@ -168,14 +69,14 @@ export default function JobAppliedCompanyListing() {
                             Xem tất cả đơn ứng tuyển
                         </Typography>
                     </div>
-                    {/* <div className='flex shrink-0 flex-row gap-2 '>
+                    {/* <div className='flex flex-row gap-2 shrink-0 '>
                         <Button
-                            className='flex items-center gap-3 py-3 rounded-sm bg-gray-900'
+                            className='flex items-center gap-3 py-3 bg-gray-900 rounded-sm'
                             size='sm'
                             variant='gradient'
                             onClick={() => dispatch(setOpenCreateHR(true))}
                         >
-                            <UserPlusIcon strokeWidth={2} className='h-4 w-4' /> Tạo mới
+                            <UserPlusIcon strokeWidth={2} className='w-4 h-4' /> Tạo mới
                         </Button>
                     </div> */}
                 </div>
@@ -192,14 +93,14 @@ export default function JobAppliedCompanyListing() {
                     <div className='w-full md:w-72'>
                         <Input
                             label='Search'
-                            icon={<MagnifyingGlassIcon className='h-5 w-5' />}
+                            icon={<MagnifyingGlassIcon className='w-5 h-5' />}
                             crossOrigin={undefined}
                         />
                     </div>
                 </div> */}
             </CardHeader>
             <CardBody className='p-0 mx-4 h-[calc(100vh-17.1rem)] overflow-y-scroll scrollbar'>
-                <table className='w-full min-w-max table-auto text-left'>
+                <table className='w-full text-left table-auto min-w-max'>
                     <thead>
                         <tr>
                             {TABLE_HEAD.map((head, index) => (
@@ -216,7 +117,7 @@ export default function JobAppliedCompanyListing() {
                                     >
                                         {head}{' '}
                                         {/* {index !== TABLE_HEAD.length - 1 && (
-                                            <ChevronUpDownIcon strokeWidth={2} className='h-4 w-4' />
+                                            <ChevronUpDownIcon strokeWidth={2} className='w-4 h-4' />
                                         )} */}
                                     </Typography>
                                 </th>
@@ -231,22 +132,22 @@ export default function JobAppliedCompanyListing() {
                             return (
                                 <tr key={name} className='hover:bg-gray-200' onClick={() => onClick(index)}>
                                     <td className={`${classes} lg:max-w-[16rem] 3xl:max-w-[20rem]`}>
-                                        <div className='flex flex-row justify-between items-center'>
+                                        <div className='flex flex-row items-center justify-between'>
                                             <Tooltip content={org}>
                                                 <Typography
                                                     variant='small'
                                                     color='blue-gray'
-                                                    className='font-normal  truncate  grow'
+                                                    className='font-normal truncate grow'
                                                 >
                                                     {org}
                                                 </Typography>
                                             </Tooltip>
 
-                                            {/* <ChevronUpDownIcon strokeWidth={2} className='h-4 w-4' /> */}
+                                            {/* <ChevronUpDownIcon strokeWidth={2} className='w-4 h-4' /> */}
                                             <img
                                                 src={threeDot}
                                                 alt='3dot'
-                                                className='ml-4 h-4 w-4 cursor-pointer'
+                                                className='w-4 h-4 ml-4 cursor-pointer'
                                             ></img>
                                         </div>
                                     </td>
@@ -264,7 +165,7 @@ export default function JobAppliedCompanyListing() {
                                     <td className={classes}>
                                         {/* <Tooltip content='Edit User'>
                             <IconButton variant='text'>
-                                <PencilIcon className='h-4 w-4' />
+                                <PencilIcon className='w-4 h-4' />
                             </IconButton>
                         </Tooltip> */}
                                         <Typography variant='small' color='blue-gray' className='font-normal'>
@@ -288,17 +189,17 @@ export default function JobAppliedCompanyListing() {
                     </tbody>
                 </table>
             </CardBody>
-            <CardFooter className='flex items-center justify-between border-t border-blue-gray-50 p-4 pl-8'>
+            <CardFooter className='flex items-center justify-between p-4 pl-8 border-t border-blue-gray-50'>
                 <Typography variant='small' color='blue-gray' className='font-normal'>
                     12 items
                 </Typography>
                 <div className='flex gap-2'>
                     {/* <Button className='flex items-center gap-3 py-3' size='sm' variant='outlined'>
-                        <ChevronLeftIcon strokeWidth={2} className='h-4 w-4' />
+                        <ChevronLeftIcon strokeWidth={2} className='w-4 h-4' />
                         Trang trước
                     </Button>
                     <Button className='flex items-center gap-3 py-3' size='sm' variant='outlined'>
-                        Trang sau <ChevronRightIcon strokeWidth={2} className='h-4 w-4' />
+                        Trang sau <ChevronRightIcon strokeWidth={2} className='w-4 h-4' />
                     </Button> */}
                     <SimplePagination
                         onPageChange={function (pageNumber: number): void {

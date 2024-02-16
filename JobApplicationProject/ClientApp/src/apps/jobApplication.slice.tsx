@@ -1,12 +1,12 @@
 // reducer.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { createJobAPI, getJobReferAPI } from 'apis/jobApplicationAPI'
+import { createJobAPI, getJobReferAPI } from 'apis/jobDescriptionAPI'
 import { queryParams } from 'types'
-import { IJobApplicationModel } from 'models'
+import { IJobDescriptionModel } from 'models'
 import { toastError } from 'utils/function'
 
 export interface JobApplicationState {
-    data: IJobApplicationModel[]
+    data: IJobDescriptionModel[]
     status: string
     error: string | null // Allow null for the error property
 }
@@ -16,7 +16,7 @@ const initialState: JobApplicationState = {
     error: null
 }
 export interface createJobState {
-    data: IJobApplicationModel
+    data: IJobDescriptionModel
     status: string
     error: string | null // Allow null for the error property
 }
@@ -39,7 +39,8 @@ export const createJobInitialState: createJobState = {
         jobBenefit: null,
         jobRequired: null,
         quantity: null,
-        salary: null,
+        minSalary: null,
+        maxSalary: null,
         title: null,
         type: null,
         updatedOn: null
@@ -65,6 +66,7 @@ const jobReferSlice = createSlice({
             })
             .addCase(fetchJobRefer.fulfilled, (state: any, action) => {
                 state.status = 'succeeded'
+                state.data = action.payload
             })
             .addCase(fetchJobRefer.rejected, (state, action) => {
                 state.status = 'failed'
@@ -73,7 +75,7 @@ const jobReferSlice = createSlice({
     }
 })
 
-const createJobAsync = createAsyncThunk('jobApplication/createJob', async (body: IJobApplicationModel) => {
+const createJobAsync = createAsyncThunk('jobApplication/createJob', async (body: IJobDescriptionModel) => {
     const response = await createJobAPI(body)
     return response.data
 })

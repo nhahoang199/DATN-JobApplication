@@ -9,23 +9,23 @@ function UserViewAwards() {
         }
     ]
     return (
-        <div className='pt-4 w-full flex flex-col gap-y-0'>
+        <div className='flex flex-col w-full pt-4 gap-y-0'>
             <Typography variant='h6' color='blue-gray' className='text-lg '>
                 Giải thưởng
             </Typography>
             {data.length === 0 ? (
-                <Typography variant='paragraph' color='gray' className='text-gray-900 h-5'>
+                <Typography variant='paragraph' color='gray' className='h-5 text-gray-900'>
                     -
                 </Typography>
             ) : (
-                <div className='flex flex-col gap-y-2 divide-y-2 divide-dashed'>
+                <div className='flex flex-col divide-y-2 gap-y-2 divide-dashed'>
                     {data.map((item, index) => {
                         return (
-                            <div className='flex flex-row gap-x-4 w-full items-start'>
-                                <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm mt-3'>
-                                    <TrophyIcon className='h-5 w-5 text-blue-gray-800' />
+                            <div className='flex flex-row items-start w-full gap-x-4'>
+                                <div className='flex items-center justify-center w-10 h-10 mt-3 rounded-sm bg-blue-gray-50'>
+                                    <TrophyIcon className='w-5 h-5 text-blue-gray-800' />
                                 </div>
-                                <div className='flex flex-col gap-y-1 py-1'>
+                                <div className='flex flex-col py-1 gap-y-1'>
                                     <Typography
                                         variant='h6'
                                         color='gray'
@@ -35,7 +35,7 @@ function UserViewAwards() {
                                     </Typography>
                                     <div className='flex flex-row gap-x-4'>
                                         <Typography variant='paragraph' color='gray' className='text-gray-900'>
-                                            UEFFA Champion League
+                                            Cuộc thi toán học cấp huyện
                                         </Typography>
                                         {'|'}
                                         <Typography
@@ -43,7 +43,7 @@ function UserViewAwards() {
                                             color='gray'
                                             className='text-gray-900 max-h-[120px] overflow-y-scroll scrollbar'
                                         >
-                                            8/2022
+                                            8/2018
                                         </Typography>
                                     </div>
                                     <Typography

@@ -7,7 +7,8 @@ import {
     HRAcceptJobApplicationDialog,
     UserAcceptJobApplicationDialog,
     UserRejectDialog,
-    HRRejectJobAppDialog
+    HRRejectJobAppDialog,
+    UserInfoSection
 } from './components'
 import mtTheme from 'const/MTtheme'
 import { useAppDispatch } from 'apps/store'
@@ -26,9 +27,9 @@ function JobApplicationDetails() {
         <div className='flex flex-col gap-y-5 max-h-[calc(100vh-6.5rem)] overflow-y-scroll scrollbar'>
             <JobDescDetailsTopSection />
             <JobApplicationInfoSection />
-            {/* <UserInfoSection /> */}
-            <JobDescriptionInfoSection />
-            <div className='flex items-center justify-start border-t border-blue-gray-50 gap-x-5 pb-4'>
+            <UserInfoSection />
+            {/* <JobDescriptionInfoSection /> */}
+            <div className='flex items-center justify-start pb-4 border-t border-blue-gray-50 gap-x-5'>
                 <Button
                     onClick={() => setIsHRAccept(true)}
                     className={`focus:!border-gold-900 focus:border-none rounded-sm !bg-gold-900 shadow-lg px-4  !border-gold-900  active:!border-gold-900 ${

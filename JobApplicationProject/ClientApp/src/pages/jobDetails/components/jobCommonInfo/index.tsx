@@ -10,12 +10,14 @@ function JobCommonInfo(props: { item: IJobDetail }) {
         {
             icon: <QueueListIcon className='w-5 h-5 text-gray-200' />,
             title: 'Cấp bậc',
-            value: item.position
+            // value: item.position || ''
+            value: 'Junior'
         },
         {
             icon: <FontAwesomeIcon icon={faBusinessTime} className='w-5 h-5 text-gray-200' />,
             title: 'Kinh nghiệm',
-            value: `${item.expirence} năm`
+            value: `${1} năm`
+            // value: `${item.expirence} năm`
         },
         {
             icon: <UsersIcon className='w-5 h-5 text-gray-200' />,

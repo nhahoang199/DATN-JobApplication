@@ -6,21 +6,6 @@ function JobRelated() {
     const data = [
         {
             title: 'Backend Developer'
-        },
-        {
-            title: 'Backend Developer'
-        },
-        {
-            title: 'Backend Developer'
-        },
-        {
-            title: 'Backend Developer'
-        },
-        {
-            title: 'Backend Developer'
-        },
-        {
-            title: 'Backend Developer'
         }
     ]
     return (
@@ -30,7 +15,7 @@ function JobRelated() {
                 color='blue-gray'
                 className='w-full !line-clamp-2 cursor-default pb-4 border-b-2 border-dashed '
             >
-                <div className='b-title pl-2'>Việc làm liên quan</div>
+                <div className='pl-2 b-title'>Việc làm liên quan</div>
             </Typography>
 
             <List className='flex flex-col gap-y-4'>

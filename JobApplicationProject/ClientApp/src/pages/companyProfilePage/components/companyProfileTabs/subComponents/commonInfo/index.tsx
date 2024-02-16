@@ -8,32 +8,32 @@ import React from 'react'
 function CompanyCommonProfile() {
     const dispatch = useAppDispatch()
     return (
-        <Card className='h-full w-full rounded-md'>
-            {/* <CardHeader floated={false} shadow={false} className='rounded-none pt-0'>
+        <Card className='w-full h-full rounded-md'>
+            {/* <CardHeader floated={false} shadow={false} className='pt-0 rounded-none'>
         <Typography variant='h6' color='blue-gray' className='mb-2 mr-4 text-base'>
             Thông tin cá nhân
         </Typography>
     </CardHeader> */}
-            <CardBody className='py-6 mx-6 px-0 '>
+            <CardBody className='px-0 py-6 mx-6 '>
                 <div className='flex flex-row'>
-                    <div className='flex flex-col grow ml-4'>
+                    <div className='flex flex-col ml-4 grow'>
                         <div className='flex flex-row justify-between'>
                             <Typography variant='h5' color='blue-gray' className='py-2'>
                                 Thông tin chung
                             </Typography>{' '}
                             <PencilSquareIcon
-                                className='h-6 w-6 cursor-pointer text-deep-purple-500'
+                                className='w-6 h-6 cursor-pointer text-deep-purple-500'
                                 onClick={() => dispatch(setOpenEditCompany(true))}
                             />
                         </div>
                         <div className='mt-2 w-full flex flex-col gap-y-4 max-h-[calc(60vh-17.1rem)] overflow-y-scroll scrollbar'>
                             <div className='flex flex-row gap-x-6 '>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <UserGroupIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                        <UserGroupIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Quy mô
                                         </Typography>
                                         <Typography
@@ -44,12 +44,12 @@ function CompanyCommonProfile() {
                                         </Typography>{' '}
                                     </div>
                                 </div>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <CalendarDaysIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                        <CalendarDaysIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Ngày làm việc
                                         </Typography>
                                         <Typography
@@ -64,12 +64,12 @@ function CompanyCommonProfile() {
                             </div>
 
                             <div className='flex flex-row gap-x-6'>
-                                <div className='mb-1 flex flex-row gap-4 w-1/2 items-center'>
-                                    <div className='bg-blue-gray-50 flex items-center justify-center w-10 h-10 rounded-sm'>
-                                        <MapPinIcon className='h-5 w-5 cursor-pointer text-blue-gray-800' />
+                                <div className='flex flex-row items-center w-1/2 gap-4 mb-1'>
+                                    <div className='flex items-center justify-center w-10 h-10 rounded-sm bg-blue-gray-50'>
+                                        <MapPinIcon className='w-5 h-5 cursor-pointer text-blue-gray-800' />
                                     </div>
                                     <div className='flex flex-col gap-4'>
-                                        <Typography variant='h6' color='blue-gray' className='italic -mb-3'>
+                                        <Typography variant='h6' color='blue-gray' className='-mb-3 italic'>
                                             Địa chỉ
                                         </Typography>
                                         <Typography

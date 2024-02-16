@@ -165,31 +165,31 @@ namespace JobApplicationProject.Data.Data.Migrations
                     b.Property<string>("StartWorkingDay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalBenefitRatingScore")
+                    b.Property<int?>("TotalBenefitRatingScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalCareRatingScore")
+                    b.Property<int?>("TotalCareRatingScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalCutureRatingScore")
+                    b.Property<int?>("TotalCutureRatingScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalIsWantReferToFriendScore")
+                    b.Property<int?>("TotalIsWantReferToFriendScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalOverallRatingScore")
+                    b.Property<int?>("TotalOverallRatingScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalRatingQuantity")
+                    b.Property<int?>("TotalRatingQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalTrainingRatingScore")
+                    b.Property<int?>("TotalTrainingRatingScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalWorkspaceRatingScore")
+                    b.Property<int?>("TotalWorkspaceRatingScore")
                         .HasColumnType("int");
 
                     b.Property<string>("TwitterLink")
@@ -416,7 +416,7 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ExperienceType")
+                    b.Property<int>("ExperirenceType")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ExpiredOn")

@@ -5,7 +5,7 @@ import React from 'react'
 function CompanyContact() {
     return (
         <Card className='w-full shadow-lg rounded-xl'>
-            <CardBody className='flex lg:p-4 lg:pb-0 3xl:p-6 overflow-x-wrap break-words'>
+            <CardBody className='flex break-words lg:p-4 lg:pb-0 3xl:p-6 overflow-x-wrap'>
                 <Typography
                     variant='h6'
                     color='blue-gray'
@@ -22,13 +22,13 @@ function CompanyContact() {
                     </Typography>
                     <a
                         href='#zx'
-                        className='flex text-sm text-deep-purple-400 underline duration-200 cursor-pointer hover:scale-110 items-center hover:text-deep-purple-600'
+                        className='flex items-center text-sm underline duration-200 cursor-pointer text-deep-purple-400 hover:scale-110 hover:text-deep-purple-600'
                     >
-                        zxcbzxc
+                        avepoint.com
                         <ArrowTopRightOnSquareIcon className='inline-block w-4 h-4 ml-2 text-deep-purple-400' />
                     </a>
                 </div>
-                <div className='flex items-center justify-center space-x-4 w-full h-12'>
+                <div className='flex items-center justify-center w-full h-12 space-x-4'>
                     <a
                         rel='noopener noreferrer'
                         href='#aa'
