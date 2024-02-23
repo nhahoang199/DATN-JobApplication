@@ -1,9 +1,9 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Card, Typography } from '@material-tailwind/react'
-import { IJobApplicationModel } from 'models'
+import { IJobDescriptionModel } from 'models'
 
-function CreateJobFormStep2(props: { formData: IJobApplicationModel | undefined; setFormData: any }) {
+function CreateJobFormStep2(props: { formData: IJobDescriptionModel | undefined; setFormData: any }) {
     const { formData, setFormData } = props
 
     return (

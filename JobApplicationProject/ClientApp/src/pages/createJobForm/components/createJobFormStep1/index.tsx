@@ -2,11 +2,11 @@ import { Card, Typography, Input, Select, Option } from '@material-tailwind/reac
 import React, { useState } from 'react'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { IJobApplicationModel } from 'models'
+import { IJobDescriptionModel } from 'models'
 import dayjs from 'dayjs'
 import './index.scss'
 
-function CreateJobFormStep1(props: { formData: IJobApplicationModel | undefined; setFormData: any }) {
+function CreateJobFormStep1(props: { formData: IJobDescriptionModel | undefined; setFormData: any }) {
     const { formData, setFormData } = props
     return (
         <Card color='white' shadow={true} className='w-full h-fit pb-6 mt-4 rounded-md'>
@@ -38,6 +38,7 @@ function CreateJobFormStep1(props: { formData: IJobApplicationModel | undefined;
                             Kinh nghiệm
                         </Typography>
                         <Input
+                            type='number'
                             size='md'
                             placeholder='Nhập kinh nghiệm yêu cầu'
                             className=' !border-gray-800 focus:!border-gray-900 rounded-sm'
@@ -107,10 +108,10 @@ function CreateJobFormStep1(props: { formData: IJobApplicationModel | undefined;
                             }}
                             value={formData?.type?.toString() || undefined}
                             onChange={(value) =>
-                                setFormData((prev: any) => ({ ...prev, type: parseInt(value || '0') }))
+                                setFormData((prev: any) => ({ ...prev, type: parseInt(value || '3') }))
                             }
                         >
-                            <Option className='text-gray-700 hover:text-gray-900' value={'0'}>
+                            <Option className='text-gray-700 hover:text-gray-900' value='0'>
                                 Toàn thời gian
                             </Option>
                             <Option className='text-gray-700 hover:text-gray-900' value='1'>
@@ -128,6 +129,7 @@ function CreateJobFormStep1(props: { formData: IJobApplicationModel | undefined;
                             Mức lương
                         </Typography>
                         <Input
+                            type='number'
                             color='black'
                             size='md'
                             placeholder='Nhập mức lương'
@@ -136,7 +138,7 @@ function CreateJobFormStep1(props: { formData: IJobApplicationModel | undefined;
                                 className: 'before:content-none after:content-none'
                             }}
                             crossOrigin={undefined}
-                            value={formData?.salary || undefined}
+                            value={formData?.minSalary || undefined}
                             onChange={(event) => setFormData((prev: any) => ({ ...prev, salary: event.target.value }))}
                         />
                     </div>
@@ -153,15 +155,17 @@ function CreateJobFormStep1(props: { formData: IJobApplicationModel | undefined;
                                     'before:rounded-sm before:text-gray-800 before:!text-gray-800  after:rounded-sm  text-gray-400'
                             }}
                             value={formData?.gender?.toString() || undefined}
-                            onChange={(value) => setFormData((prev: any) => ({ ...prev, gender: value }))}
+                            onChange={(value) =>
+                                setFormData((prev: any) => ({ ...prev, gender: parseInt(value || '0') }))
+                            }
                         >
-                            <Option color='black' className='text-gray-700 hover:text-gray-900' value='Nam'>
+                            <Option color='black' className='text-gray-700 hover:text-gray-900' value='0'>
                                 Nam
                             </Option>
-                            <Option color='black' className='text-gray-700 hover:text-gray-900' value='Nữ'>
+                            <Option color='black' className='text-gray-700 hover:text-gray-900' value='1'>
                                 Nữ
                             </Option>
-                            <Option color='black' className='text-gray-700 hover:text-gray-900' value='Không yêu cầu'>
+                            <Option color='black' className='text-gray-700 hover:text-gray-900' value='2'>
                                 Không yêu cầu
                             </Option>
                         </Select>

@@ -1,15 +1,17 @@
 import { UserIcon, CalendarDaysIcon, EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid'
 import { Avatar, Typography } from '@material-tailwind/react'
 import { boyavatar } from 'assets'
+import { IJobApplicationModel } from 'models'
 import React from 'react'
 
-function UserCommonInfo() {
+function UserCommonInfo(props: { item: IJobApplicationModel }) {
+    const { item } = props
     return (
         <div className='mt-0 w-full flex flex-col gap-y-2 pb-4'>
             <div className='flex flex-row gap-x-4'>
                 <Avatar src={boyavatar} alt='Profile picture' variant='square' size='sm' className='w-10 h-10' />
                 <Typography variant='h5' color='blue-gray' className='py-2'>
-                    Trần Nha Hoàng
+                    {item.userName}
                 </Typography>{' '}
                 {/* <PencilSquareIcon
                                 className='h-6 w-6 cursor-pointer text-deep-purple-500'
@@ -64,7 +66,7 @@ function UserCommonInfo() {
                             className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                         >
                             {' '}
-                            {'Thứ 2 - Thứ 6'}
+                            {'matthew@aa.com'}
                         </Typography>{' '}
                     </div>
                 </div>
@@ -82,7 +84,7 @@ function UserCommonInfo() {
                             className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                         >
                             {' '}
-                            {'Thứ 2 - Thứ 6'}
+                            {'0123456789'}
                         </Typography>{' '}
                     </div>
                 </div>
@@ -101,7 +103,7 @@ function UserCommonInfo() {
                             className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                         >
                             {' '}
-                            {'Thứ 2 - Thứ 6'}
+                            {'Thanh Xuân - Hà Nội'}
                         </Typography>{' '}
                     </div>
                 </div>

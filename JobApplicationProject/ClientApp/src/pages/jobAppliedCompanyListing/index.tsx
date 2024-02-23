@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Card, CardHeader, Typography, CardBody, Chip, CardFooter, Avatar, Tooltip } from '@material-tailwind/react'
-import { useAppDispatch } from 'apps/store'
+import { RootState, useAppDispatch } from 'apps/store'
 import { setHRManagerTab } from 'apps/Tabs.slice'
 import { SimplePagination } from 'components/common'
 import { myavatar, threeDot } from 'assets'
 import { useNavigate } from 'react-router-dom'
+import { hideProgressLoading, showProgressLoading } from 'apps/loading.slice'
+import { getAllJobApplicationAsync } from 'apps/jobApplication.slice'
+import { useSelector } from 'react-redux'
+import { formatDisplayDate, getUserAvatar, getUserAvatar2, renderJobApplicationStatus } from 'utils/function'
 
 // const TABS = [
 //     {
@@ -47,12 +51,32 @@ const TABLE_ROWS = [
 export default function JobAppliedCompanyListing() {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const tableRow = useSelector((state: RootState) => state.jobApplicationSlice.getAllJobApplication.data)
+    const pagination = useSelector((state: RootState) => state.jobApplicationSlice.getAllJobApplication)
+    const handleGetAllJobApplication = useCallback(
+        async (pageNumber: number) => {
+            dispatch(showProgressLoading('Đang tải dữ liệu..'))
+            try {
+                await dispatch(
+                    getAllJobApplicationAsync({
+                        PageNumber: pageNumber,
+                        PageSize: 25
+                    })
+                )
+            } finally {
+                dispatch(hideProgressLoading())
+            }
+        },
+        [dispatch]
+    )
     useEffect(() => {
         dispatch(setHRManagerTab(6))
-    }, [dispatch])
-    const onClick = (id: number) => {
+        handleGetAllJobApplication(1)
+    }, [dispatch, handleGetAllJobApplication])
+    const onClick = (id: string | undefined | null) => {
         navigate(`/manager/jobapplied/details/${id}`, { replace: true })
     }
+
     return (
         <Card className='w-full h-full px-2 rounded-md shadow-lg shadow-gray-400'>
             <CardHeader floated={false} shadow={false} className='pt-0 rounded-none'>
@@ -125,21 +149,21 @@ export default function JobAppliedCompanyListing() {
                         </tr>
                     </thead>
                     <tbody>
-                        {TABLE_ROWS.map(({ img, name, email, job, org, online, date }, index) => {
-                            const isLast = index === TABLE_ROWS.length - 1
+                        {tableRow.map((item, index) => {
+                            const isLast = index === tableRow.length - 1
                             const classes = isLast ? 'p-4 ' : 'p-4 border-b border-blue-gray-50 '
 
                             return (
-                                <tr key={name} className='hover:bg-gray-200' onClick={() => onClick(index)}>
+                                <tr key={index} className='hover:bg-gray-200' onClick={() => onClick(item.id)}>
                                     <td className={`${classes} lg:max-w-[16rem] 3xl:max-w-[20rem]`}>
                                         <div className='flex flex-row items-center justify-between'>
-                                            <Tooltip content={org}>
+                                            <Tooltip content={item.jobDescriptionName}>
                                                 <Typography
                                                     variant='small'
                                                     color='blue-gray'
                                                     className='font-normal truncate grow'
                                                 >
-                                                    {org}
+                                                    {item.jobDescriptionName}
                                                 </Typography>
                                             </Tooltip>
 
@@ -153,10 +177,10 @@ export default function JobAppliedCompanyListing() {
                                     </td>
                                     <td className={classes}>
                                         <div className='flex items-center gap-3 '>
-                                            <Avatar src={img} alt={name} size='sm' />
+                                            <Avatar src={getUserAvatar2(null, 0)} alt={'user avatar'} size='sm' />
                                             <div className='flex flex-col'>
                                                 <Typography variant='small' color='blue-gray' className='font-normal '>
-                                                    {name}
+                                                    {item.userName}
                                                 </Typography>
                                             </div>
                                         </div>
@@ -169,19 +193,11 @@ export default function JobAppliedCompanyListing() {
                             </IconButton>
                         </Tooltip> */}
                                         <Typography variant='small' color='blue-gray' className='font-normal'>
-                                            {date}
+                                            {formatDisplayDate(item.createdOn || '')}
                                         </Typography>
                                     </td>
                                     <td className={classes}>
-                                        <div className='w-max'>
-                                            <Chip
-                                                variant='ghost'
-                                                size='sm'
-                                                value={online ? 'Mới' : 'Bản nháp'}
-                                                color={online ? 'green' : 'blue-gray'}
-                                                className='font-medium text-gray-900 capitalize'
-                                            />
-                                        </div>
+                                        <div className='w-max'>{renderJobApplicationStatus(item.status || 0)}</div>
                                     </td>
                                 </tr>
                             )

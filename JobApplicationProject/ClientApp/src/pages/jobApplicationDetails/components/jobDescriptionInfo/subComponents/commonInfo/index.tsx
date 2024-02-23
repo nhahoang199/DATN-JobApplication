@@ -9,12 +9,14 @@ import {
 } from '@heroicons/react/24/solid'
 import React from 'react'
 import { Typography } from '@material-tailwind/react'
+import { IJobApplicationModel } from 'models'
 
-function JobDescCommonInfo() {
+function JobDescCommonInfo(props: { item: IJobApplicationModel }) {
+    const { item } = props
     return (
         <div className='flex flex-col w-full pb-4 mt-0 gap-y-2'>
             <Typography variant='h5' color='blue-gray' className='py-0'>
-                Backend Developers
+                {item.jobDescriptionName}
             </Typography>{' '}
             <div className='flex flex-col w-full mt-4 gap-y-2'>
                 <div className='flex flex-row gap-x-6 '>

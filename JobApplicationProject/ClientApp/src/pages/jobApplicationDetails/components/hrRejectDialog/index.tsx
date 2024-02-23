@@ -1,14 +1,38 @@
 import { DialogHeader, DialogBody, DialogFooter, Dialog, Button, Typography, Textarea } from '@material-tailwind/react'
+import { updateJobApplicationAPI } from 'apis/jobApplicationAPI'
+import { hideProgressLoading, showProgressLoading } from 'apps/loading.slice'
+import { useAppDispatch } from 'apps/store'
+import { useState } from 'react'
+import { toastError, toastSuccess } from 'utils/function'
 
 interface IConfirmDialogProps {
     open: boolean
     setOpen: any
-    handleConfim: () => void
+    jobApplicationId: string
 }
 
 function HRRejectJobAppDialog(props: IConfirmDialogProps) {
     const open = props.open
-    const handleConfim = props.handleConfim
+    const jobApplicationId = props.jobApplicationId
+    const dispatch = useAppDispatch()
+    const [rejectReason , setRejectReason] = useState<string>()
+    const handleConfim = async () => {
+        try {
+            dispatch(showProgressLoading('Đang cập nhật...'))
+            await updateJobApplicationAPI({
+                id: jobApplicationId,
+                status: 6,
+                hrRejectReason: rejectReason
+            })
+            await toastSuccess('Từ chối đơn ứng tuyển thành công')
+        } catch (error) {
+            dispatch(hideProgressLoading())
+            toastError('Có lỗi xảy ra')
+            console.log(error)
+        } finally {
+            dispatch(hideProgressLoading())
+        }
+    }
     const handleOpen = () => props.setOpen((cur: boolean) => !cur)
     return (
         <>
@@ -34,6 +58,7 @@ function HRRejectJobAppDialog(props: IConfirmDialogProps) {
                             variant='outlined'
                             label='Viết lý do từ chối của bạn'
                             className='border-solid !border-gray-900 scrollbar'
+                            onChange={(e) => setRejectReason(e.target.value)}
                         />
                     </div>
                 </DialogBody>

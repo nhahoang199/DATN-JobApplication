@@ -146,7 +146,6 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(4000)");
 
                     b.Property<string>("Email")
@@ -320,11 +319,9 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CV")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CoverLetter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -367,7 +364,6 @@ namespace JobApplicationProject.Data.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserRejectReason")

@@ -12,10 +12,10 @@ import {
 import React, { useEffect, useState } from 'react'
 import { CreateJobFormStep1, CreateJobFormStep2, CreateJobFormStep3, CreatedJobStepper } from './components'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { IJobApplicationModel } from 'models'
+import { IJobDescriptionModel } from 'models'
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from 'apps/store'
-import { createJobAsync, setCreateJobData } from 'apps/jobApplication.slice'
+import { createJobAsync, setCreateJobData } from 'apps/jobDescription.slice'
 import { hideProgressLoading, showProgressLoading } from 'apps/loading.slice'
 import mtTheme from './../../const/MTtheme'
 const initialState = {
@@ -45,7 +45,7 @@ function CreateJobForm() {
     const [activeStep, setActiveStep] = React.useState(0)
     const [isLastStep, setIsLastStep] = React.useState(false)
     const [isFirstStep, setIsFirstStep] = React.useState(false)
-    const [formData, setFormData] = useState<IJobApplicationModel>(initialState)
+    const [formData, setFormData] = useState<IJobDescriptionModel>(initialState)
     const navigate = useNavigate()
     const [open, setOpen] = React.useState(false)
     const createJobState = useSelector((state: RootState) => state.createJob.data)
@@ -66,8 +66,8 @@ function CreateJobForm() {
     }
     const hanldeSubmit = async () => {
         const updatedFormData = { ...createJobState }
-        updatedFormData.companyId = '2ead7047-1fbc-4b5e-be1f-161bacb0adf4'
-        updatedFormData.createdBy = 'A4FC8546-14DC-4972-D13A-08DBF3DD914C'
+        updatedFormData.companyId = 'cb31e91e-eca4-46f0-8c52-007f020cff65'
+        updatedFormData.createdBy = '869c4eec-99a3-42b7-72be-08dc1a94d0c5'
         dispatch(showProgressLoading('Đang tạo công việc...'))
         try {
             await dispatch(createJobAsync(updatedFormData))

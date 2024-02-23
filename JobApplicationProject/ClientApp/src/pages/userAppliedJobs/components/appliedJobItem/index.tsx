@@ -1,19 +1,26 @@
 import { Card, CardHeader, CardBody, Avatar, Typography, CardFooter, Chip } from '@material-tailwind/react'
 import { avepoint } from 'assets'
 import { CurrencyDollarIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 import React from 'react'
+import { formatDisplayDate, renderJobApplicationStatus } from 'utils/function'
 
-function AppliedJobItem(props: { item: any }) {
-    const { item } = props
+function AppliedJobItem(props: { item: any; index?: any }) {
+    const { item, index } = props
+    const navigate = useNavigate()
+    const onClick = (id: number) => {
+        navigate(`/manager/jobapplied/details/${id}`, { replace: true })
+    }
     return (
         <Card className='w-full p-0 bg-white rounded-md'>
             <CardHeader
                 shadow={false}
                 floated={false}
                 className='flex items-start justify-start mx-6 mt-6 mb-0 rounded-md'
+                onClick={() => onClick(item.id)}
             >
                 <Typography color='blue-gray' variant='h5' className='cursor-pointer'>
-                    {item.name}
+                    {item.jobDescriptionName}
                 </Typography>
             </CardHeader>
             <CardBody className='py-2'>
@@ -57,15 +64,9 @@ function AppliedJobItem(props: { item: any }) {
                     variant='paragraph'
                     className='w-12/12 font-medium text-gray-400 !line-clamp-3 flex flex-row text-sm'
                 >
-                    Ngày ứng tuyển: 12/12/2023
+                    Ngày ứng tuyển: {formatDisplayDate(item.createdOn)}
                 </Typography>
-                <Chip
-                    variant='ghost'
-                    size='sm'
-                    value={'Chờ phản hồi'}
-                    color={'blue-gray'}
-                    className='font-medium text-gray-900 capitalize'
-                />
+                {renderJobApplicationStatus(item.status || 0)}
             </CardFooter>
         </Card>
     )

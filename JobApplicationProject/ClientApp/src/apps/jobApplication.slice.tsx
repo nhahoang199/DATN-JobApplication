@@ -1,108 +1,131 @@
 // reducer.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { createJobAPI, getJobReferAPI } from 'apis/jobDescriptionAPI'
+import { createJobApplicationAPI, getAllJobApplicationAPI, getJobApplicationByIdAPI } from 'apis/jobApplicationAPI'
+import { IJobApplicationModel } from 'models'
+import { IPaginationModel } from 'models/paginationModel'
+import { useNavigate } from 'react-router-dom'
 import { queryParams } from 'types'
-import { IJobDescriptionModel } from 'models'
-import { toastError } from 'utils/function'
+import { toastError, toastSuccess } from 'utils/function'
 
 export interface JobApplicationState {
-    data: IJobDescriptionModel[]
+    createJobApplication: createJobState
+    getAllJobApplication: getAllJobApplicationState
+    getJobApplicationById: getJobApplicationByIdState
+}
+export interface createJobState {
+    data: IJobApplicationModel
     status: string
     error: string | null // Allow null for the error property
 }
-const initialState: JobApplicationState = {
-    data: [],
-    status: 'idle',
-    error: null
+export interface getAllJobApplicationState {
+    data: IJobApplicationModel[]
+    paginationObject: IPaginationModel
+    status: string
+    error: string | null // Allow null for the error property
 }
-export interface createJobState {
-    data: IJobDescriptionModel
+export interface getJobApplicationByIdState {
+    data: IJobApplicationModel
     status: string
     error: string | null // Allow null for the error property
 }
 export const createJobInitialState: createJobState = {
     data: {
-        id: null,
-        companyName: null,
-        companyId: null,
-        districtId: null,
-        districtName: null,
-        provinceId: null,
-        provinceName: null,
-        createdOn: null,
-        createdBy: null,
-        description: null,
-        expiredOn: null,
-        expirence: null,
-        gender: null,
-        position: null,
-        jobBenefit: null,
-        jobRequired: null,
-        quantity: null,
-        minSalary: null,
-        maxSalary: null,
-        title: null,
-        type: null,
-        updatedOn: null
+        userId: null,
+        jobDescriptionId: null
     },
     status: 'idle',
     error: null
 }
-
-// Định nghĩa một async thunk sử dụng createAsyncThunk
-const fetchJobRefer = createAsyncThunk('jobApplication/fetchTopJobApplication', async (queryParams: queryParams) => {
-    const response = await getJobReferAPI(queryParams)
-    return response.data
-})
-
-const jobReferSlice = createSlice({
-    name: 'fetchJobRefer',
-    initialState: initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchJobRefer.pending, (state: any) => {
-                state.status = 'loading'
-            })
-            .addCase(fetchJobRefer.fulfilled, (state: any, action) => {
-                state.status = 'succeeded'
-                state.data = action.payload
-            })
-            .addCase(fetchJobRefer.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message ?? null
-            })
-    }
-})
-
-const createJobAsync = createAsyncThunk('jobApplication/createJob', async (body: IJobDescriptionModel) => {
-    const response = await createJobAPI(body)
-    return response.data
-})
-export const createJobSlice = createSlice({
-    name: 'createJob',
-    initialState: createJobInitialState,
-    reducers: {
-        setCreateJobData: (state, action) => {
-            state.data = action.payload
+const initialState: JobApplicationState = {
+    createJobApplication: createJobInitialState,
+    getAllJobApplication: {
+        data: [],
+        status: 'idle',
+        error: null,
+        paginationObject: {
+            currentPage: 1,
+            pageSize: 1,
+            totalCount: 1,
+            totalPages: 1,
+            hasPrevious: false,
+            hasNext: false
         }
+    },
+    getJobApplicationById: {
+        data: {
+            userId: null,
+            jobDescriptionId: null
+        },
+        status: 'idle',
+        error: null
+    }
+}
+
+const createJobApplicationAsync = createAsyncThunk('JobApplication/createJob', async (body: IJobApplicationModel) => {
+    const response = await createJobApplicationAPI(body)
+    return response.data
+})
+const getAllJobApplicationAsync = createAsyncThunk(
+    'JobApplication/getAllJobApplication',
+    async (queryParams: queryParams) => {
+        const response = await getAllJobApplicationAPI(queryParams)
+        return response.data
+    }
+)
+const getJobApplicationByIdAsync = createAsyncThunk('JobApplication/getJobApplicationById', async (id: string) => {
+    const response = await getJobApplicationByIdAPI(id)
+    return response.data
+})
+export const jobApplicationSlice = createSlice({
+    name: 'jobApplication',
+    initialState: initialState,
+    reducers: {
+        // setCreateJobApplicationData: (state, action) => {
+        //     state.data = action.payload
+        // }
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createJobAsync.pending, (state: any) => {
-                state.status = 'loading'
+            .addCase(createJobApplicationAsync.pending, (state: any) => {
+                state.createJobApplication.status = 'loading'
             })
-            .addCase(createJobAsync.fulfilled, (state: any, action) => {
-                state.status = 'succeeded'
-                state.data = action.payload
+            .addCase(createJobApplicationAsync.fulfilled, (state: any, action) => {
+                state.createJobApplication.status = 'succeeded'
+                state.createJobApplication.data = action.payload
+                toastSuccess('Gửi đơn ứng tuyển thành công')
             })
-            .addCase(createJobAsync.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message ?? null
+            .addCase(createJobApplicationAsync.rejected, (state, action) => {
+                state.createJobApplication.status = 'failed'
+                state.createJobApplication.error = action.error.message ?? null
+                toastError('Có lỗi xảy ra')
+            })
+            .addCase(getAllJobApplicationAsync.pending, (state: any) => {
+                state.getAllJobApplication.status = 'loading'
+            })
+            .addCase(getAllJobApplicationAsync.fulfilled, (state: any, action) => {
+                state.getAllJobApplication.status = 'succeeded'
+                state.getAllJobApplication.data = action.payload.items
+                state.getAllJobApplication.paginationObject = action.payload.paginationInfo
+            })
+            .addCase(getAllJobApplicationAsync.rejected, (state, action) => {
+                state.getAllJobApplication.status = 'failed'
+                state.getAllJobApplication.error = action.error.message ?? null
+                toastError('Có lỗi xảy ra')
+            })
+            .addCase(getJobApplicationByIdAsync.pending, (state: any) => {
+                state.getJobApplicationById.status = 'loading'
+            })
+            .addCase(getJobApplicationByIdAsync.fulfilled, (state: any, action) => {
+                state.getJobApplicationById.status = 'succeeded'
+                state.getJobApplicationById.data = action.payload
+            })
+            .addCase(getJobApplicationByIdAsync.rejected, (state, action) => {
+                state.getJobApplicationById.status = 'failed'
+                state.getJobApplicationById.error = action.error.message ?? null
                 toastError('Có lỗi xảy ra')
             })
     }
 })
-export const { setCreateJobData } = createJobSlice.actions
-export default jobReferSlice.reducer
-export { fetchJobRefer, createJobAsync }
+export const {} = jobApplicationSlice.actions
+export default jobApplicationSlice.reducer
+export { createJobApplicationAsync, getAllJobApplicationAsync, getJobApplicationByIdAsync }

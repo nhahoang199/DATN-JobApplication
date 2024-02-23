@@ -1,4 +1,6 @@
 ﻿using JobApplicationProject.Core.Dtos;
+using JobApplicationProject.Core.Helpers;
+using JobApplicationProject.Core.Models;
 using JobApplicationProject.Service.Services.JobApplicationService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,12 +48,12 @@ namespace JobApplicationProject.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllJobApplications()
+        public async Task<IActionResult> GetAllJobApplications([FromQuery]  PaginationParameters paginationParameters)
         {
             try
             {
-                var jobApplications = await _jobApplicationService.GetAllJobApplications();
-                return Ok(jobApplications);
+                var jobApplications = await _jobApplicationService.GetAllJobApplications(paginationParameters);
+                return Ok(new ResponseModel<JobApplicationDto>(jobApplications, jobApplications.GetPagination()));
             }
             catch (Exception ex)
             {

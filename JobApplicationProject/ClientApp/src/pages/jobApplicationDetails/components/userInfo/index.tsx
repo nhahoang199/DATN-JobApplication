@@ -10,8 +10,10 @@ import {
     UserViewCertificates,
     UserViewAwards
 } from './subcomponents'
+import { IJobApplicationModel } from 'models'
 
-function UserInfoSection() {
+function UserInfoSection(props: { item: IJobApplicationModel }) {
+    const { item } = props
     return (
         <Card className='h-full w-full rounded-md'>
             <CardHeader floated={false} shadow={false} className='rounded-none pt-0 mx-6'>
@@ -21,7 +23,7 @@ function UserInfoSection() {
             </CardHeader>
             <CardBody className='pb-6 mx-6 pt-2 px-0'>
                 <div className='flex flex-col grow ml-0 divide-y-2 divide-gray-300'>
-                    <UserCommonInfo />
+                    <UserCommonInfo item={item}/>
                     <UserViewIntro />
                     <UserViewEducation />
                     <UserViewExperience />

@@ -8,22 +8,45 @@ import {
     Radio,
     Textarea
 } from '@material-tailwind/react'
+import { updateJobApplicationAPI } from 'apis/jobApplicationAPI'
+import { hideProgressLoading, showProgressLoading } from 'apps/loading.slice'
+import { useAppDispatch } from 'apps/store'
 import React, { useRef, useState } from 'react'
+import { toastError, toastSuccess } from 'utils/function'
 
 interface IConfirmDialogProps {
     open: boolean
     setOpen: any
-    handleConfim: () => void
+    jobApplicationId: string
 }
 
 function HRAcceptJobApplicationDialog(props: IConfirmDialogProps) {
     const open = props.open
-    const handleConfim = props.handleConfim
+    const jobApplicationId = props.jobApplicationId
+    const dispatch = useAppDispatch()
     const handleOpen = () => props.setOpen((cur: boolean) => !cur)
     const switchRef = useRef<null | any>(null)
     const [isHRSatifiedWithRequest, setIsHRSatifiedWithRequest] = useState(false)
+    const [hrAcceptComment, setHRAcceptComment] = useState<string>()
     const handleSwitchChange = (e: any) => {
         setIsHRSatifiedWithRequest(switchRef.current.checked)
+    }
+    const handleConfim = async () => {
+        try {
+            dispatch(showProgressLoading('Đang cập nhật...'))
+            await updateJobApplicationAPI({
+                id: jobApplicationId,
+                status: 2,
+                responseSummary: isHRSatifiedWithRequest ? hrAcceptComment : null
+            })
+            await toastSuccess('Chấp nhận đơn ứng tuyển thành công')
+        } catch (error) {
+            dispatch(hideProgressLoading())
+            toastError('Có lỗi xảy ra')
+            console.log(error)
+        } finally {
+            dispatch(hideProgressLoading())
+        }
     }
     return (
         <>
@@ -63,6 +86,7 @@ function HRAcceptJobApplicationDialog(props: IConfirmDialogProps) {
                                 variant='outlined'
                                 label='Viết nhận xét của bạn'
                                 className='border-solid !border-gray-900 scrollbar'
+                                onChange={(e) => setHRAcceptComment(e.target.value)}
                             />
                         </div>
                     </div>
