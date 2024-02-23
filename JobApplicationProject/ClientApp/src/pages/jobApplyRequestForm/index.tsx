@@ -1,23 +1,68 @@
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { Card, Typography, Button, Textarea, Switch, Select, Option } from '@material-tailwind/react'
 import './index.scss'
-import React, { useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { ChangeEvent, useRef, useState } from 'react'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { createUserAsync, setOpenAdminCreateHR, getAllUserAsync } from 'apps/hrUser.slice'
+import { showProgressLoading, hideProgressLoading } from 'apps/loading.slice'
+import { RootState, useAppDispatch } from 'apps/store'
+import { createJobApplicationAsync } from 'apps/jobApplication.slice'
+import { useSelector } from 'react-redux'
 
 function JobApplyForm() {
     const [isUserCvUsed, setIsUserCvUsed] = useState(false)
+    const [coverLetter, setCoverLetter] = useState<string>()
+    const [cvFile, setCVFile] = useState<string>()
+    const createJobApplicationStatus = useSelector(
+        (state: RootState) => state.jobApplicationSlice.createJobApplication.status
+    )
+    let { id } = useParams()
+    const dispatch = useAppDispatch()
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/'
     const switchRef = useRef<null | any>(null)
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault()
+        dispatch(showProgressLoading('Đang tạo...'))
+        try {
+            await dispatch(
+                createJobApplicationAsync({
+                    userId: '2a9ec624-86b7-4b39-70ac-08dc2350b47b',
+                    coverLetter: coverLetter,
+                    jobDescriptionId: id || '',
+                    cv: cvFile
+                })
+            )
+            // console.log('cover letter: ' + coverLetter)
+            // console.log('cv: ' + cvFile)
+            // console.log('jobDescriptionId: ' + id)
+        } finally {
+            dispatch(hideProgressLoading())
+            if (createJobApplicationStatus === 'succeeded') navigate(-1)
+        }
     }
     const handleBack = () => {
-        navigate(from, { replace: true })
+        navigate(-1)
     }
     const handleSwitchChange = (e: any) => {
         setIsUserCvUsed(switchRef.current.checked)
+    }
+    const handleCVFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+
+        if (file) {
+            const reader = new FileReader()
+
+            reader.onload = (e: ProgressEvent<FileReader>) => {
+                if (e.target && e.target.result) {
+                    const base64 = e.target.result.toString().split(',')[1]
+                    setCVFile(base64)
+                }
+            }
+
+            reader.readAsDataURL(file)
+        }
     }
     return (
         <section className='px-auto bg-gray-100 h-screen flex flex-col justify-center items-center bg-cvApply'>
@@ -39,6 +84,7 @@ function JobApplyForm() {
                                 size='md'
                                 label='Giới thiệu nhanh về bạn ở đây'
                                 className='border-solid !border-gray-900'
+                                onChange={(e) => setCoverLetter(e.target.value)}
                             />
                             <Typography variant='h6' color='blue-gray' className='-mb-3'>
                                 CV ứng tuyển
@@ -68,6 +114,7 @@ function JobApplyForm() {
                                     name='bgfile'
                                     id='bgfile'
                                     placeholder='cvfile'
+                                    onChange={handleCVFileInputChange}
                                 />
                             </div>
                             <div className={`w-full ${isUserCvUsed ? 'block fadeIn' : 'hidden fadeOut'}`}>

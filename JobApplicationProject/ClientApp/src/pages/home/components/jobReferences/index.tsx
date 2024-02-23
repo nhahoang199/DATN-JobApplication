@@ -3,13 +3,13 @@ import { JobItems } from './subComponents'
 import { List, Typography } from '@material-tailwind/react'
 import { useEffect } from 'react'
 import { RootState, useAppDispatch } from 'apps/store'
-import { fetchJobRefer } from 'apps/jobApplication.slice'
+import { fetchJobRefer } from 'apps/jobDescription.slice'
 import { NavLink } from 'react-router-dom'
-import { IJobDescriptionModel} from 'models'
+import { IJobDescriptionModel } from 'models'
 import { Pagination } from 'components/common'
 function JobReferences() {
     const dispatch = useAppDispatch()
-    const jobApplication = useSelector((state: RootState) => state.jobApplication)
+    const jobApplication = useSelector((state: RootState) => state.jobDescription)
 
     useEffect(() => {
         // Dispatch action để gọi API khi component được mount

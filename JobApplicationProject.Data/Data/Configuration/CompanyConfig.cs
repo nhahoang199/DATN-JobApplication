@@ -17,7 +17,7 @@ namespace JobApplicationProject.Data.Data.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasColumnType("nvarchar(100)").IsRequired();
             builder.Property(x => x.CRN).HasColumnType("nvarchar(100)").IsRequired();
-            builder.Property(x => x.Description).HasColumnType("nvarchar(4000)").IsRequired();
+            builder.Property(x => x.Description).HasColumnType("nvarchar(4000)");
             //builder.HasOne<Address>(c => c.Address).WithMany().HasForeignKey(x => x.AddressId).OnDelete(DeleteBehavior.SetNull).IsRequired(false);
         }
     }

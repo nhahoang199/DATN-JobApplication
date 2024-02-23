@@ -8,17 +8,40 @@ import {
     Radio,
     Textarea
 } from '@material-tailwind/react'
+import { updateJobApplicationAPI } from 'apis/jobApplicationAPI'
+import { showProgressLoading, hideProgressLoading } from 'apps/loading.slice'
+import { useAppDispatch } from 'apps/store'
 import React, { useRef, useState } from 'react'
+import { toastSuccess, toastError } from 'utils/function'
 
 interface IConfirmDialogProps {
     open: boolean
     setOpen: any
-    handleConfim: () => void
+    jobApplicationId: string
 }
 
 function UserRejectDialog(props: IConfirmDialogProps) {
+    const [rejectReason, setRejectReason] = useState<string>()
+    const dispatch = useAppDispatch()
     const open = props.open
-    const handleConfim = props.handleConfim
+    const jobApplicationId = props.jobApplicationId
+    const handleConfim = async () => {
+        try {
+            dispatch(showProgressLoading('Đang cập nhật...'))
+            await updateJobApplicationAPI({
+                id: jobApplicationId,
+                status: 6,
+                hrRejectReason: rejectReason
+            })
+            await toastSuccess('Bạn đã từ chối vào làm việc')
+        } catch (error) {
+            dispatch(hideProgressLoading())
+            toastError('Có lỗi xảy ra')
+            console.log(error)
+        } finally {
+            dispatch(hideProgressLoading())
+        }
+    }
     const handleOpen = () => props.setOpen((cur: boolean) => !cur)
     return (
         <>
@@ -44,6 +67,7 @@ function UserRejectDialog(props: IConfirmDialogProps) {
                             variant='outlined'
                             label='Viết lý do từ chối của bạn'
                             className='border-solid !border-gray-900 scrollbar'
+                            onChange={(e) => setRejectReason(e.target.value)}
                         />
                     </div>
                 </DialogBody>

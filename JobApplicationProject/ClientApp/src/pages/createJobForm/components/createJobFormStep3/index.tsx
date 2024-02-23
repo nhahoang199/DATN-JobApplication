@@ -1,6 +1,6 @@
 import { Card, Input, Typography } from '@material-tailwind/react'
 import DOMPurify from 'dompurify'
-import { IJobApplicationModel } from 'models'
+import { IJobDescriptionModel } from 'models'
 import './index.scss'
 import React from 'react'
 import {
@@ -13,7 +13,7 @@ import {
     UsersIcon
 } from '@heroicons/react/24/solid'
 
-function CreateJobStep3(props: { formData: IJobApplicationModel }) {
+function CreateJobStep3(props: { formData: IJobDescriptionModel }) {
     const { formData } = props
     const sanitizedData = (data: string) => ({
         __html: DOMPurify.sanitize(data)
@@ -146,7 +146,7 @@ function CreateJobStep3(props: { formData: IJobApplicationModel }) {
                                     placeholder='Quản lý, thực tập,...'
                                     className=' !border-gray-800 focus:!border-gray-900 rounded-sm text-gray-900 !bg-white h-5'
                                 >
-                                    {formData.salary || '-'}
+                                    {formData.minSalary || '-'}
                                 </Typography>{' '}
                             </div>
                         </div>

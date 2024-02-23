@@ -1,11 +1,32 @@
 import { Typography } from '@material-tailwind/react'
 import { setUserManagerTab } from 'apps/Tabs.slice'
-import { useAppDispatch } from 'apps/store'
-import React, { useEffect } from 'react'
+import { RootState, useAppDispatch } from 'apps/store'
+import React, { useCallback, useEffect } from 'react'
 import { AppliedJobItem } from './components'
+import { getAllJobApplicationAsync } from 'apps/jobApplication.slice'
+import { showProgressLoading, hideProgressLoading } from 'apps/loading.slice'
+import { useSelector } from 'react-redux'
 
 function UserAppliedJobs() {
     const dispatch = useAppDispatch()
+    const tableRow = useSelector((state: RootState) => state.jobApplicationSlice.getAllJobApplication.data)
+    const pagination = useSelector((state: RootState) => state.jobApplicationSlice.getAllJobApplication)
+    const handleGetAllJobApplication = useCallback(
+        async (pageNumber: number) => {
+            dispatch(showProgressLoading('Đang tải dữ liệu..'))
+            try {
+                await dispatch(
+                    getAllJobApplicationAsync({
+                        PageNumber: pageNumber,
+                        PageSize: 25
+                    })
+                )
+            } finally {
+                dispatch(hideProgressLoading())
+            }
+        },
+        [dispatch]
+    )
     const fakeData = [
         {
             name: 'Backend Developer'
@@ -16,7 +37,8 @@ function UserAppliedJobs() {
     ]
     useEffect(() => {
         dispatch(setUserManagerTab(6))
-    }, [dispatch])
+        handleGetAllJobApplication(1)
+    }, [dispatch, handleGetAllJobApplication])
     return (
         <div className=''>
             <Typography
@@ -27,8 +49,8 @@ function UserAppliedJobs() {
                 Việc làm đã ứng tuyển
             </Typography>
             <div className='grid grid-cols-3 gap-5'>
-                {fakeData.map((item, index) => {
-                    return <AppliedJobItem item={item} />
+                {tableRow.map((item, index) => {
+                    return <AppliedJobItem item={item} index={index} />
                 })}
             </div>
         </div>

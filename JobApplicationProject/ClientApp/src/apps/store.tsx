@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import authSlice from './auth.slice'
-import jobApplicationSlice, { createJobSlice } from './jobApplication.slice'
+import jobDescriptionSlice, { createJobSlice } from './jobDescription.slice'
 import loadingSlice from './loading.slice'
 import navBarSlice from './navBar.slice'
 import companyTabsSlice from './Tabs.slice'
@@ -14,10 +14,11 @@ import provinceSlice from './province.slice'
 import districtSlice from './district.slice'
 import communeSlice from './commune.slice'
 import hrUserSlice from './hrUser.slice'
+import jobApplicationSlice from './jobApplication.slice'
 
 export const store = configureStore({
     reducer: {
-        jobApplication: jobApplicationSlice,
+        jobDescription: jobDescriptionSlice,
         navigation: navBarSlice,
         auth: authSlice,
         loading: loadingSlice,
@@ -31,7 +32,8 @@ export const store = configureStore({
         provinceSlice: provinceSlice,
         districtSlice: districtSlice,
         communeSlice: communeSlice,
-        hrUserSlice: hrUserSlice
+        hrUserSlice: hrUserSlice,
+        jobApplicationSlice: jobApplicationSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 })

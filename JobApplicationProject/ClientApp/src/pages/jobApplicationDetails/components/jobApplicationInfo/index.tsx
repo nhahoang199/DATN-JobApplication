@@ -3,8 +3,10 @@ import { Card, CardBody, CardHeader, Typography, Textarea } from '@material-tail
 import { setOpenAttachmentPreview } from 'apps/dialog.slice'
 import { useAppDispatch } from 'apps/store'
 import { pdfIcon } from 'assets'
+import { IJobApplicationModel } from 'models'
 
-function JobApplicationInfoSection() {
+function JobApplicationInfoSection(props: { item: IJobApplicationModel }) {
+    const { item } = props
     const dispatch = useAppDispatch()
     return (
         <Card className='h-full w-full rounded-md'>
@@ -55,7 +57,7 @@ function JobApplicationInfoSection() {
                                         color='gray'
                                         className='text-gray-900 max-h-[120px] overflow-y-scroll scrollbar -mb-3'
                                     >
-                                        Thư xin việc
+                                        {item.coverLetter}
                                     </Typography>
                                 </div>
                             </div>
